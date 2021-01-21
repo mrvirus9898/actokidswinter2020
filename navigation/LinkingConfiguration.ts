@@ -16,6 +16,21 @@ export default {
               TabTwoScreen: 'two',
             },
           },
+          ProgramList: {
+            screens: {
+              ProgramList: 'Program List',
+            },
+          },
+          ActivityList: {
+            screens: {
+              ProgramList: 'Activity List',
+            },
+          },
+          Map: {
+            screens: {
+              Map: 'Map',
+            },
+          },
         },
       },
       NotFound: '*',

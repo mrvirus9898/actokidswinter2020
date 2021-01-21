@@ -7,7 +7,11 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import ProgramList from '../screens/ProgramList';
+import ProgramDetails from '../screens/ProgramDetails';
+import ActivityList from '../screens/ActivityList';
+import Map from '../screens/Map';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,20 +20,27 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Programs"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Programs"
+        component={ProgramListNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="md-rocket" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Activities"
+        component={ActivityListNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="md-american-football" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Map"
+        component={MapNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="md-map" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -44,30 +55,50 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
 
-function TabOneNavigator() {
+const ProgramListStack = createStackNavigator<ProgramParamList>();
+
+function ProgramListNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <ProgramListStack.Navigator>
+      <ProgramListStack.Screen
+        name="ProgramListScreen"
+        component={ProgramList}
+        options={{ headerTitle: 'Program List' }}
       />
-    </TabOneStack.Navigator>
+      <ProgramListStack.Screen
+        name="ProgramDetailsScreen"
+        component={ProgramDetails}
+        options={{ headerTitle: 'Program Details' }}
+      />
+    </ProgramListStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const ActivityListStack = createStackNavigator<ActivityParamList>();
 
-function TabTwoNavigator() {
+function ActivityListNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <ActivityListStack.Navigator>
+      <ActivityListStack.Screen
+        name="ActivityListScreen"
+        component={ActivityList}
+        options={{ headerTitle: 'Activity List' }}
       />
-    </TabTwoStack.Navigator>
+    </ActivityListStack.Navigator>
+  );
+}
+
+const MapStack = createStackNavigator<MapParamList>();
+
+function MapNavigator() {
+  return (
+    <MapStack.Navigator>
+      <MapStack.Screen
+        name="MapScreen"
+        component={Map}
+        options={{ headerTitle: 'Map' }}
+      />
+    </MapStack.Navigator>
   );
 }
