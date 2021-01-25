@@ -15,10 +15,10 @@ export default function ProgramCards(item: any) {
             </Text>
             
 
-            <Text style ={{fontSize: 16, color: 'black'}}>
+            <Text style ={{fontSize: 12, color: 'black'}}>
                 {item.item.Loct_Text}
             </Text>
-            <Text style={{ fontSize: 16, color: 'black' }}>
+            <Text style={{ fontSize: 12, color: 'black' }}>
                 ${item.item.Cost}
             </Text>
         </Card>
