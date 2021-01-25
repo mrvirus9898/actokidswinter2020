@@ -13,14 +13,10 @@ export default function ProgramCards(item: any) {
             <Text style={styles.titleText}>
                     {item.item.Program_Name}
             </Text>
-            <Text style={{ fontSize: 16, color: 'black', margin: 5 }}>
-                {moment(item.item.Sched_Text).format('dddd') + ', ' + moment(item.item.Sched_Text).format('MMMM Do YYYY, h:mm a')}
-            </Text>
-            <Text style={{ fontSize: 16, color: 'black' }}>
-                {item.item.Program_Address}
-            </Text>
-            <Text style={{ fontSize: 16, color: 'black' }}>
-                {item.item.Program_Name}
+            
+
+            <Text style ={{fontSize: 16, color: 'black'}}>
+                {item.item.Loct_Text}
             </Text>
             <Text style={{ fontSize: 16, color: 'black' }}>
                 ${item.item.Cost}
@@ -29,6 +25,19 @@ export default function ProgramCards(item: any) {
     )
 }
 
+/*
+<Text style={{ fontSize: 16, color: 'black', margin: 5 }}>
+    {moment(item.item.Sched_Text).format('dddd') + ', ' + moment(item.item.Sched_Text).format('MMMM Do YYYY, h:mm a')}
+</Text>
+
+<Text style={{ fontSize: 16, color: 'black' }}>
+    {item.item.Program_Name}
+</Text>
+
+<Text style={{ fontSize: 16, color: 'black' }}>
+    {item.item.Program_Address}
+</Text>
+*/
 
 const styles = StyleSheet.create({
     container: {

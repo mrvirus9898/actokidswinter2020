@@ -21,7 +21,7 @@ import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList }
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function ProgramList({navigation}) {
+export default function ProgramList() {
   const colorScheme = useColorScheme();
 
   return (
@@ -76,11 +76,6 @@ function ProgramComponents({ navigation }) {
     }
   }
 
-function LoginSignupComponents({ navigation }) {
-    return (
-      <AppLogin />
-    );
-  }
 
   // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/

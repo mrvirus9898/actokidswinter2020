@@ -20,13 +20,13 @@ export default function LeftSideDrawerNavigator() {
   );
 }
 
-function ProgramComponents({ navigation }) {
+function ProgramComponents() {
     return(
         <ProgramList />
     );
 }
 
-function LoginSignupComponents({ navigation }) {
+function LoginSignupComponents() {
   return (
     <AppLogin />
   );
