@@ -121,10 +121,10 @@ export default function ProgramDetails(params: Array<any>){
             <Text style={styles.bodyText}>{item.description}</Text>
             
             <Text style={styles.subTitles}>ACTIVITY TYPE</Text>
-            <Text style={styles.bodyText}>{item.activity_type}</Text>
+            <Text style={styles.bodyText}>{item.Program_Types}</Text>
             
             <Text style={styles.subTitles}>DISABILITIES SERVED</Text>
-            <Text style={styles.bodyText}>{disabilities_served}</Text>
+            <Text style={styles.bodyText}>{item.accessability}</Text>
             <Text style={styles.subTitles}>AGE RANGE</Text>
             <Text style={styles.bodyText}>{item.min_age} - {item.max_age}</Text>
             <Text style={styles.subTitles}>COST</Text>

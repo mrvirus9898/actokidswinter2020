@@ -21,7 +21,7 @@ export default function FilterPage() {
         })
         return(null);        
     }else{
-        console.log(taxonomy.Activities);
+        //console.log(taxonomy.Activities);
         return(
             <View>
                 <ScrollView>

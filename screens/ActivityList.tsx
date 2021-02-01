@@ -22,9 +22,6 @@ export default function ProgramList() {
     return(
         <View>
             <Text>Activity List Top Component</Text>
-            
-            <AppLogin />
-
         </View>
     );
 }
