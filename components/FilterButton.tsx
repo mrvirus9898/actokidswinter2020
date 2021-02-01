@@ -12,7 +12,7 @@ Future react releases will probably fix this but until them, have a free shrug Â
 */
 
 import * as React from 'react';
-import { Button} from 'react-native';
+import { Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function filterButton() {
@@ -20,7 +20,7 @@ export default function filterButton() {
 
   return (
     <Button
-      title={`Filter`}
+      title={`Taxo`}
       color="#ff4800"
       onPress={() => navigation.navigate('ProgramFilterScreen')}
     />
