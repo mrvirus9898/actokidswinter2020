@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import NumericInput from 'react-native-numeric-input'
 import InputSpinner from "react-native-input-spinner";
 
 import { Card } from 'react-native-elements'
@@ -21,7 +20,7 @@ export default function FontSettings(){
                     <InputSpinner
                         max={10}
                         min={0}
-                        step={2}
+                        step={1}
                         colorMax={"#f04048"}
                         colorMin={"#40c5f4"}
                         value={0}
@@ -35,3 +34,20 @@ export default function FontSettings(){
 
     );
 }
+
+/*
+<Text>
+                    Heat
+                    <InputSpinner
+                        max={10}
+                        min={0}
+                        step={1}
+                        colorMax={"#f04048"}
+                        colorMin={"#40c5f4"}
+                        value={0}
+                        onChange={(num) => {
+                            console.log(num);
+                        }}
+                    />
+                </Text>
+*/
