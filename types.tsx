@@ -20,6 +20,7 @@ export type TabTwoParamList = {
 export type ProgramParamList = {
   ProgramListScreen: undefined;
   ProgramDetailsScreen: undefined;
+  ProgramFilterScreen: undefined;
 };
 
 export type ActivityParamList = {

@@ -13,7 +13,9 @@ export default function LeftSideDrawerNavigator() {
 
   return (
     <NavigationContainer independent={true}>
-      <Drawer.Navigator initialRouteName="Programs">
+      <Drawer.Navigator 
+      initialRouteName="Programs"
+      drawerPosition={"left"}>
         <Drawer.Screen name="Programs" component={ProgramComponents} />
         <Drawer.Screen name="Sign In" component={LoginSignupComponents} />
         <Drawer.Screen name="Font Size" component={FontComponents} />

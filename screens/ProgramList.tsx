@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { View} from 'react-native';
 
 import ShowPrograms from '../components/ListComponents/ShowPrograms';
-import loadProgramInformation from '../hooks/loadProgramInformation';
+import FilterButton from '../components/FilterButton';
 
-import AppLogin from '../components/AppLogin';
+import loadProgramInformation from '../hooks/loadProgramInformation';
+import useColorScheme from '../hooks/useColorScheme';
 
 import ProgramDetails from '../screens/ProgramDetails';
 import ActivityList from '../screens/ActivityList';
 import Map from '../screens/Map';
+import FilterPage from '../screens/FilterPage';
+
 import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
 
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -18,8 +20,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
 
-
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+
 
 export default function ProgramList() {
   const colorScheme = useColorScheme();
@@ -91,13 +93,20 @@ function ProgramListNavigator() {
       <ProgramListStack.Screen
         name="ProgramListScreen"
         component={ProgramComponents}
-        options={{ headerTitle: 'Program List' }}
-      />
+        options={{ 
+          headerTitle: 'Program List',
+          headerRight: () => (<FilterButton />)
+      }}/>
       <ProgramListStack.Screen
         name="ProgramDetailsScreen"
         component={ProgramDetails}
         options={{ headerTitle: 'Program Details' }}
       />
+      <ProgramListStack.Screen
+        name="ProgramFilterScreen"
+        component={FilterPage}
+        options={{ headerTitle: 'Filter Page' }}
+      />      
     </ProgramListStack.Navigator>
   );
 }
