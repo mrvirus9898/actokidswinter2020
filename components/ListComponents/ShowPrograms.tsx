@@ -9,39 +9,32 @@ TODO:
 
 import React, { useState } from 'react';
 import {
-  StyleSheet,
-  Text,
-  Image,
-  TouchableOpacity,
   TouchableHighlight,
   View,
   FlatList
 } from 'react-native';
+import filterButton from '../FilterButton';
 
 import ProgramCards from './ProgramCards';
 
-
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
-
-
-const FilterDrawer = createDrawerNavigator();
-
 export default function ShowPrograms(params: Array<Array<any>>){
 
+  //const [filter, setFilter] = useState<Array<any>>([]);
+  const [filter, setFilter] = useState<Array<String>>(["Cognative"]);
 
   function drawCards(){
-        //console.log(params)
+        //console.log("Filter: " + filter)
         if(params === undefined)
         {
           console.log("Still Loading")
           return(null)
         }else{
           //console.log("Showing Programs: " + Object.keys(params))
+          let filteredData = applyFilter(filter)
           return( 
             <View>
               <FlatList
-                data={params.programs}
+                data={filteredData}
                 keyExtractor={(x, i) => i.toString()}
                 renderItem={({ item }) => (
                   <View >
@@ -63,6 +56,25 @@ export default function ShowPrograms(params: Array<Array<any>>){
       }
   }
 
+  function applyFilter(filter: Array<String>){
+    let output: Array<any> = []
+
+    params.programs.forEach(element => {
+      if(element.accessability.localeCompare(filter[0]) == 0){
+        //console.log(filter[0])
+        output.push(element)
+      }
+      //console.log(output)
+    });
+
+    /*var arr = [1, 2, 3, 4];
+    arr.forEach(function (el) {
+      console.log(el);
+    })*/
+    //console.log(output)
+    return(output)
+  }
+
   return (drawCards())
 
 }
@@ -70,6 +82,9 @@ export default function ShowPrograms(params: Array<Array<any>>){
 //style={{ marginBotton: 30 }}
 
 /*
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+const FilterDrawer = createDrawerNavigator();
 
 function rightFilterDrawer(){
     return(

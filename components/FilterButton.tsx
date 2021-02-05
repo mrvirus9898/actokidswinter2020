@@ -20,7 +20,7 @@ export default function filterButton() {
 
   return (
     <Button
-      title={`Taxonomy`}
+      title={`Filter`}
       color="#ff4800"
       onPress={() => navigation.navigate('ProgramFilterScreen')}
     />

@@ -105,7 +105,7 @@ function ProgramListNavigator() {
       <ProgramListStack.Screen
         name="ProgramFilterScreen"
         component={FilterPage}
-        options={{ headerTitle: 'Display Taxonomy' }}
+        options={{ headerTitle: 'Filter' }}
       />      
     </ProgramListStack.Navigator>
   );
