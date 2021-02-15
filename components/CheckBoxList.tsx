@@ -4,7 +4,9 @@ Nick Bennett
 
 checkBoxList is used in the filter function to dynamically generate the filter parameters
 
-The code is simple, but will not run cleanly in the file, so have a free shrug ¯\_(ツ)_/¯
+When the state updates the component is kind of a mystery. But this does work, so have a free shrug ¯\_(ツ)_/¯
+
+WARNING, FILTERCRITERIA WILL CREATE A UNIQUE ARRAY FOR EACH INCOMING UNIQUE ARRAY. YOU HAVE BEEN WARNED.
 
 TODO: Fix checkedIcon / uncheckedIcon not working
 
