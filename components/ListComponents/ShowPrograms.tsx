@@ -20,7 +20,7 @@ import ProgramCards from './ProgramCards';
 export default function ShowPrograms(params: Array<Array<any>>){
 
   //const [filter, setFilter] = useState<Array<any>>([]);
-  const [filter, setFilter] = useState<Array<String>>(["Cognative"]);
+  const [filter, setFilter] = useState<Array<String>>([]);
 
   function drawCards(){
         //console.log("Filter: " + filter)
@@ -30,6 +30,7 @@ export default function ShowPrograms(params: Array<Array<any>>){
           return(null)
         }else{
           //console.log("Showing Programs: " + Object.keys(params))
+          
           let filteredData = applyFilter(filter)
           return( 
             <View>
@@ -59,14 +60,17 @@ export default function ShowPrograms(params: Array<Array<any>>){
   function applyFilter(filter: Array<String>){
     let output: Array<any> = []
 
-    params.programs.forEach(element => {
-      if(element.accessability.localeCompare(filter[0]) == 0){
-        //console.log(filter[0])
-        output.push(element)
-      }
-      //console.log(output)
-    });
-
+    if(filter.length != 0){
+      params.programs.forEach(element => {
+        if(element.accessability.localeCompare(filter[0]) == 0){
+          //console.log(filter[0])
+          output.push(element)
+        }
+        //console.log(output)
+      });
+    }else{
+      output = params.programs
+    }
     /*var arr = [1, 2, 3, 4];
     arr.forEach(function (el) {
       console.log(el);
