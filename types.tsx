@@ -31,4 +31,11 @@ export type MapParamList = {
   MapScreen: undefined;
 };
 
+export type test = {
+  Hello: String;
+  World: String;
+}
 
+export type FilterCriteria = {
+  Criteria: [];
+}
