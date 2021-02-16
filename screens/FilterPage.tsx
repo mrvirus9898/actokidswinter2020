@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   ScrollView
@@ -12,7 +12,30 @@ export default function FilterPage() {
 
     const [taxonomy, setTaxonomy] = useState<Array<Array<any>>>([]);
 
+    useEffect(() => {
+        const incomingData = loadTaxonomyInformation().then(function(result)
+        {
+            setTaxonomy(result);
+        })
+    }, [])
+
+    //Need to check as the load function is async
     if(taxonomy.length == 0){
+        return(null);        
+    }else{
+        //console.log(taxonomy.Activities);
+        return(
+            <View>
+                <ScrollView>
+                    <CheckBoxList title={taxonomy.Activities}/>
+                    <CheckBoxList title={taxonomy.Taxonomy}/>
+                </ScrollView>
+            </View>
+        );
+    }
+
+
+    /*if(taxonomy.length == 0){
         
         const incomingData = loadTaxonomyInformation().then(function(result)
         {
@@ -29,7 +52,7 @@ export default function FilterPage() {
                 </ScrollView>
             </View>
         );
-    }
+    }*/
 }
 
 /*

@@ -7,20 +7,30 @@ Show Programs is the actual component that contains the flat list, and the card
 TODO:
 */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useIsFocused } from '@react-navigation/native'
+
 import {
   TouchableHighlight,
   View,
   FlatList
 } from 'react-native';
-import filterButton from '../FilterButton';
 
 import ProgramCards from './ProgramCards';
+
+import FilterCriteria from '../../types';
 
 export default function ShowPrograms(params: Array<Array<any>>){
 
   //const [filter, setFilter] = useState<Array<any>>([]);
   const [filter, setFilter] = useState<Array<String>>([]);
+
+  const isFocused = useIsFocused()
+
+    useEffect(() => {
+      console.log("Current Filter: " + FilterCriteria.Criteria)
+    } , [isFocused])
+
 
   function drawCards(){
         //console.log("Filter: " + filter)
@@ -31,7 +41,7 @@ export default function ShowPrograms(params: Array<Array<any>>){
         }else{
           //console.log("Showing Programs: " + Object.keys(params))
           
-          let filteredData = applyFilter(filter)
+          let filteredData = applyFilter(FilterCriteria.Criteria)
           return( 
             <View>
               <FlatList
@@ -59,6 +69,8 @@ export default function ShowPrograms(params: Array<Array<any>>){
 
   function applyFilter(filter: Array<String>){
     let output: Array<any> = []
+
+    //console.log("Current Filter: " + filter)
 
     if(filter.length != 0){
       params.programs.forEach(element => {

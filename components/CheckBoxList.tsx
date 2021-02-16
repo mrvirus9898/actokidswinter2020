@@ -30,7 +30,7 @@ export default function checkBoxList({title}){
     //This useEffect will ensure that the filter is only loaded from saved data when the component is loaded, not on ever update
     useEffect(() => {
         if(FilterCriteria.Criteria !== undefined){
-            console.log(FilterCriteria.Criteria)
+            //console.log(FilterCriteria.Criteria)
             setFilter(FilterCriteria.Criteria)
             //filterCriteria.push()
         }

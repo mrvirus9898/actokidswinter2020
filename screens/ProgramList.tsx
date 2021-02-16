@@ -20,15 +20,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
 
-import test from '../types'
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 
 export default function ProgramList() {
   const colorScheme = useColorScheme();
-
-  test.Hello = "Hello There"
 
   return (
     <BottomTab.Navigator

@@ -3,11 +3,14 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 
+import FilterCriteria from '../types'
+
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
+    FilterCriteria.Criteria = []
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHideAsync();
