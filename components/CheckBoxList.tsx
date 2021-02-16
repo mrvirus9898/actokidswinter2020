@@ -12,7 +12,7 @@ TODO: Fix checkedIcon / uncheckedIcon not working
 
 */
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View
 } from 'react-native';
@@ -22,12 +22,20 @@ import FilterCriteria from '../types'
 
 export default function checkBoxList({title}){
 
-    const [filterCriteria, setFilter] = useState(FilterCriteria.Criteria);
+    const [filterCriteria, setFilter] = useState([]);
     //Checked only true purpose is to force a state update on the checkbox component after the filter has been modified.
     //It does not actually track what has or has not been checked. That is done by logic.
     const [checked, setChecked] = useState(false);
 
-    console.log(FilterCriteria.Criteria)
+    //This useEffect will ensure that the filter is only loaded from saved data when the component is loaded, not on ever update
+    useEffect(() => {
+        if(FilterCriteria.Criteria !== undefined){
+            console.log(FilterCriteria.Criteria)
+            setFilter(FilterCriteria.Criteria)
+            //filterCriteria.push()
+        }
+    }, [])
+    
 
     return(
         <View>
