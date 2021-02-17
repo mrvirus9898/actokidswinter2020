@@ -39,3 +39,7 @@ export type test = {
 export type FilterCriteria = {
   Criteria: [];
 }
+
+export type IncomingActivities = {
+  Activities: [];
+}

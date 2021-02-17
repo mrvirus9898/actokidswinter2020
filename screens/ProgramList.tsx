@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View} from 'react-native';
 
 import ShowPrograms from '../components/ListComponents/ShowPrograms';
@@ -20,12 +20,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
 
-
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 
 export default function ProgramList() {
   const colorScheme = useColorScheme();
+
+
 
   return (
     <BottomTab.Navigator
@@ -59,24 +60,22 @@ export default function ProgramList() {
 function ProgramComponents({ navigation }) {
     const [programs, setPrograms] = useState<Array<Array<any>>>([]);
 
+    useEffect(() => {
+      const incomingData = loadProgramInformation().then(function(result)
+          {
+              setPrograms(result);
+          })
+      }, [])
+
     //console.log(navigation);
 
-    if(programs.length == 0){
-        
-        const incomingData = loadProgramInformation().then(function(result)
-        {
-            setPrograms(result);
-        })
-        return(null);        
-    }else{
-        //console.log(Object.keys(programs[0]));
-        console.log(programs[0].Program_Name);
-        return(
-            <View>
-                <ShowPrograms programs={programs} navigation={navigation}/>
-            </View>
-        );
-    }
+    //console.log(Object.keys(programs[0]));
+    //console.log(programs[0].Program_Name);
+    return(
+        <View>
+            <ShowPrograms programs={programs} navigation={navigation}/>
+        </View>
+    );
   }
 
 
