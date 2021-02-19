@@ -4,31 +4,22 @@ import {
   ScrollView
 } from 'react-native';
 
-import loadTaxonomyInformation from '../hooks/loadTaxonomyInformation';
+import IncomingFilter from '../types'
 
 import CheckBoxList from '../components/CheckBoxList';
 
 export default function FilterPage() {
 
-    const [taxonomy, setTaxonomy] = useState<Array<Array<any>>>([]);
-
-    useEffect(() => {
-        const incomingData = loadTaxonomyInformation().then(function(result)
-        {
-            setTaxonomy(result);
-        })
-    }, [])
-
-    //Need to check as the load function is async
-    if(taxonomy.length == 0){
+    //Need to check as the load function is still loading
+    if(IncomingFilter.IncomingFilterActivties.length == 0){
         return(null);        
     }else{
         //console.log(taxonomy.Activities);
         return(
             <View>
                 <ScrollView>
-                    <CheckBoxList title={taxonomy.Activities}/>
-                    <CheckBoxList title={taxonomy.Taxonomy}/>
+                    <CheckBoxList title={IncomingFilter.IncomingFilterActivties}/>
+                    <CheckBoxList title={IncomingFilter.IncomingFilterTaxonomy}/>
                 </ScrollView>
             </View>
         );
@@ -76,4 +67,13 @@ export default function FilterPage() {
         </View>
 
         */
+       /*
+           const [taxonomy, setTaxonomy] = useState<Array<Array<any>>>([]);
+
+    useEffect(() => {
+        const incomingData = loadTaxonomyInformation().then(function(result)
+        {
+            setTaxonomy(result);
+        })
+    }, [])*/
 

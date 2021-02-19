@@ -5,6 +5,7 @@ import ShowPrograms from '../components/ListComponents/ShowPrograms';
 import FilterButton from '../components/FilterButton';
 
 import loadProgramInformation from '../hooks/loadProgramInformation';
+import loadTaxonomyInformation from '../hooks/loadTaxonomyInformation';
 import useColorScheme from '../hooks/useColorScheme';
 
 import ProgramDetails from '../screens/ProgramDetails';
@@ -19,6 +20,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
+import IncomingFilter from '../types'
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -61,10 +63,17 @@ function ProgramComponents({ navigation }) {
     const [programs, setPrograms] = useState<Array<Array<any>>>([]);
 
     useEffect(() => {
-      const incomingData = loadProgramInformation().then(function(result)
+      IncomingFilter.IncomingFilterActivties = []
+      IncomingFilter.IncomingFilterTaxonomy = []
+      const incomingPrograms = loadProgramInformation().then(function(result)
           {
               setPrograms(result);
           })
+      const incomingFilter = loadTaxonomyInformation().then(function(result)
+      {
+          IncomingFilter.IncomingFilterActivties = result.Activities;
+          IncomingFilter.IncomingFilterTaxonomy = result.Taxonomy;
+      })
       }, [])
 
     //console.log(navigation);

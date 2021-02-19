@@ -40,6 +40,11 @@ export type FilterCriteria = {
   Criteria: [];
 }
 
+export type IncomingFilter = {
+  IncomingFilterActivties: [];
+  IncomingFilterTaxonomy: [];
+}
+
 export type IncomingActivities = {
   Activities: [];
 }
