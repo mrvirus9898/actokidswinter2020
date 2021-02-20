@@ -11,17 +11,14 @@ import {
   TouchableNativeFeedbackBase
 } from 'react-native';
 
-import AppLogin from '../components/AppLogin'
-import AppSignup from '../components/AppSignup'
-import AppGoogleLogout from '../components/AppLogout'
+import ShowActivities from '../components/ListComponents/ShowActivities';
 
-import { Button, Card } from 'react-native-elements';
 
 export default function ProgramList() {
 
     return(
         <View>
-            <Text>Activity List Top Component</Text>
+            <ShowActivities />
         </View>
     );
 }
