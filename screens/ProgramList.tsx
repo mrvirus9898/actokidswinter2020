@@ -11,7 +11,17 @@ import useColorScheme from '../hooks/useColorScheme';
 import ProgramDetails from '../screens/ProgramDetails';
 import ActivityList from '../screens/ActivityList';
 import Map from '../screens/Map';
+
 import FilterPage from '../screens/FilterPage';
+import FilterAccessOptions from '../components/filterOptions/FilterAccessOptions';
+import FilterAgesGrades from '../components/filterOptions/FilterAgesGrades';
+import FilterCostsAndTravel from '../components/filterOptions/FilterCostsAndTravel';
+import FilterIndividualSports from '../components/filterOptions/FilterIndividualSports';
+import FilterIndoorPrograms from '../components/filterOptions/FilterIndoorPrograms';
+import FilterLanguageOptions from '../components/filterOptions/FilterLanguageOptions';
+import FilterOutdoorPrograms from '../components/filterOptions/FilterOutdoorPrograms';
+import FilterTeamSports from '../components/filterOptions/FilterTeamSports';
+
 
 import Colors from '../constants/Colors';
 
@@ -115,7 +125,48 @@ function ProgramListNavigator() {
         name="ProgramFilterScreen"
         component={FilterPage}
         options={{ headerTitle: 'Filter' }}
-      />      
+      />   
+      <ProgramListStack.Screen
+        name="FilterAccessOptions"
+        component={FilterAccessOptions}
+        options={{ headerTitle: 'Accessibility Options' }}
+      />   
+      <ProgramListStack.Screen
+        name="FilterAgesGrades"
+        component={FilterAgesGrades}
+        options={{ headerTitle: 'Ages and Grades' }}
+      />   
+      <ProgramListStack.Screen
+        name="FilterCostsAndTravel"
+        component={FilterCostsAndTravel}
+        options={{ headerTitle: 'Costs and Travel' }}
+      />   
+      <ProgramListStack.Screen
+        name="FilterIndividualSports"
+        component={FilterIndividualSports}
+        options={{ headerTitle: 'Individual Sports' }}
+      />   
+      <ProgramListStack.Screen
+        name="FilterIndoorPrograms"
+        component={FilterIndoorPrograms}
+        options={{ headerTitle: 'Indoor Programs' }}
+      />   
+      <ProgramListStack.Screen
+        name="FilterLanguageOptions"
+        component={FilterLanguageOptions}
+        options={{ headerTitle: 'Language Options' }}
+      />   
+      <ProgramListStack.Screen
+        name="FilterOutdoorPrograms"
+        component={FilterOutdoorPrograms}
+        options={{ headerTitle: 'Outdoors Programs' }}
+      />   
+      <ProgramListStack.Screen
+        name="FilterTeamSports"
+        component={FilterTeamSports}
+        options={{ headerTitle: 'Team Sports' }}
+      />   
+      
     </ProgramListStack.Navigator>
   );
 }

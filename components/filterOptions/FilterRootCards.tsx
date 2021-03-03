@@ -13,6 +13,8 @@ import { StyleSheet, Text,TouchableOpacity,
     TouchableHighlight, View, Image, FlatList, Dimensions } from 'react-native';
 import { Card } from 'react-native-elements';
 
+import { useNavigation } from '@react-navigation/native';
+
 export default function FilterRootCards() {
     let demoArray = [
     {   title: 'Accessibility Options',
@@ -45,19 +47,31 @@ export default function FilterRootCards() {
     },
     {   title: 'Cost and Travel', 
         key: 7,
-        route: ''
+        route: 'FilterCostsAndTravel'
     }
     ];
     let screenWidth = Dimensions.get("window").width;
     let cols = 3;
     let tileSize = screenWidth / cols
 
+    const navigation = useNavigation();
+
     function renderItem({item}){
+        console.log(navigation)
         return(
             <View style={{height: tileSize, flex: 1/2}}>
+                <TouchableHighlight 
+                    accessible = {true}
+                    accessibilityLabel = {item.Program_Name}
+                    accessibilityHint="Click here to learn more."
+                    accessibilityRole="imagebutton" 
+                    onPress= {() => {
+                    navigation.navigate(item.route);
+                }}>
                 <Card>
                     <Card.Title>{item.title}</Card.Title>
                 </Card>
+                </TouchableHighlight>
             </View>
 
         )
