@@ -16,7 +16,7 @@ import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 
 export default function FilterRootCards() {
-    let demoArray = [
+    let optionsArray = [
     {   title: 'Accessibility Options',
         key: 0,
         route: 'FilterAccessOptions'
@@ -57,7 +57,7 @@ export default function FilterRootCards() {
     const navigation = useNavigation();
 
     function renderItem({item}){
-        console.log(navigation)
+       //console.log(navigation)
         return(
             <View style={{height: tileSize, flex: 1/2}}>
                 <TouchableHighlight 
@@ -78,7 +78,7 @@ export default function FilterRootCards() {
     }
 
     return(
-      <FlatList data={demoArray} renderItem={renderItem} numColumns={2}>
+      <FlatList data={optionsArray} renderItem={renderItem} numColumns={2}>
 
       </FlatList>
     )
