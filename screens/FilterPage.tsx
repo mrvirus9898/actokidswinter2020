@@ -8,6 +8,9 @@ import IncomingFilter from '../types'
 
 import CheckBoxList from '../components/CheckBoxList';
 
+
+import FilterRootCards from '../components/filterOptions/FilterRootCards';
+
 export default function FilterPage() {
 
     //Need to check as the load function is still loading
@@ -17,14 +20,17 @@ export default function FilterPage() {
         //console.log(taxonomy.Activities);
         return(
             <View>
-                <ScrollView>
-                    <CheckBoxList title={IncomingFilter.IncomingFilterActivties}/>
-                    <CheckBoxList title={IncomingFilter.IncomingFilterTaxonomy}/>
-                </ScrollView>
+                <FilterRootCards />
             </View>
         );
     }
 
+/*
+                <ScrollView>
+                    <CheckBoxList title={IncomingFilter.IncomingFilterActivties}/>
+                    <CheckBoxList title={IncomingFilter.IncomingFilterTaxonomy}/>
+                </ScrollView>
+                */
 
     /*if(taxonomy.length == 0){
         
