@@ -14,16 +14,49 @@ import { StyleSheet, Text,TouchableOpacity,
 import { Card } from 'react-native-elements';
 
 export default function FilterRootCards() {
-    let demoArray = ['Criteria 1', 'Criteria 2', 'Criteria 3', 'Criteria 4', 'Criteria 5', 'Criteria 6', 'Criteria 7', 'Criteria 8']
+    let demoArray = [
+    {   title: 'Accessibility Options',
+        key: 0,
+        route: 'FilterAccessOptions'
+    },
+    {   title: 'Ages and Grades',
+        key: 1,
+        route: 'FilterAgesGrades'
+    },
+    {   title: 'Team Sports', 
+        key: 2,
+        route: 'FilterTeamSports'
+    },
+    {   title: 'Individual Sports', 
+        key: 3,
+        route: 'FilterIndividualSports'
+    },
+    {   title: 'Indoor', 
+        key: 4,
+        route: 'FilterIndoorPrograms'
+    },
+    {   title: 'Outdoor', 
+        key: 5,
+        route: 'FilterOutdoorPrograms'
+    },
+    {   title: 'Language Options', 
+        key: 6,
+        route: 'FilterLanguageOptions'
+    },
+    {   title: 'Cost and Travel', 
+        key: 7,
+        route: ''
+    }
+    ];
     let screenWidth = Dimensions.get("window").width;
     let cols = 3;
     let tileSize = screenWidth / cols
 
     function renderItem({item}){
         return(
-            <View style={{height: tileSize, width: tileSize, backgroundColor: 'powderblue', flex: 1/2}}>
+            <View style={{height: tileSize, flex: 1/2}}>
                 <Card>
-                    <Text style={styles.paragraph}>{item}</Text>
+                    <Card.Title>{item.title}</Card.Title>
                 </Card>
             </View>
 
@@ -47,7 +80,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FF5733',
     },
     paragraph: {
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: 'bold',
         textAlign: 'center',
         padding: 20
@@ -93,4 +126,12 @@ const styles = StyleSheet.create({
         <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
         <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
       </View>
+      {'Accessibility Options'}, 
+        'Ages and Grades', 
+        'Team Sports', 
+        'Individual Sports', 
+        'Indoor', 
+        'Outdoor', 
+        'Language Options', 
+        'Cost and Travel'
 */
