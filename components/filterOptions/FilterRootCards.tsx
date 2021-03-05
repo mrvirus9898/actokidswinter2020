@@ -62,7 +62,7 @@ export default function FilterRootCards() {
             <View style={{height: tileSize, flex: 1/2}}>
                 <TouchableHighlight 
                     accessible = {true}
-                    accessibilityLabel = {item.Program_Name}
+                    accessibilityLabel = {item.title}
                     accessibilityHint="Click here to learn more."
                     accessibilityRole="imagebutton" 
                     onPress= {() => {

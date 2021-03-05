@@ -9,7 +9,7 @@ import IncomingFilter from '../types'
 import CheckBoxList from '../components/CheckBoxList';
 
 
-import FilterRootCards from '../components/filterOptions/FilterRootCards';
+import FilterSelector from '../components/filterOptions/FilterSelector';
 
 export default function FilterPage() {
 
@@ -20,7 +20,7 @@ export default function FilterPage() {
         //console.log(taxonomy.Activities);
         return(
             <View>
-                <FilterRootCards />
+                <FilterSelector />
             </View>
         );
     }
