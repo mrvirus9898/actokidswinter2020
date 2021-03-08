@@ -2,7 +2,7 @@
 Actokids Project
 Nick Bennett
 
-
+Not sure why, but a refresh flag is eneded to update the form
 
 */
 
@@ -13,9 +13,7 @@ import { CheckBox } from 'react-native-elements';
 
 export default function checkBoxList(){
 
-    //const [checked, setChecked] = useState(false);
-
-    let optionsArray = [
+    const [checkedOptions, setOptions] = useState([
         {   title: 'Wheelchair Accessible',
             key: 0,
             checked: false
@@ -40,24 +38,31 @@ export default function checkBoxList(){
             key: 5,
             checked: false
         }
-    ];
-    
+    ]);
+
+    const [refresh, setRefresh] = useState(false);
+
     return(       
         <View>
             {
-                optionsArray.map((item, key) => <CheckBox
+                checkedOptions.map((item, key) => <CheckBox
                     title={item.title}
                     key={key}
                     checked={item.checked}
                     checkedIcon='dot-circle-o'
                     uncheckedIcon='circle-o' 
-                    onPress={() => changeCheck(item)}/>)
+                    onPress={() => changeCheck(item.key)}/>)
             }
         </View>  )
 
-    function changeCheck(item){
-        //setChecked(!checked)
-        item.checked = !item.checked
+    function changeCheck(key: number){
+        let tempOptions = checkedOptions
+        tempOptions[key].checked = !tempOptions[key].checked
+        console.log(tempOptions[key].title + " " + tempOptions[key].checked)
+        setOptions(tempOptions)
+        //Again, not sure why but this flag check is needed 
+        setRefresh(!refresh)
+
     }
 
 }
