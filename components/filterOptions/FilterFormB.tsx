@@ -18,6 +18,7 @@ import DateBox from './filterFormComponents/DateBox'
 import AccessOptionsCheckBox from './filterFormComponents/AccessOptionsCheckBox'
 import AgesAndGrades from './filterFormComponents/AgesAndGrades'
 import Costs from './filterFormComponents/Costs'
+import TaxonomyCriteria from './filterFormComponents/TaxonomyCriteria'
 
 export default function FilterFormB() {
     //console.log(item.item)
@@ -29,6 +30,10 @@ export default function FilterFormB() {
             </View>
             <DistanceBox />
             <DateBox />
+            <View>
+                <Text style={styles.text}>Taxonomy Criteria</Text>
+            </View>
+            <TaxonomyCriteria />
             <View>
                 <Text style={styles.text}>Accessibility Options</Text>
             </View>
