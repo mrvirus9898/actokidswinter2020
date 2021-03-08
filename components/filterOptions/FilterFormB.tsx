@@ -17,6 +17,7 @@ import DistanceBox from './filterFormComponents/DistanceBox'
 import DateBox from './filterFormComponents/DateBox'  
 import AccessOptionsCheckBox from './filterFormComponents/AccessOptionsCheckBox'
 import AgesAndGrades from './filterFormComponents/AgesAndGrades'
+import Costs from './filterFormComponents/Costs'
 
 export default function FilterFormB() {
     //console.log(item.item)
@@ -36,6 +37,10 @@ export default function FilterFormB() {
                 <Text style={styles.text}>Ages/Grades</Text>
             </View>
             <AgesAndGrades />
+            <View>
+                <Text style={styles.text}>Cost</Text>
+            </View>
+            <Costs />
         </ScrollView>
     </SafeAreaView>)
 } 

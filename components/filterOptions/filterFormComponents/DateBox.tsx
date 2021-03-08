@@ -8,7 +8,6 @@ Distance input box
 
 import * as React from 'react';
 import { Text, TextInput, View, Dimensions } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 export default function DateBox() {
   const [value, onChangeText] = React.useState(' Date');
