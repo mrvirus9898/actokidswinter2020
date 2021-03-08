@@ -35,8 +35,8 @@ export default function FilterAccessOptions() {
         {   title: 'Supporters Allowed', 
             key: 5
         }
-        ];
-        let screenWidth = Dimensions.get("window").width;
+    ];
+    let screenWidth = Dimensions.get("window").width;
     let cols = 2;
     let tileSize = screenWidth / cols
 

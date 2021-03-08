@@ -12,10 +12,10 @@ import React from 'react';
 
 import { StyleSheet, Text,TouchableOpacity,
     TouchableHighlight, View, Image } from 'react-native';
-import { Card } from 'react-native-elements';
 
 import DistanceBox from './filterFormComponents/DistanceBox'    
 import DateBox from './filterFormComponents/DateBox'  
+import AccessOptionsCheckBox from './filterFormComponents/AccessOptionsCheckBox'
 
 export default function FilterFormB() {
     //console.log(item.item)
@@ -26,5 +26,12 @@ export default function FilterFormB() {
         </View>
         <DistanceBox />
         <DateBox />
+        <View>
+            <Text>Accessibility Options</Text>
+        </View>
+        <AccessOptionsCheckBox />
+        <View>
+            <Text>Ages/Grades</Text>
+        </View>
     </View>)
 }
