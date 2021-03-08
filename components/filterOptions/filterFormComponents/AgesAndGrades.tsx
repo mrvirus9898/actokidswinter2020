@@ -11,31 +11,23 @@ import {  View  } from 'react-native';
 
 import { CheckBox } from 'react-native-elements';
 
-export default function AccessOptionsCheckBox(){
+export default function AgesAndGrades(){
 
     const [checkedOptions, setOptions] = useState([
-        {   title: 'Wheelchair Accessible',
+        {   title: '5 - 8 Years',
             key: 0,
             checked: false
         },
-        {   title: 'Autism Friendly',
+        {   title: '9 - 12 Years',
             key: 1,
             checked: false
         },
-        {   title: 'Peer Inclusion', 
+        {   title: '13 - 16 Years', 
             key: 2,
             checked: false
         },
-        {   title: 'Family Bathrooms', 
+        {   title: 'High School', 
             key: 3,
-            checked: false
-        },
-        {   title: 'Sign Language Interpreter', 
-            key: 4,
-            checked: false
-        },
-        {   title: 'Supporters Allowed', 
-            key: 5,
             checked: false
         }
     ]);
@@ -66,16 +58,3 @@ export default function AccessOptionsCheckBox(){
     }
 
 }
-/*
-        <View>
-            {
-                title.map((item, key) => <CheckBox
-                    title={item.value}
-                    key={key}
-                    checked={filterCriteria.includes(item.value)}
-                    checkedIcon='dot-circle-o'
-                    uncheckedIcon='circle-o' 
-                    onPress={() => changeCheck(item)}/>)
-            }
-        </View>        
-    )*/
