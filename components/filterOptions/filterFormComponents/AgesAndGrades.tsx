@@ -16,7 +16,7 @@ import { Card } from 'react-native-elements';
 export default function AgesAndGrades(){
 
     const [checkedOptions, setOptions] = useState([
-        {   title: '5 - 8 Years',
+        {   title: '5 - 8 Years    ',
             key: 0,
             checked: false
         },
