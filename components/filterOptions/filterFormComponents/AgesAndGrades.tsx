@@ -7,7 +7,7 @@ Not sure why, but a refresh flag is eneded to update the form
 */
 
 import React, {useState, useEffect} from 'react';
-import {  View  } from 'react-native';
+import {  View, StyleSheet  } from 'react-native';
 
 import { CheckBox } from 'react-native-elements';
 
@@ -35,7 +35,7 @@ export default function AgesAndGrades(){
     const [refresh, setRefresh] = useState(false);
 
     return(       
-        <View>
+        <View style={styles.container}>
             {
                 checkedOptions.map((item, key) => <CheckBox
                     title={item.title}
@@ -58,3 +58,14 @@ export default function AgesAndGrades(){
     }
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    },
+    checkboxstyle: {
+
+    }
+  });

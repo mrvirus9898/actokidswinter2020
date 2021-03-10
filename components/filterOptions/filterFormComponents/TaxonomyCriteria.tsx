@@ -15,40 +15,17 @@ export default function TaxonomyCriteria() {
 
   const [selectedOption, setSelection] = React.useState([])
 
-  const [checkedOptions, setOptions] = React.useState([
-    {   label: '5 - 8 Years',
-        value: '5 - 8 Years',
-        icon: () => <Icon name="flag" size={18} color="#900" />
-    },
-    {   label: '9 - 12 Years',
-        value: '9 - 12 Years',
-        icon: () => <Icon name="flag" size={18} color="#900" />
-    },
-    {   label: '13 - 16 Years', 
-        value: '13 - 16 Years',
-        icon: () => <Icon name="flag" size={18} color="#900" />
-    },
-    {   label: 'High School', 
-        value: 'High School',
-        icon: () => <Icon name="flag" size={18} color="#900" />
-    }
-  ]);
-
-  function chooseSelection(item){
-    console.log(item)
-  }
-
 
   return (
     <View>
     <DropDownPicker
         items={[
-            {label: '5 - 8 Years', value: '5 - 8 Years', icon: () => <Icon name="flag" size={18} color="#900" />},
-            {label: '9 - 12 Years', value: '9 - 12 Years', icon: () => <Icon name="flag" size={18} color="#900" />},
-            {label: '13 - 16 Years', value: '13 - 16 Years', icon: () => <Icon name="flag" size={18} color="#900" />},
-            {label: 'High School', value: 'High School', icon: () => <Icon name="flag" size={18} color="#900" />},
+            {label: 'All', value: 'All', icon: () => <Icon name="flag" size={18} color="#900" />},
+            {label: 'Martial Arts', value: 'Martial Arts', icon: () => <Icon name="flag" size={18} color="#900" />},
+            {label: 'Track and Field', value: 'Track and Field', icon: () => <Icon name="flag" size={18} color="#900" />},
+            {label: 'Recreational', value: 'Recreational', icon: () => <Icon name="flag" size={18} color="#900" />},
         ]}
-        defaultValue={'5 - 8 Years'}
+        defaultValue={'All'}
         containerStyle={{height: 40}}
         style={{backgroundColor: '#fafafa'}}
         itemStyle={{
