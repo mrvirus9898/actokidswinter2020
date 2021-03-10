@@ -12,9 +12,10 @@ import React from 'react';
 
 import { StyleSheet, Text,TouchableOpacity,
     TouchableHighlight, View, Image, Dimensions, FlatList } from 'react-native';
-    import { Card } from 'react-native-elements';
 
-    import { useNavigation } from '@react-navigation/native';
+import { Card } from 'react-native-elements';
+
+import { useNavigation } from '@react-navigation/native';
 
 export default function FilterSelector() {
     let optionsArray = [

@@ -7,9 +7,11 @@ Not sure why, but a refresh flag is eneded to update the form
 */
 
 import React, {useState, useEffect} from 'react';
-import {  View, StyleSheet  } from 'react-native';
+import {  View, StyleSheet, Text  } from 'react-native';
 
-import { CheckBox } from 'react-native-elements';
+import  CheckBox  from '@react-native-community/checkbox';
+
+import { Card } from 'react-native-elements';
 
 export default function AgesAndGrades(){
 
@@ -37,13 +39,19 @@ export default function AgesAndGrades(){
     return(       
         <View style={styles.container}>
             {
-                checkedOptions.map((item, key) => <CheckBox
-                    title={item.title}
-                    key={key}
-                    checked={item.checked}
-                    checkedIcon='dot-circle-o'
-                    uncheckedIcon='circle-o' 
-                    onPress={() => changeCheck(item.key)}/>)
+                checkedOptions.map((item, key) => 
+                    <Card key={key}>
+                        <View key={key} style={styles.checkboxstyle}>
+                            <CheckBox
+                                key={key}
+                                disabled={false}
+                                value={item.checked}
+                                onValueChange={() => changeCheck(item.key)}
+                            />
+                            <Text style={styles.checkboxlabel}>{item.title}</Text>
+                        </View>
+                    </Card>
+                )
             }
         </View>  )
 
@@ -61,11 +69,15 @@ export default function AgesAndGrades(){
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1/2,
         flexDirection: 'row',
         flexWrap: 'wrap'
     },
     checkboxstyle: {
-
+        flex: 1,
+        flexDirection: 'row'
+    },
+    checkboxlabel: {
+        marginTop: 5
     }
   });
