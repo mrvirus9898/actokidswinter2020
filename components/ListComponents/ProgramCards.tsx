@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'react-native-elements';
-import { StyleSheet, Text,TouchableOpacity,
+import { StyleSheet, Text, TouchableOpacity,
     TouchableHighlight, View, Image } from 'react-native';
 
 import moment from 'moment';
@@ -13,8 +13,6 @@ export default function ProgramCards(item: any) {
             <Text style={styles.titleText}>
                     {item.item.Program_Name}
             </Text>
-            
-
             <Text style ={{fontSize: 12, color: 'black'}}>
                 {item.item.Loct_Text}
             </Text>
