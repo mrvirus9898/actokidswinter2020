@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Text, TextInput, View } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
-import Icon from 'react-native-vector-icons/Feather';
+
+import {Picker} from '@react-native-picker/picker';
+
+
 
 export default function PhysicalIntensity() {
 
@@ -9,6 +11,24 @@ export default function PhysicalIntensity() {
 
   return (
     <View>
+    <Picker
+      selectedValue={selectedOption}
+      onValueChange={(itemValue, itemIndex) =>
+        setSelection(itemValue)
+      }>
+      <Picker.Item label="Light" value="Light" />
+      <Picker.Item label="Moderate" value="Moderate" />
+      <Picker.Item label="Self-Paced" value="Self-Paced" />
+      <Picker.Item label="Chair-Based" value="Chair-Based" />
+    </Picker>
+    </View>
+  );
+}
+
+/*
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/Feather';
+
     <DropDownPicker
         items={[
             {label: 'Light', value: 'Light', icon: () => <Icon name="flag" size={18} color="#900" />},
@@ -25,6 +45,5 @@ export default function PhysicalIntensity() {
         dropDownStyle={{backgroundColor: '#fafafa'}}
         onChangeItem={item => setSelection(item.value)}
     />
-    </View>
-  );
-}
+
+*/

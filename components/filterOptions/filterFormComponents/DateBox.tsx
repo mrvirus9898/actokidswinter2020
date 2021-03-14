@@ -50,9 +50,7 @@ export default function DateBox() {
           accessibilityHint="Click here to learn more."
           accessibilityRole="imagebutton" 
           onPress= {() => {showDatepicker()}}>
-          <Card>
-            <Text>{currentDate}</Text>
-          </Card>
+          <Card><Text>{currentDate}</Text></Card>
         </TouchableHighlight>
       </View>
       {show && (
@@ -61,7 +59,7 @@ export default function DateBox() {
           value={date}
           mode={mode}
           is24Hour={true}
-          display="default"
+          display="spinner"
           onChange={onChange}
         />
       )}
