@@ -11,32 +11,41 @@ import { Text, TextInput, View, Dimensions } from 'react-native';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 
+import { Card } from 'react-native-elements';
+
 export default function DateBox() {
-  const [value, onChangeText] = React.useState(' Date');
   const [date, setDate] = React.useState(new Date())
 
-  let screenWidth = Dimensions.get("window").width;
-  let cols = 3;
-  let tileSize = screenWidth / cols
+  let currentDate = (date.getMonth()+1) + " " + date.getDate() + " " + date.getFullYear()
+
+  console.log(currentDate)
+  //console.log(date)
 
   return (
     <View>
-      <DateTimePicker
-        value={date}
-        mode={'date'}
-        onChange={setSelectedDate}
-      />
+      <Card>
+        <Text>{currentDate}</Text>
+      </Card>
     </View>
   );
-
-  function setSelectedDate(date){
-    console.log(date)
-  }
 }
 
 /*
-        <TextInput
-            style={{height: 40, borderColor: 'grey', borderWidth: 1, margin: 20, width: tileSize}}
-            onChangeText={text => onChangeText(text)}
-            value={value} 
-        />*/
+      <Text>{showDatePicker()}</Text>
+      <DateTimePicker
+        value={date}
+        mode={'date'}
+        onChange={onChange}
+        display="default"
+      />
+*/
+/*
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    console.log(currentDate)
+    //setDate(currentDate)
+  }
+
+  const showDatePicker = () => {
+    return date.getDate
+  }*/
