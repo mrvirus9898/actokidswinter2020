@@ -41,11 +41,6 @@ export default function DateBox() {
     showMode('date');
   };
 
-  const showTimepicker = () => {
-    showMode('time');
-  };
-
-
   return (
     <View>
       <View>
