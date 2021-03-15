@@ -37,7 +37,7 @@ export default function useCachedResources() {
     IncomingFilter.IncomingFilterTaxonomy = []
 
     //Database.LocalDatabase = SQLite.openDatabase('ActokidsDB')
-    let DB = SQLite.openDatabase('ActokidsDB')
+    //let DB = SQLite.openDatabase('ActokidsDB')
     /*DB.transaction(tx => {
       tx.executeSql("CREATE TABLE taxonomy (id number, value varchar(20));", [], success)
     })*/
@@ -55,7 +55,7 @@ export default function useCachedResources() {
         /*DB.transaction(tx => {
           tx.executeSql("INSERT INTO taxonomy (id, value) VALUES (1, 'Cognitive')")
         })*/
-        DB.transaction(tx => {
+        /*DB.transaction(tx => {
           tx.executeSql("SELECT * FROM taxonomy", [], (tx, results) => {
             let data = results.rows.length;
             let users = []
@@ -66,7 +66,7 @@ export default function useCachedResources() {
 
             print(users)
           })
-        })
+        })*/
     })
 
 
