@@ -48,6 +48,7 @@ export type test = {
 
 export type FilterCriteria = {
   Criteria: [];
+  Details: [];
 }
 
 export type IncomingFilter = {
@@ -57,4 +58,8 @@ export type IncomingFilter = {
 
 export type IncomingActivities = {
   Activities: [];
+}
+
+export type ProgramInformation = {
+  Programs: [[]];
 }

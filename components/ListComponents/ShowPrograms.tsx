@@ -19,8 +19,9 @@ import {
 import ProgramCards from './ProgramCards';
 
 import FilterCriteria from '../../types';
+import ProgramInformation from '../../types'
 
-export default function ShowPrograms(params: Array<Array<any>>){
+export default function ShowPrograms({navigation}){
 
   //const [filter, setFilter] = useState<Array<any>>([]);
   const [filter, setFilter] = useState<Array<String>>([]);
@@ -34,7 +35,7 @@ export default function ShowPrograms(params: Array<Array<any>>){
 
   function drawCards(){
         //console.log("Filter: " + filter)
-        if(params === undefined)
+        if(navigation === undefined)
         {
           console.log("Still Loading")
           return(null)
@@ -55,7 +56,7 @@ export default function ShowPrograms(params: Array<Array<any>>){
                       accessibilityHint="Click here to learn more."
                       accessibilityRole="imagebutton" 
                       onPress= {() => {
-                        params.navigation.navigate('ProgramDetailsScreen', {item: item});
+                        navigation.navigate('ProgramDetailsScreen', {item: item});
                       }}>
                       <ProgramCards item={item} />
                     </TouchableHighlight>
@@ -69,11 +70,12 @@ export default function ShowPrograms(params: Array<Array<any>>){
 
   function applyFilter(filter: Array<String>){
     let output: Array<any> = []
+    let input: Array<any> = ProgramInformation.Programs
 
     //console.log("Current Filter: " + filter)
 
     if(filter.length != 0){
-      params.programs.forEach(element => {
+      input.forEach(element => {
         if(element.accessability.localeCompare(filter[0]) == 0){
           //console.log(filter[0])
           output.push(element)
@@ -81,7 +83,7 @@ export default function ShowPrograms(params: Array<Array<any>>){
         //console.log(output)
       });
     }else{
-      output = params.programs
+      output = input
     }
     /*var arr = [1, 2, 3, 4];
     arr.forEach(function (el) {

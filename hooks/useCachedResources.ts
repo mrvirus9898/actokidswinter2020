@@ -3,7 +3,12 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 
-import FilterCriteria from '../types'
+import loadProgramInformation from '../hooks/loadProgramInformation';
+import loadTaxonomyInformation from '../hooks/loadTaxonomyInformation';
+
+import FilterCriteria from '../types';
+import IncomingFilter from '../types'
+import ProgramInformation from '../types';
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -11,6 +16,30 @@ export default function useCachedResources() {
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
     FilterCriteria.Criteria = []
+    FilterCriteria.Details = []
+    IncomingFilter.IncomingFilterActivties = []
+    IncomingFilter.IncomingFilterTaxonomy = []
+
+    
+    const incomingPrograms = loadProgramInformation().then(function(result)
+    {
+        ProgramInformation.Programs = result
+        //setPrograms(result);
+        setLoadingComplete(true);
+    })
+    const incomingFilter = loadTaxonomyInformation().then(function(result)
+    {
+        IncomingFilter.IncomingFilterActivties = result.Activities;
+        IncomingFilter.IncomingFilterTaxonomy = result.Taxonomy;
+    })
+
+
+  }, []);
+
+  return isLoadingComplete;
+  
+}
+/*
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHideAsync();
@@ -25,13 +54,9 @@ export default function useCachedResources() {
         // We might want to provide this error information to an error reporting service
         console.warn(e);
       } finally {
-        setLoadingComplete(true);
+        
         SplashScreen.hideAsync();
       }
     }
 
-    loadResourcesAndDataAsync();
-  }, []);
-
-  return isLoadingComplete;
-}
+    loadResourcesAndDataAsync();*/
