@@ -63,3 +63,7 @@ export type IncomingActivities = {
 export type ProgramInformation = {
   Programs: [[]];
 }
+
+export type Database = {
+  LocalDatabase: Database
+}
