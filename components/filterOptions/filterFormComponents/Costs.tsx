@@ -9,15 +9,17 @@ Cost slider
 import * as React from 'react';
 import { StyleSheet, TextInput, View, Dimensions, Text } from 'react-native';
 import Slider from '@react-native-community/slider';
+//import MultiSlider from 'react-native-multi-slider-pro';
 
 export default function Costs() {
 
-    const [value, onChangeValue] = React.useState(0);
+    const [value, onChangeValue] = React.useState(1);
+    const [maxValue, onChangeMax] = React.useState(24);
 
   return (
     <View style={styles.container}>
         <Text style={styles.text}>${value}</Text>
-        <Slider
+          <Slider
             style={{height: 40}}
             minimumValue={0}
             maximumValue={100}
@@ -30,9 +32,9 @@ export default function Costs() {
     </View>
   );
 
-  function changeValue(value: number){
+  function changeValue(value: any){
       console.log(value)
-      onChangeValue(value)
+      //onChangeValue(value)
   }
 }
 
@@ -49,3 +51,34 @@ const styles = StyleSheet.create({
       margin: 10
     },
   });
+
+/*
+          <Slider
+            style={{height: 40}}
+            minimumValue={0}
+            maximumValue={100}
+            step={1}
+            value={value}
+            minimumTrackTintColor="#E31212"
+            maximumTrackTintColor="#000000"
+            onValueChange={value => changeValue(value)}
+        />
+*/
+
+/*
+        <MultiSlider
+        values={[
+          0,
+          25,
+        ]}
+        sliderLength={280}
+        onValuesChange={changeValue}
+        min={0}
+        max={100}
+        step={1}
+        allowOverlap={false}
+        snapped
+        minMarkerOverlapDistance={40}
+
+      />
+*/
