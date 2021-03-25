@@ -44,26 +44,26 @@ export type MapParamList = {
 export type test = {
   Hello: String;
   World: String;
-}
+};
 
 export type FilterCriteria = {
   Criteria: [];
   Details: [];
-}
+};
 
 export type IncomingFilter = {
   IncomingFilterActivties: [];
   IncomingFilterTaxonomy: [];
-}
+};
 
 export type IncomingActivities = {
   Activities: [];
-}
+};
 
 export type ProgramInformation = {
   Programs: [[]];
-}
+};
 
 export type Database = {
-  LocalDatabase: Database
-}
+  LocalDatabase: Database;
+};

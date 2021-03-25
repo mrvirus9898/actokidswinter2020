@@ -3,12 +3,14 @@ import { Card } from 'react-native-elements';
 import { StyleSheet, Text, TouchableOpacity,
     TouchableHighlight, View, Image } from 'react-native';
 
+import Colors from '../../types'
+
 import moment from 'moment';
 
 export default function ProgramCards(item: any) {
     //console.log(item.item)
     return(
-        <Card containerStyle={{backgroundColor: '#F8F8FF'}}>
+        <Card containerStyle={{backgroundColor: Colors.OffWhite}}>
             <Card.Image source={{uri: item.item.Program_Image_Url}} />
             <Text style={styles.titleText}>
                     {item.item.Program_Name}

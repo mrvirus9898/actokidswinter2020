@@ -16,6 +16,8 @@ import { Button, View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import Colors from '../constants/Colors'
+
 export default function filterButton() {
   const navigation = useNavigation();
 
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
   // ...
   appButtonContainer: {
     elevation: 8,
-    backgroundColor: "#F8F8FF",
+    backgroundColor: Colors.OffWhite.color,
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
@@ -41,12 +43,20 @@ const styles = StyleSheet.create({
   },
   appButtonText: {
     fontSize: 20,
-    color: "#E60F0F",
+    color: Colors.Red.color,
     fontWeight: "bold",
     alignSelf: "center",
     textTransform: "uppercase"
   }
 });
+/*
+    <TouchableOpacity
+      style={styles.appButtonContainer}
+      onPress={() => navigation.navigate('ProgramFilterScreen')}
+    >
+      <Text style={styles.appButtonText}>Filter</Text>
+    </TouchableOpacity>
+*/
 
 /*
 
