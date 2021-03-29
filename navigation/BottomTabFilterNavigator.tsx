@@ -29,7 +29,6 @@ export default function BottomTabFilterNavigator() {
   const colorScheme = useColorScheme();
 
   return (
-    <NavigationContainer independent={true}>
     <FilterNavigatorStack.Navigator
         initialRouteName="FilterFormB"
         tabBarOptions={{ 
@@ -51,7 +50,6 @@ export default function BottomTabFilterNavigator() {
                 tabBarIcon: ({ color }) => <TabBarIcon name="md-american-football" color={Colors.OffWhite.color} />,
         }}/> 
     </FilterNavigatorStack.Navigator>
-    </NavigationContainer>
   );
 }
 // You can explore the built-in icon families and icons on the web at:
