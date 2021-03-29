@@ -8,13 +8,11 @@ Allow users to apply filter options to a program based on Ages and Grades option
 */
 
 
-import React, { useEffect } from 'react';
+import React, { Component, useEffect } from 'react';
 
 import { StyleSheet, Text, SafeAreaView , View, ScrollView } from 'react-native';
 
-import { Card } from 'react-native-elements';
-
-import { useForm } from "react-hook-form";
+import { Card, Button } from 'react-native-elements';
 
 import DistanceBox from './filterFormComponents/DistanceBox'    
 import ZipCodeBox from './filterFormComponents/ZipCodeBox'  
@@ -26,12 +24,16 @@ import TaxonomyCriteria from './filterFormComponents/TaxonomyCriteria'
 import PhysicalIntensity from './filterFormComponents/PhysicalIntensity'
 
 
-export default function FilterFormB() {
-    //console.log(item.item)
+export default function FilterFormB({navigation}) {
+    console.log(navigation)
 
     return(
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
+            <Button
+                title={`Go Back My Dude`}
+                onPress={() => alert(navigation.goBack())}
+            />
             <Card>
                 <View>
                     <Text style={styles.text}>Sort By</Text>
@@ -97,12 +99,10 @@ const styles = StyleSheet.create({
     },
   });
   /*
-    const { register, handleSubmit, setValue, errors } = useForm();
-    const onSubmit = data => console.log(data);
-
     useEffect(() => {
-        register('firstName');
-        register('lastName');
-    }, [register])
-
+        BackHandler.addEventListener('hardwareBackPress', () => {alert('Hello'); return(true)})
+        return () => {
+            BackHandler.removeEventListener('hardwareBackPress', () => {return(true)})
+        }
+    }, [])
   */

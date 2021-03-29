@@ -2,35 +2,19 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet} from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 
-import ShowPrograms from '../components/ListComponents/ShowPrograms';
 import FilterButton from '../components/FilterButton';
 import { NavigationContainer } from '@react-navigation/native';
-
-import LeftSideDrawer from './LeftSideDrawerNavigator';
-
-import FilterAccessOptions from '../components/filterOptions/FilterAccessOptions';
-import FilterAgesGrades from '../components/filterOptions/FilterAgesGrades';
-import FilterCostsAndTravel from '../components/filterOptions/FilterCostsAndTravel';
-import FilterIndividualSports from '../components/filterOptions/FilterIndividualSports';
-import FilterIndoorPrograms from '../components/filterOptions/FilterIndoorPrograms';
-import FilterLanguageOptions from '../components/filterOptions/FilterLanguageOptions';
-import FilterOutdoorPrograms from '../components/filterOptions/FilterOutdoorPrograms';
-import FilterTeamSports from '../components/filterOptions/FilterTeamSports';
-import FilterFormB from '../components/filterOptions/FilterFormB';
-import FilterRootCards from '../components/filterOptions/FilterRootCards';
-import FilterPage from '../screens/FilterPage';
 
 import ProgramList from '../screens/ProgramList';
 import ProgramDetails from '../screens/ProgramDetails';
 import ActivityList from '../screens/ActivityList';
 import Map from '../screens/Map';
 
-import { BottomTabParamList, TabOneParamList, TabTwoParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
+import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -38,7 +22,6 @@ export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
-    <NavigationContainer independent={true}>
       <BottomTab.Navigator
         initialRouteName="Programs"
         tabBarOptions={{ 
@@ -71,7 +54,6 @@ export default function BottomTabNavigator() {
             }}
           />
       </BottomTab.Navigator>
-    </NavigationContainer>
   );
 }
 
@@ -178,153 +160,3 @@ function MapNavigator() {
     </MapStack.Navigator>
   );
 }
-
-/*
-<ProgramListStack.Screen
-        name="ProgramFilterScreen"
-        component={FilterPage}
-        options={{ 
-          headerTitle: 'Filter',
-          headerShown: false,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            color: Colors.OffWhite.color
-          },
-          headerStyle: {
-            backgroundColor: Colors.Red.color
-          }, 
-      }}/>   
-      <ProgramListStack.Screen
-        name="FilterAccessOptions"
-        component={FilterAccessOptions}
-        options={{ 
-          headerTitle: 'Accessibility Options',
-          headerShown: false,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            color: Colors.OffWhite.color
-          },
-          headerStyle: {
-            backgroundColor: Colors.Red.color
-          }, 
-      }}/>   
-      <ProgramListStack.Screen
-        name="FilterAgesGrades"
-        component={FilterAgesGrades}
-        options={{ 
-          headerTitle: 'Ages and Grades',
-          headerShown: false,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            color: Colors.OffWhite.color
-          },
-          headerStyle: {
-            backgroundColor: Colors.Red.color
-          }, 
-      }}/>   
-      <ProgramListStack.Screen
-        name="FilterCostsAndTravel"
-        component={FilterCostsAndTravel}
-        options={{ headerTitle: 'Costs and Travel',
-        headerShown: false,
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          color: Colors.OffWhite.color
-        },
-        headerStyle: {
-          backgroundColor: Colors.Red.color
-        }, 
-      }}/>   
-      <ProgramListStack.Screen
-        name="FilterIndividualSports"
-        component={FilterIndividualSports}
-        options={{ headerTitle: 'Individual Sports',
-        headerShown: false,
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          color: Colors.OffWhite.color
-        },
-        headerStyle: {
-          backgroundColor: Colors.Red.color
-        }, 
-      }}/>   
-      <ProgramListStack.Screen
-        name="FilterIndoorPrograms"
-        component={FilterIndoorPrograms}
-        options={{ headerTitle: 'Indoor Programs',
-        headerShown: false,
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          color: Colors.OffWhite.color
-        },
-        headerStyle: {
-          backgroundColor: Colors.Red.color
-        },
-      }}/>   
-      <ProgramListStack.Screen
-        name="FilterLanguageOptions"
-        component={FilterLanguageOptions}
-        options={{ 
-          headerTitle: 'Language Options',
-          headerShown: false,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            color: Colors.OffWhite.color
-          },
-          headerStyle: {
-            backgroundColor: Colors.Red.color
-          }, 
-      }}/>   
-      <ProgramListStack.Screen
-        name="FilterOutdoorPrograms"
-        component={FilterOutdoorPrograms}
-        options={{ headerTitle: 'Outdoors Programs',
-        headerShown: false,
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          color: Colors.OffWhite.color
-        },
-        headerStyle: {
-          backgroundColor: Colors.Red.color
-        }, 
-      }}/>   
-      <ProgramListStack.Screen
-        name="FilterTeamSports"
-        component={FilterTeamSports}
-        options={{ headerTitle: 'Team Sports',
-        headerShown: false,
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          color: Colors.OffWhite.color
-        },
-        headerStyle: {
-          backgroundColor: Colors.Red.color
-        },
-      }}/>     
-      <ProgramListStack.Screen
-        name="FilterFormB"
-        component={FilterFormB}
-        options={{ 
-          headerTitle: 'Filter Form',
-          headerShown: false,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            color: Colors.OffWhite.color
-          },
-          headerStyle: {
-            backgroundColor: Colors.Red.color
-          },  
-      }}/>   
-      <ProgramListStack.Screen
-        name="FilterRootCards"
-        component={FilterRootCards}
-        options={{ headerTitle: 'Select Filter',
-        headerShown: false,
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          color: Colors.OffWhite.color
-        },
-        headerStyle: {
-          backgroundColor: Colors.Red.color
-        }, 
-      }}/>   */

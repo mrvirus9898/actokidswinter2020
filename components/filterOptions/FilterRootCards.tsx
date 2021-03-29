@@ -15,7 +15,7 @@ import { Card } from 'react-native-elements';
 
 import { useNavigation } from '@react-navigation/native';
 
-export default function FilterRootCards() {
+export default function FilterRootCards({navigation}) {
     let optionsArray = [
     {   title: 'Accessibility Options',
         key: 0,
@@ -53,8 +53,6 @@ export default function FilterRootCards() {
     let screenWidth = Dimensions.get("window").width;
     let cols = 3;
     let tileSize = screenWidth / cols
-
-    const navigation = useNavigation();
 
     function renderItem({item}){
        //console.log(navigation)

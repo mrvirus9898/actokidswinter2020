@@ -21,11 +21,11 @@ import FilterFormB from '../components/filterOptions/FilterFormB';
 import FilterRootCards from '../components/filterOptions/FilterRootCards';
 import FilterPage from '../screens/FilterPage';
 
-import { BottomTabParamList, FilterParamList, ProgramParamList } from '../types';
+import { FilterParamList } from '../types';
 
 const FilterNavigatorStack = createBottomTabNavigator<FilterParamList>();
 
-export default function BottomTabNavigator() {
+export default function BottomTabFilterNavigator() {
   const colorScheme = useColorScheme();
 
   return (
@@ -40,10 +40,16 @@ export default function BottomTabNavigator() {
         }}>
         <FilterNavigatorStack.Screen
             name="FilterFormB"
-            component={FilterFormB}/>  
+            component={FilterFormB}
+            options={{
+                tabBarIcon: ({ color }) => <TabBarIcon name="md-rocket" color={Colors.OffWhite.color} />,
+        }}/>  
         <FilterNavigatorStack.Screen
             name="FilterRootCards"
-            component={FilterRootCardStack}/> 
+            component={FilterCardStack}
+            options={{
+                tabBarIcon: ({ color }) => <TabBarIcon name="md-american-football" color={Colors.OffWhite.color} />,
+        }}/> 
     </FilterNavigatorStack.Navigator>
     </NavigationContainer>
   );
@@ -56,15 +62,12 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 const FilterRootStack = createStackNavigator<FilterParamList>();
 
-function FilterRootCardStack(){
+function FilterCardStack(){
     return(
         <FilterRootStack.Navigator>
         <FilterRootStack.Screen
             name="FilterRootCards"
-            component={FilterRootCards}
-            options={{
-                headerShown: false
-            }}/> 
+            component={FilterRootCards}/> 
         <FilterRootStack.Screen
             name="FilterAccessOptions"
             component={FilterAccessOptions}/>   
