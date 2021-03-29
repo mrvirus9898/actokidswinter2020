@@ -1,16 +1,35 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet} from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+
+import ShowPrograms from '../components/ListComponents/ShowPrograms';
+import FilterButton from '../components/FilterButton';
+import { NavigationContainer } from '@react-navigation/native';
+
+import LeftSideDrawer from './LeftSideDrawerNavigator';
+
+import FilterAccessOptions from '../components/filterOptions/FilterAccessOptions';
+import FilterAgesGrades from '../components/filterOptions/FilterAgesGrades';
+import FilterCostsAndTravel from '../components/filterOptions/FilterCostsAndTravel';
+import FilterIndividualSports from '../components/filterOptions/FilterIndividualSports';
+import FilterIndoorPrograms from '../components/filterOptions/FilterIndoorPrograms';
+import FilterLanguageOptions from '../components/filterOptions/FilterLanguageOptions';
+import FilterOutdoorPrograms from '../components/filterOptions/FilterOutdoorPrograms';
+import FilterTeamSports from '../components/filterOptions/FilterTeamSports';
+import FilterFormB from '../components/filterOptions/FilterFormB';
+import FilterRootCards from '../components/filterOptions/FilterRootCards';
+import FilterPage from '../screens/FilterPage';
+
 import ProgramList from '../screens/ProgramList';
 import ProgramDetails from '../screens/ProgramDetails';
 import ActivityList from '../screens/ActivityList';
 import Map from '../screens/Map';
+
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -19,31 +38,47 @@ export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
-    <BottomTab.Navigator
-      initialRouteName="Programs"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
-      <BottomTab.Screen
-        name="Programs"
-        component={ProgramListNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="md-rocket" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Activities"
-        component={ActivityListNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="md-american-football" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Map"
-        component={MapNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="md-map" color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
+    <NavigationContainer independent={true}>
+      <BottomTab.Navigator
+        initialRouteName="Programs"
+        tabBarOptions={{ 
+          activeTintColor: Colors[colorScheme].tint,
+          activeBackgroundColor: Colors.Red.color,
+          inactiveBackgroundColor: Colors.Red.color,
+          labelStyle: {color: Colors.OffWhite.color}
+        }}>
+          <BottomTab.Screen
+            name="Programs"
+            component={ProgramListNavigator}
+            options={{
+              tabBarIcon: ({ color }) => <TabBarIcon name="md-rocket" color={Colors.OffWhite.color} />,
+            }}
+            
+          />
+          <BottomTab.Screen
+            name="Activities"
+            component={ActivityListNavigator}
+            options={{
+              tabBarIcon: ({ color }) => <TabBarIcon name="md-american-football" color={Colors.OffWhite.color} />,
+            }}
+          />
+          <BottomTab.Screen
+            name="Map"
+            component={MapNavigator}
+            options={{
+              tabBarIcon: ({ color }) => <TabBarIcon name="md-map" color={Colors.OffWhite.color} />,
+              
+            }}
+          />
+      </BottomTab.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function ProgramComponents({ navigation }) {
+  //console.log("Hit Program Components")
+  return(
+      <ProgramList navigation={navigation} />
   );
 }
 
@@ -63,14 +98,35 @@ function ProgramListNavigator() {
     <ProgramListStack.Navigator>
       <ProgramListStack.Screen
         name="ProgramListScreen"
-        component={ProgramList}
-        options={{ headerTitle: 'Program List' }}
-      />
+        component={ProgramComponents}
+        options={{ 
+          headerTitle: 'Program Details',
+          headerShown: false,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerRight: () => (<FilterButton />),
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>
       <ProgramListStack.Screen
         name="ProgramDetailsScreen"
         component={ProgramDetails}
-        options={{ headerTitle: 'Program Details' }}
-      />
+        options={{ 
+          headerTitle: 'Program Details',
+          headerShown: false,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>
+      
+      
     </ProgramListStack.Navigator>
   );
 }
@@ -83,7 +139,17 @@ function ActivityListNavigator() {
       <ActivityListStack.Screen
         name="ActivityListScreen"
         component={ActivityList}
-        options={{ headerTitle: 'Activity List' }}
+        options={{ 
+          headerShown: false,
+          headerTitle: 'Activity List',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}
       />
     </ActivityListStack.Navigator>
   );
@@ -97,8 +163,168 @@ function MapNavigator() {
       <MapStack.Screen
         name="MapScreen"
         component={Map}
-        options={{ headerTitle: 'Map' }}
+        options={{ 
+          headerShown: false,
+          headerTitle: 'Map',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}
       />
     </MapStack.Navigator>
   );
 }
+
+/*
+<ProgramListStack.Screen
+        name="ProgramFilterScreen"
+        component={FilterPage}
+        options={{ 
+          headerTitle: 'Filter',
+          headerShown: false,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>   
+      <ProgramListStack.Screen
+        name="FilterAccessOptions"
+        component={FilterAccessOptions}
+        options={{ 
+          headerTitle: 'Accessibility Options',
+          headerShown: false,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>   
+      <ProgramListStack.Screen
+        name="FilterAgesGrades"
+        component={FilterAgesGrades}
+        options={{ 
+          headerTitle: 'Ages and Grades',
+          headerShown: false,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>   
+      <ProgramListStack.Screen
+        name="FilterCostsAndTravel"
+        component={FilterCostsAndTravel}
+        options={{ headerTitle: 'Costs and Travel',
+        headerShown: false,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: Colors.OffWhite.color
+        },
+        headerStyle: {
+          backgroundColor: Colors.Red.color
+        }, 
+      }}/>   
+      <ProgramListStack.Screen
+        name="FilterIndividualSports"
+        component={FilterIndividualSports}
+        options={{ headerTitle: 'Individual Sports',
+        headerShown: false,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: Colors.OffWhite.color
+        },
+        headerStyle: {
+          backgroundColor: Colors.Red.color
+        }, 
+      }}/>   
+      <ProgramListStack.Screen
+        name="FilterIndoorPrograms"
+        component={FilterIndoorPrograms}
+        options={{ headerTitle: 'Indoor Programs',
+        headerShown: false,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: Colors.OffWhite.color
+        },
+        headerStyle: {
+          backgroundColor: Colors.Red.color
+        },
+      }}/>   
+      <ProgramListStack.Screen
+        name="FilterLanguageOptions"
+        component={FilterLanguageOptions}
+        options={{ 
+          headerTitle: 'Language Options',
+          headerShown: false,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>   
+      <ProgramListStack.Screen
+        name="FilterOutdoorPrograms"
+        component={FilterOutdoorPrograms}
+        options={{ headerTitle: 'Outdoors Programs',
+        headerShown: false,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: Colors.OffWhite.color
+        },
+        headerStyle: {
+          backgroundColor: Colors.Red.color
+        }, 
+      }}/>   
+      <ProgramListStack.Screen
+        name="FilterTeamSports"
+        component={FilterTeamSports}
+        options={{ headerTitle: 'Team Sports',
+        headerShown: false,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: Colors.OffWhite.color
+        },
+        headerStyle: {
+          backgroundColor: Colors.Red.color
+        },
+      }}/>     
+      <ProgramListStack.Screen
+        name="FilterFormB"
+        component={FilterFormB}
+        options={{ 
+          headerTitle: 'Filter Form',
+          headerShown: false,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          },  
+      }}/>   
+      <ProgramListStack.Screen
+        name="FilterRootCards"
+        component={FilterRootCards}
+        options={{ headerTitle: 'Select Filter',
+        headerShown: false,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: Colors.OffWhite.color
+        },
+        headerStyle: {
+          backgroundColor: Colors.Red.color
+        }, 
+      }}/>   */
