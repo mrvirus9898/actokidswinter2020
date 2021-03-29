@@ -33,7 +33,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
 import IncomingFilter from '../types';
 import ProgramInformation from '../types';
-import { color } from 'react-native-reanimated';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -282,8 +281,16 @@ function ActivityListNavigator() {
       <ActivityListStack.Screen
         name="ActivityListScreen"
         component={ActivityList}
-        options={{ headerTitle: 'Activity List' }}
-      />
+        options={{ 
+          headerTitle: 'Activity List',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          },  
+      }}/>
     </ActivityListStack.Navigator>
   );
 }
@@ -296,8 +303,16 @@ function MapNavigator() {
       <MapStack.Screen
         name="MapScreen"
         component={Map}
-        options={{ headerTitle: 'Map' }}
-      />
+        options={{ 
+          headerTitle: 'Map',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          },  
+      }}/>
     </MapStack.Navigator>
   );
 }
