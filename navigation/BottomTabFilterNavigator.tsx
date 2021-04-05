@@ -65,30 +65,57 @@ function FilterCardStack(){
         <FilterRootStack.Navigator>
         <FilterRootStack.Screen
             name="FilterRootCards"
-            component={FilterRootCards}/> 
+            component={FilterRootCards}
+            options={{
+                headerShown: false,
+        }}/> 
         <FilterRootStack.Screen
             name="FilterAccessOptions"
-            component={FilterAccessOptions}/>   
+            component={FilterAccessOptions}            
+            options={{
+                headerShown: false,
+        }}/>   
         <FilterRootStack.Screen
             name="FilterAgesGrades"
-            component={FilterAgesGrades}/>   
+            component={FilterAgesGrades}
+            options={{
+                headerShown: false,
+        }}/>   
         <FilterRootStack.Screen
             name="FilterCostsAndTravel"
-            component={FilterCostsAndTravel}/>   
+            component={FilterCostsAndTravel}
+            options={{
+                headerShown: false,
+        }}/>   
         <FilterRootStack.Screen
             name="FilterIndividualSports"
-            component={FilterIndividualSports}/>   
+            component={FilterIndividualSports}
+            options={{
+                headerShown: false,
+        }}/>   
         <FilterRootStack.Screen
             name="FilterIndoorPrograms"
-            component={FilterIndoorPrograms}/>   
+            component={FilterIndoorPrograms}
+            options={{
+                headerShown: false,
+        }}/>   
         <FilterRootStack.Screen
             name="FilterLanguageOptions"
-            component={FilterLanguageOptions}/>   
+            component={FilterLanguageOptions}
+            options={{
+                headerShown: false,
+        }}/>   
         <FilterRootStack.Screen
             name="FilterOutdoorPrograms"
-            component={FilterOutdoorPrograms}/>   
+            component={FilterOutdoorPrograms}
+            options={{
+                headerShown: false,
+        }}/>   
         <FilterRootStack.Screen
             name="FilterTeamSports"
-            component={FilterTeamSports}/>    
+            component={FilterTeamSports}
+            options={{
+                headerShown: false,
+        }}/>    
         </FilterRootStack.Navigator>);
 }

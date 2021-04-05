@@ -30,10 +30,6 @@ export default function FilterFormB({navigation}) {
     return(
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
-            <Button
-                title={`Go Back My Dude`}
-                onPress={() => alert(navigation.goBack())}
-            />
             <Card>
                 <View>
                     <Text style={styles.text}>Sort By</Text>
