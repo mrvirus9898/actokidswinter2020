@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useIsFocused } from '@react-navigation/native'
 
 import {
-  TouchableHighlight,
+  TouchableOpacity,
   View,
-  FlatList
+  FlatList,
+  StyleSheet,
+  Image
 } from 'react-native';
+
+import Colors from '../../types'
 
 import ActivityCards from './ActivityCards';
 import IncomingFilter from '../../types'
@@ -33,17 +37,17 @@ export default function ShowActivities(){
                   data={filteredData}
                   keyExtractor={(x, i) => i.toString()}
                   renderItem={({ item }) => (
-                    <View >
-                      <TouchableHighlight 
+                    <View style={styles.activityListStyle}>
+                      <TouchableOpacity 
                         accessible = {true}
                         accessibilityLabel = {item.value}
                         accessibilityHint="Click here to learn more."
                         accessibilityRole="imagebutton" 
                         onPress= {() => {
-                          alert(item.value);
+                          alert(item.pic_url);
                         }}>
                         <ActivityCards item={item} />
-                      </TouchableHighlight>
+                      </TouchableOpacity>
                     </View>
                   )}
                 />
@@ -56,6 +60,19 @@ export default function ShowActivities(){
   
   }
 
+const styles = StyleSheet.create({
+    activityListStyle:{
+        borderRadius: 6,
+        elevation: 3,
+        backgroundColor: Colors.OffWhite,
+        shadowColor: '#333',
+        shadowOffset: {width: 1, height: 1},
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        marginHorizontal:4,
+        marginVertical:6,
+    }
+});
 
   /*function applyFilter(filter: Array<String>){
       let output: Array<any> = []
