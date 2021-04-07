@@ -24,7 +24,7 @@ export default function filterButton() {
   return (
     <TouchableOpacity
       style={styles.appButtonContainer}
-      onPress={() => navigation.navigate('FilterFormB')}
+      onPress={() => navigation.navigate('Filter')}
     >
       <Text style={styles.appButtonText}>Filter</Text>
     </TouchableOpacity>
@@ -56,6 +56,8 @@ const styles = StyleSheet.create({
     >
       <Text style={styles.appButtonText}>Filter</Text>
     </TouchableOpacity>
+
+    onPress={() => navigation.navigate('FilterFormB')}
 */
 
 /*
