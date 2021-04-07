@@ -13,7 +13,7 @@ export default function ActivityCards(item: any) {
             <Image 
                 style={styles.activityImageStyle}
                 source={{uri: picture_url}}/> 
-            <Text>
+            <Text style={styles.activityCardText}>
                     {item.item.value}
             </Text>
         </View>
@@ -44,7 +44,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     activityImageStyle:{
-        width: 50,
-        height: 50
+        width: 75,
+        height: 75
+    },
+    activityCardText: {
+        fontSize: 24,
+        textAlign: 'center',
+        marginVertical: 20,
+        marginHorizontal: 50
     }
 });
