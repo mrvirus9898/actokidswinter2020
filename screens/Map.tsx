@@ -1,20 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     StyleSheet,
-    Text,
     View,
-    Image,
-    TouchableOpacity,
-    TouchableHighlight,
     Dimensions
 } from 'react-native';
 
 import MapView, { Marker } from 'react-native-maps';
 
+import * as Location from 'expo-location';
+
+import ProgramInformation from '../types';
+
 export default function Map() {
 
-    const [coordinates, setCoord] = useState([
+    type coordinates = {
+        latitude: number;
+        longitude: number;
+    };
+
+    type programLocation = {
+        title: string;
+        key: number;
+        coordinates: coordinates;
+    };
+
+    const [programCoordinates, setProgramCoordinates] = useState([]);
+    
+    const [WAKKA, setWAKKA] = useState([]);
+
+    useEffect(() => {
+        //console.log(ProgramInformation.Programs);
+        let tempLocations = [];
+        let count = 0;
+        ProgramInformation.Programs.forEach(element => {
+            //console.log(element)
+            let tempCoord: coordinates = {
+                //turns out you can convert string to number by using the plus sign
+                //One Free ¯\_(ツ)_/¯
+                latitude: +element.lat,
+                longitude: +element.long,
+            }
+            let tempProLocation: programLocation = {
+                title: element.Program_Name,
+                key: count,
+                coordinates: tempCoord
+            }
+            tempLocations.push(tempProLocation)
+            count++
+        });
+        console.log(tempLocations);
+        setProgramCoordinates(tempLocations);
+        return () => {
+            
+        }
+    }, [])
+
+    const [thesecoordinates, setCoord] = useState([
         {   title: 'North Seattle College',
             key: 0,
             coordinates: {
@@ -37,7 +79,8 @@ export default function Map() {
             },
         }
     ]);
-    const [loadHook, setLoadHook] = useState(true);
+
+
 
     const [mapRegion, setRegion] = useState({
         latitude: 47.699829,
@@ -47,26 +90,14 @@ export default function Map() {
     });
 
     const returnMapMarker = () => {
-        load()
         return(
-            coordinates.map((data, key) => (
+            programCoordinates.map((data, key) => (
             <Marker 
                 key={key}
                 coordinate={data.coordinates}
                 title={data.title} />  
             ))
         )
-    }
-
-    //fetchData and load are empty for now, until we work more on the back end, and get more input
-    
-
-    const fetchData = async () => {
-
-    }
-    
-    const load = async () => {
-
     }
 
     const styles = StyleSheet.create({
@@ -98,5 +129,20 @@ export default function Map() {
             </MapView>
         </View>
     );
+
+    async function getCurrentLocation(){
+        let currentLocation = await Location.getCurrentPositionAsync({});
+        return currentLocation
+    }
 }
-/*        */
+/*       
+        let tempCoordinates = [];
+        ProgramInformation.Programs.forEach(element => {
+            //console.log(element)
+            let tempArray =[];
+            let coordinates = [element.lat, element.long]
+            tempArray.push(element.Program_Name)   
+            tempArray.push(coordinates)   
+            tempCoordinates.push(tempArray)      
+        });
+        console.log(tempCoordinates) */
