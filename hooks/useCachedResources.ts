@@ -12,6 +12,7 @@ import FilterCriteria from '../types';
 import IncomingFilter from '../types';
 import ProgramInformation from '../types';
 import Database from '../types';
+import SearchTerm from '../types';
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -35,6 +36,7 @@ export default function useCachedResources() {
     FilterCriteria.Details = []
     IncomingFilter.IncomingFilterActivties = []
     IncomingFilter.IncomingFilterTaxonomy = []
+    SearchTerm.CurrentSearch = " "
 
     //Database.LocalDatabase = SQLite.openDatabase('ActokidsDB')
     //let DB = SQLite.openDatabase('ActokidsDB')

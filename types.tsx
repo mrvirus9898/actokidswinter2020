@@ -71,3 +71,7 @@ export type ProgramInformation = {
 export type Database = {
   LocalDatabase: Database;
 };
+
+export type SearchTerm = {
+  CurrentSearch: string;
+};
