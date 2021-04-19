@@ -15,12 +15,13 @@ import Colors from '../../constants/Colors';
 
 import ActivityCards from './ActivityCards';
 import IncomingFilter from '../../types'
+import SearchTerms from '../../types'
 
 
 export default function ShowActivities(){
 
     //const [filter, setFilter] = useState<Array<any>>([]);
-//    const [filter, setFilter] = useState<Array<String>>([]);
+    //const [filter, setFilter] = useState<Array<String>>([]);
     const [searchTerm, SetSearchTerm] = useState(" ")
 
   
@@ -34,6 +35,7 @@ export default function ShowActivities(){
             //console.log("Showing Programs: " + Object.keys(params))
             
             let filteredData = IncomingFilter.IncomingFilterActivties
+            applySearch()
             return( 
               <View>
                 <FlatList
@@ -58,6 +60,14 @@ export default function ShowActivities(){
             )
         }
     }    
+
+    function applySearch(){
+      if(SearchTerms.CurrentSearch != ""){
+        let returnData = []
+        alert("Hello")
+      }
+      
+    }
   
     return (drawCards())
   

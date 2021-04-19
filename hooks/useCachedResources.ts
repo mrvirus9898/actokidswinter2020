@@ -36,7 +36,7 @@ export default function useCachedResources() {
     FilterCriteria.Details = []
     IncomingFilter.IncomingFilterActivties = []
     IncomingFilter.IncomingFilterTaxonomy = []
-    SearchTerm.CurrentSearch = " "
+    SearchTerm.CurrentSearch = ""
 
     //Database.LocalDatabase = SQLite.openDatabase('ActokidsDB')
     //let DB = SQLite.openDatabase('ActokidsDB')
