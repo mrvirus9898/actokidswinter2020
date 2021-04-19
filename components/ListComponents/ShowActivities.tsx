@@ -9,7 +9,9 @@ import {
   Image
 } from 'react-native';
 
-import Colors from '../../types'
+import {SearchBar} from 'react-native-elements';
+
+import Colors from '../../constants/Colors';
 
 import ActivityCards from './ActivityCards';
 import IncomingFilter from '../../types'
@@ -19,6 +21,7 @@ export default function ShowActivities(){
 
     //const [filter, setFilter] = useState<Array<any>>([]);
 //    const [filter, setFilter] = useState<Array<String>>([]);
+    const [searchTerm, SetSearchTerm] = useState(" ")
 
   
     function drawCards(){
@@ -51,6 +54,7 @@ export default function ShowActivities(){
                     </View>
                   )}
                 />
+
               </View>
             )
         }
@@ -64,7 +68,7 @@ const styles = StyleSheet.create({
     activityListStyle:{
         borderRadius: 6,
         elevation: 3,
-        backgroundColor: Colors.OffWhite,
+        backgroundColor: Colors.OffWhite.color,
         shadowColor: '#333',
         shadowOffset: {width: 1, height: 1},
         shadowOpacity: 0.3,
@@ -93,3 +97,8 @@ const styles = StyleSheet.create({
       //console.log(output)
       return(output)
     }*/
+
+    /*                <SearchBar
+                  placeholder="Search for an activity here"
+                  onChangeText={SetSearchTerm}
+                  value={searchTerm}/>*/

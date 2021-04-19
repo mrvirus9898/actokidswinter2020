@@ -16,6 +16,8 @@ import FilterButton from '../components/FilterButton';
 
 import { FilterParamList} from '../types';
 
+import {SearchBar} from 'react-native-elements';
+
 const Drawer = createDrawerNavigator();
 
 export default function LeftSideDrawerNavigator() {
@@ -95,6 +97,12 @@ export default function LeftSideDrawerNavigator() {
               backgroundColor: Colors.Red.color
             },
       }}/>
+      <Drawer.Screen
+          name="Search Bar"
+          component={LeftSideSearchBar}
+          options={{
+
+        }}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );
@@ -120,4 +128,15 @@ function FontComponents(){
 
 function FilterNavigator() {
   return (<BottomTabFilterNavigator />);
+}
+
+function LeftSideSearchBar(){
+  const [searchTerm, SetSearchTerm] = React.useState(" ")
+  return(
+    <SearchBar
+      placeholder="Search for an activity here"
+      onChangeText={SetSearchTerm}
+      value={searchTerm}/>
+    
+  )
 }

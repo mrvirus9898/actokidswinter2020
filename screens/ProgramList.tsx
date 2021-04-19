@@ -12,7 +12,7 @@ export default function ProgramList({navigation}) {
     }, [])
 
   return(
-      <View>
+      <View style={{flex:1}}>
           <ShowPrograms navigation={navigation}/>
       </View>
   );

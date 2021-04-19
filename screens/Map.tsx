@@ -12,6 +12,8 @@ import * as Location from 'expo-location';
 
 import ProgramInformation from '../types';
 
+import Colors from '../constants/Colors';
+
 export default function Map() {
 
     type coordinates = {
@@ -23,6 +25,7 @@ export default function Map() {
         title: string;
         key: number;
         coordinates: coordinates;
+        description: string;
     };
 
     const [programCoordinates, setProgramCoordinates] = useState([]);
@@ -30,7 +33,7 @@ export default function Map() {
     const [WAKKA, setWAKKA] = useState([]);
 
     useEffect(() => {
-        //console.log(ProgramInformation.Programs);
+        console.log(ProgramInformation.Programs);
         let tempLocations = [];
         let count = 0;
         ProgramInformation.Programs.forEach(element => {
@@ -44,12 +47,13 @@ export default function Map() {
             let tempProLocation: programLocation = {
                 title: element.Program_Name,
                 key: count,
-                coordinates: tempCoord
+                coordinates: tempCoord,
+                description: element.Program_Types
             }
             tempLocations.push(tempProLocation)
             count++
         });
-        console.log(tempLocations);
+        //console.log(tempLocations);
         setProgramCoordinates(tempLocations);
         return () => {
             
@@ -95,7 +99,12 @@ export default function Map() {
             <Marker 
                 key={key}
                 coordinate={data.coordinates}
-                title={data.title} />  
+                title={data.title}
+                description={data.description}
+                pinColor={Colors.Red.color}
+                opacity={0.9} 
+                flat={true}
+                onPress={() => alert("Hello")}/>  
             ))
         )
     }

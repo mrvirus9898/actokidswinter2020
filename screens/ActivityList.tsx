@@ -11,16 +11,26 @@ import {
   TouchableNativeFeedbackBase
 } from 'react-native';
 
+import {SearchBar} from 'react-native-elements';
+
 import ShowActivities from '../components/ListComponents/ShowActivities';
 
 
 export default function ProgramList() {
 
+    const [searchTerm, SetSearchTerm] = useState(" ")
+
     return(
-        <View>
+        <View style={{flex:1}}>      
+
             <ShowActivities />
         </View>
     );
 }
 //<AppLogin />
 //<AppGoogleLogout />
+/*
+            <SearchBar
+                placeholder="Search for an activity here"
+                onChangeText={SetSearchTerm}
+                value={searchTerm}/>*/
