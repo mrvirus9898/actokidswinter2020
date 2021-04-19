@@ -22,7 +22,20 @@ export default function ShowActivities(){
 
     //const [filter, setFilter] = useState<Array<any>>([]);
     //const [filter, setFilter] = useState<Array<String>>([]);
-    const [searchTerm, SetSearchTerm] = useState(" ")
+    const [searchTerm, SetSearchTerm] = useState("")
+    const [refreshList, setRefreshList] = useState(true)
+
+    const isFocused = useIsFocused()
+
+    useEffect(() => {
+      console.log("Search Term: " + searchTerm)
+      SetSearchTerm(SearchTerms.CurrentSearch)
+
+      //const toggle = setInterval(() => {setRefreshList(!refreshList)}, 1000)
+      return () => {
+        //clearInterval(toggle)
+      }
+    })
 
   
     function drawCards(){
@@ -64,7 +77,7 @@ export default function ShowActivities(){
     function applySearch(){
       if(SearchTerms.CurrentSearch != ""){
         let returnData = []
-        alert("Hello")
+        //alert(SearchTerms.CurrentSearch)
       }
       
     }
