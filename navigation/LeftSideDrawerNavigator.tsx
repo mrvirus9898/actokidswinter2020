@@ -4,10 +4,10 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
 import AppLogin from '../components/AppLogin';
+import SearchBarComponent from '../components/SearchBar';
 import FontSettings from '../components/LeftBarSettings/FontSettings';
 
 import Colors from '../constants/Colors';
-import { createStackNavigator } from '@react-navigation/stack';
 
 import BottomTabNavigation from './BottomTabNavigator';
 import BottomTabFilterNavigator from './BottomTabFilterNavigator';
@@ -16,7 +16,6 @@ import FilterButton from '../components/FilterButton';
 
 import { FilterParamList} from '../types';
 
-import {SearchBar} from 'react-native-elements';
 
 const Drawer = createDrawerNavigator();
 
@@ -42,7 +41,7 @@ export default function LeftSideDrawerNavigator() {
         options={{
           headerShown: true,
           drawerLabel: "Home Screen",
-          headerTitle: "Program List",
+          headerTitle: props => HeaderSearchBar(),
           headerTitleStyle: {
             fontWeight: 'bold',
             color: Colors.OffWhite.color
@@ -97,12 +96,6 @@ export default function LeftSideDrawerNavigator() {
               backgroundColor: Colors.Red.color
             },
       }}/>
-      <Drawer.Screen
-          name="Search Bar"
-          component={LeftSideSearchBar}
-          options={{
-
-        }}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );
@@ -130,13 +123,6 @@ function FilterNavigator() {
   return (<BottomTabFilterNavigator />);
 }
 
-function LeftSideSearchBar(){
-  const [searchTerm, SetSearchTerm] = React.useState(" ")
-  return(
-    <SearchBar
-      placeholder="Search for an activity here"
-      onChangeText={SetSearchTerm}
-      value={searchTerm}/>
-    
-  )
+function HeaderSearchBar(){
+  return(<SearchBarComponent />);
 }

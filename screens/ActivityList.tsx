@@ -11,18 +11,13 @@ import {
   TouchableNativeFeedbackBase
 } from 'react-native';
 
-import {SearchBar} from 'react-native-elements';
-
 import ShowActivities from '../components/ListComponents/ShowActivities';
 
 
 export default function ProgramList() {
 
-    const [searchTerm, SetSearchTerm] = useState(" ")
-
     return(
         <View style={{flex:1}}>      
-
             <ShowActivities />
         </View>
     );
