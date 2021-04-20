@@ -5,17 +5,19 @@ import Colors from '../constants/Colors'
 
 import SearchTerm from '../types'
 
-export default function SearchBarComponent() {
-    const [searchTerm, SetSearchTerm] = React.useState(" ")
+export default function SearchBarComponent(props: any) {
+    const [tempString, SetTemp] = React.useState("")
 
     function updateSearchTerm(input: string){
         //console.log(input)
-        SetSearchTerm(input)
+        //props.setTerm(input)
+        SetTemp(input)
     }
 
     function whenUpdated(){
-        //alert("Hello")    
-        SearchTerm.CurrentSearch = searchTerm
+        //alert(Object.keys(props))    
+        props.setTerm(tempString)
+        //SearchTerm.CurrentSearch = props.searchTerm
     }
 
     return (
@@ -25,7 +27,7 @@ export default function SearchBarComponent() {
                 placeholder={"Enter Search Term Here"}
                 onChangeText={updateSearchTerm}
                 onSubmitEditing={whenUpdated}
-                value={searchTerm} />
+                value={tempString} />
         </View>
     );
 }

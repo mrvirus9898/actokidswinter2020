@@ -9,6 +9,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import FilterButton from '../components/FilterButton';
 import { NavigationContainer } from '@react-navigation/native';
 
+import ProgramListNavigatorStack from './ProgramListNavigation';
 import ProgramList from '../screens/ProgramList';
 import ProgramDetails from '../screens/ProgramDetails';
 import ActivityList from '../screens/ActivityList';
@@ -18,8 +19,12 @@ import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList }
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function BottomTabNavigator() {
+let searchTerm = "";
+
+export default function BottomTabNavigator(props: any) {
   const colorScheme = useColorScheme();
+
+  searchTerm = props.searchTerm
 
   return (
       <BottomTab.Navigator
@@ -55,7 +60,9 @@ export default function BottomTabNavigator() {
           />
       </BottomTab.Navigator>
   );
+
 }
+
 
 function ProgramComponents({ navigation }) {
   //console.log("Hit Program Components")
@@ -120,7 +127,7 @@ function ActivityListNavigator() {
     <ActivityListStack.Navigator>
       <ActivityListStack.Screen
         name="ActivityListScreen"
-        component={ActivityList}
+        component={ActivityListComponent}
         options={{ 
           headerShown: false,
           headerTitle: 'Activity List',
@@ -135,6 +142,11 @@ function ActivityListNavigator() {
       />
     </ActivityListStack.Navigator>
   );
+}
+
+function ActivityListComponent(){
+  return(<ActivityList 
+        searchTerm={searchTerm}/>)
 }
 
 const MapStack = createStackNavigator<MapParamList>();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useIsFocused } from '@react-navigation/native'
 
 import {
@@ -6,7 +6,7 @@ import {
   View,
   FlatList,
   StyleSheet,
-  Image
+  AppState
 } from 'react-native';
 
 import {SearchBar} from 'react-native-elements';
@@ -18,25 +18,11 @@ import IncomingFilter from '../../types'
 import SearchTerms from '../../types'
 
 
-export default function ShowActivities(){
+export default function ShowActivities(props: any){
 
     //const [filter, setFilter] = useState<Array<any>>([]);
     //const [filter, setFilter] = useState<Array<String>>([]);
-    const [searchTerm, SetSearchTerm] = useState("")
     const [refreshList, setRefreshList] = useState(true)
-
-    const isFocused = useIsFocused()
-
-    useEffect(() => {
-      console.log("Search Term: " + searchTerm)
-      SetSearchTerm(SearchTerms.CurrentSearch)
-
-      //const toggle = setInterval(() => {setRefreshList(!refreshList)}, 1000)
-      return () => {
-        //clearInterval(toggle)
-      }
-    })
-
   
     function drawCards(){
           //console.log("Filter: " + filter)
@@ -62,7 +48,7 @@ export default function ShowActivities(){
                         accessibilityHint="Click here to learn more."
                         accessibilityRole="imagebutton" 
                         onPress= {() => {
-                          alert(item.pic_url);
+                          alert(props.searchTerm);
                         }}>
                         <ActivityCards item={item} />
                       </TouchableOpacity>

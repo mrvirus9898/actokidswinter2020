@@ -20,7 +20,7 @@ import { FilterParamList} from '../types';
 const Drawer = createDrawerNavigator();
 
 export default function LeftSideDrawerNavigator() {
-
+  const [searchTerm, SetSearchTerm] = React.useState("")
 
   //I defined the header and style here like in the other navigations, but for some reason it did work. 
   //So I moved the header and those options into the components. One free  ¯\_(ツ)_/¯
@@ -99,30 +99,33 @@ export default function LeftSideDrawerNavigator() {
       </Drawer.Navigator>
     </NavigationContainer>
   );
-}
 
-function ProgramComponents( ) {
-  return(
-    <BottomTabNavigation />
-  );
-}
-
-function LoginSignupComponents() {
-  return (
-    <AppLogin />
-  );
-}
-
-function FontComponents(){
+  function ProgramComponents( ) {
     return(
-        <FontSettings />
-    )
+      <BottomTabNavigation searchTerm={searchTerm}/>
+    );
+  }
+  
+  function LoginSignupComponents() {
+    return (
+      <AppLogin />
+    );
+  }
+  
+  function FontComponents(){
+      return(
+          <FontSettings />
+      )
+  }
+  
+  function FilterNavigator() {
+    return (<BottomTabFilterNavigator />);
+  }
+  
+  function HeaderSearchBar(){
+    return(<SearchBarComponent 
+            searchTerm={searchTerm} 
+            setTerm={SetSearchTerm}/>);
+  }
 }
 
-function FilterNavigator() {
-  return (<BottomTabFilterNavigator />);
-}
-
-function HeaderSearchBar(){
-  return(<SearchBarComponent />);
-}
