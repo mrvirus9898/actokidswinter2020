@@ -63,14 +63,6 @@ export default function BottomTabNavigator(props: any) {
 
 }
 
-
-function ProgramComponents({ navigation }) {
-  //console.log("Hit Program Components")
-  return(
-      <ProgramList navigation={navigation} />
-  );
-}
-
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: string; color: string }) {
@@ -117,6 +109,15 @@ function ProgramListNavigator() {
       
       
     </ProgramListStack.Navigator>
+  );
+}
+
+function ProgramComponents({ navigation }) {
+  //console.log("Hit Program Components")
+  return(
+      <ProgramList 
+        searchTerm={searchTerm} 
+        navigation={navigation} />
   );
 }
 
@@ -170,5 +171,13 @@ function MapNavigator() {
       }}
       />
     </MapStack.Navigator>
+  );
+}
+
+function MapComponents() {
+  //console.log("Hit Program Components")
+  return(
+      <Map 
+        searchTerm={searchTerm} />
   );
 }

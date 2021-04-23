@@ -21,7 +21,7 @@ import ProgramCards from './ProgramCards';
 import FilterCriteria from '../../types';
 import ProgramInformation from '../../types'
 
-export default function ShowPrograms({navigation}){
+export default function ShowPrograms(props: any){
 
   //const [filter, setFilter] = useState<Array<any>>([]);
   const [filter, setFilter] = useState<Array<String>>([]);
@@ -35,7 +35,7 @@ export default function ShowPrograms({navigation}){
 
   function drawCards(){
         //console.log("Filter: " + filter)
-        if(navigation === undefined)
+        if(props.navigation === undefined)
         {
           console.log("Still Loading")
           return(null)
@@ -56,7 +56,7 @@ export default function ShowPrograms({navigation}){
                       accessibilityHint="Click here to learn more."
                       accessibilityRole="imagebutton" 
                       onPress= {() => {
-                        navigation.navigate('ProgramDetailsScreen', {item: item});
+                        props.navigation.navigate('ProgramDetailsScreen', {item: item});
                       }}>
                       <ProgramCards item={item} />
                     </TouchableHighlight>

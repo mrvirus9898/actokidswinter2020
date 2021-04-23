@@ -14,7 +14,7 @@ import ProgramInformation from '../types';
 
 import Colors from '../constants/Colors';
 
-export default function Map() {
+export default function Map(props: any) {
 
     type coordinates = {
         latitude: number;
@@ -59,31 +59,6 @@ export default function Map() {
             
         }
     }, [])
-
-    const [thesecoordinates, setCoord] = useState([
-        {   title: 'North Seattle College',
-            key: 0,
-            coordinates: {
-                latitude: 47.699829, 
-                longitude: -122.334801
-            },
-        },
-        {   title: 'The Home Depot',
-            key: 1,
-            coordinates: {
-                latitude: 47.714050, 
-                longitude: -122.342903 
-            },
-        },
-        {   title: 'UW Medical', 
-            key: 2,
-            coordinates: {
-                latitude: 47.714130, 
-                longitude: -122.336998 
-            },
-        }
-    ]);
-
 
 
     const [mapRegion, setRegion] = useState({
@@ -154,4 +129,28 @@ export default function Map() {
             tempArray.push(coordinates)   
             tempCoordinates.push(tempArray)      
         });
-        console.log(tempCoordinates) */
+        console.log(tempCoordinates) 
+        
+            const [thesecoordinates, setCoord] = useState([
+        {   title: 'North Seattle College',
+            key: 0,
+            coordinates: {
+                latitude: 47.699829, 
+                longitude: -122.334801
+            },
+        },
+        {   title: 'The Home Depot',
+            key: 1,
+            coordinates: {
+                latitude: 47.714050, 
+                longitude: -122.342903 
+            },
+        },
+        {   title: 'UW Medical', 
+            key: 2,
+            coordinates: {
+                latitude: 47.714130, 
+                longitude: -122.336998 
+            },
+        }
+    ]);*/

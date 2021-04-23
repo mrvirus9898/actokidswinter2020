@@ -4,16 +4,11 @@ import { View, StyleSheet} from 'react-native';
 import ShowPrograms from '../components/ListComponents/ShowPrograms';
 
 
-export default function ProgramList({navigation}) {
-  const [programs, setPrograms] = useState<Array<Array<any>>>([]);
-
-  useEffect(() => {
-
-    }, [])
+export default function ProgramList(props: any) {
 
   return(
       <View style={{flex:1}}>
-          <ShowPrograms navigation={navigation}/>
+          <ShowPrograms searchTerm={props.searchTerm} navigation={props.navigation}/>
       </View>
   );
 }

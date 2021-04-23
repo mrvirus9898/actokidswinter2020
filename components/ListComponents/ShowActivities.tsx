@@ -9,14 +9,11 @@ import {
   AppState
 } from 'react-native';
 
-import {SearchBar} from 'react-native-elements';
-
 import Colors from '../../constants/Colors';
 
 import ActivityCards from './ActivityCards';
 import IncomingFilter from '../../types'
 import SearchTerms from '../../types'
-
 
 export default function ShowActivities(props: any){
 
@@ -30,10 +27,12 @@ export default function ShowActivities(props: any){
           {
             console.log("Still Loading")
             return(null)
+            setRefreshList(true)
           }else{
             //console.log("Showing Programs: " + Object.keys(params))
             
             let filteredData = IncomingFilter.IncomingFilterActivties
+            console.log(IncomingFilter.IncomingFilterActivities)
             applySearch()
             return( 
               <View>
@@ -61,11 +60,26 @@ export default function ShowActivities(props: any){
     }    
 
     function applySearch(){
-      if(SearchTerms.CurrentSearch != ""){
-        let returnData = []
-        //alert(SearchTerms.CurrentSearch)
+      if(IncomingFilter.IncomingFilterActivties === undefined){
+        if(props.searchTerm != ""){
+          let returnData: any = []
+          //console.log(IncomingFilter.IncomingFilterActivities)
+          /*
+          IncomingFilter.IncomingFilterActivities.forEach(element => {
+            if(element.value.localeCompare(props.searchTerm) == 0 ){
+              returnData.push(element)
+            }
+          });
+          return returnData
+          */
+          
+          return IncomingFilter.IncomingFilterActivities
+        }else{
+          return IncomingFilter.IncomingFilterActivities
+        }
+        
       }
-      
+      return null
     }
   
     return (drawCards())
