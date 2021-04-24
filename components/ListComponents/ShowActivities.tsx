@@ -32,7 +32,7 @@ export default function ShowActivities(props: any){
             //console.log("Showing Programs: " + Object.keys(params))
             
             let filteredData = IncomingFilter.IncomingFilterActivties
-            console.log(IncomingFilter.IncomingFilterActivities)
+            //console.log(IncomingFilter.IncomingFilterActivities)
             applySearch()
             return( 
               <View>
@@ -63,7 +63,7 @@ export default function ShowActivities(props: any){
       if(IncomingFilter.IncomingFilterActivties === undefined){
         if(props.searchTerm != ""){
           let returnData: any = []
-          //console.log(IncomingFilter.IncomingFilterActivities)
+          console.log(IncomingFilter.IncomingFilterActivities)
           /*
           IncomingFilter.IncomingFilterActivities.forEach(element => {
             if(element.value.localeCompare(props.searchTerm) == 0 ){

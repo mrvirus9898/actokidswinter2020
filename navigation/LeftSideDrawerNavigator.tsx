@@ -19,7 +19,7 @@ import { FilterParamList} from '../types';
 
 const Drawer = createDrawerNavigator();
 
-export default function LeftSideDrawerNavigator() {
+export default function LeftSideDrawerNavigator(props: any) {
   const [searchTerm, SetSearchTerm] = React.useState("")
 
   //I defined the header and style here like in the other navigations, but for some reason it did work. 
@@ -102,7 +102,9 @@ export default function LeftSideDrawerNavigator() {
 
   function ProgramComponents( ) {
     return(
-      <BottomTabNavigation searchTerm={searchTerm}/>
+      <BottomTabNavigation 
+        searchTerm={searchTerm}
+        incomingData={props.incomingData}/>
     );
   }
   

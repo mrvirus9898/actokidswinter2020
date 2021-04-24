@@ -11,11 +11,11 @@ import loadTaxonomyInformation from '../hooks/loadTaxonomyInformation';
 import FilterCriteria from '../types';
 import IncomingFilter from '../types';
 import ProgramInformation from '../types';
-import Database from '../types';
 import SearchTerm from '../types';
 
 export default function useCachedResources() {
-  const [isLoadingComplete, setLoadingComplete] = React.useState(false);
+  const [isProgramLoadingComplete, setProgramLoadingComplete] = React.useState([[]]);
+  const [isTaxonomyLoadingComplete, setTaxonomyLoadingComplete] = React.useState([[]]);
 
   function success(){
     console.log('Success')
@@ -38,43 +38,43 @@ export default function useCachedResources() {
     IncomingFilter.IncomingFilterTaxonomy = []
     SearchTerm.CurrentSearch = ""
 
-    //Database.LocalDatabase = SQLite.openDatabase('ActokidsDB')
-    //let DB = SQLite.openDatabase('ActokidsDB')
-    /*DB.transaction(tx => {
-      tx.executeSql("CREATE TABLE taxonomy (id number, value varchar(20));", [], success)
-    })*/
 
     const incomingPrograms = loadProgramInformation().then(function(result)
     {
-        ProgramInformation.Programs = result
+        let program = result
+        ProgramInformation.Programs = program
+        //incomingData.push(program)
+        //console.log(program)
+
         //setPrograms(result);
-        setLoadingComplete(true);
+        setProgramLoadingComplete(result);
     })
     const incomingFilter = loadTaxonomyInformation().then(function(result)
     {
-        IncomingFilter.IncomingFilterActivties = result.Activities;
-        IncomingFilter.IncomingFilterTaxonomy = result.Taxonomy;
-        /*DB.transaction(tx => {
-          tx.executeSql("INSERT INTO taxonomy (id, value) VALUES (1, 'Cognitive')")
-        })*/
-        /*DB.transaction(tx => {
-          tx.executeSql("SELECT * FROM taxonomy", [], (tx, results) => {
-            let data = results.rows.length;
-            let users = []
+        let incomingData: any = []
+        let activities = result.Activities;
+        let taxonomy = result.Taxonomy;
+        IncomingFilter.IncomingFilterActivties = activities;
+        IncomingFilter.IncomingFilterTaxonomy = taxonomy;
+        incomingData.push(activities)
+        incomingData.push(taxonomy)
 
-            for (let i = 0; i < data; i++){
-              users.push(results.rows.item(i));
-            }
+        //console.log(incomingData)
 
-            print(users)
-          })
-        })*/
+        setTaxonomyLoadingComplete(incomingData);
     })
 
 
   }, []);
 
-  return isLoadingComplete;
+  if(isProgramLoadingComplete && isTaxonomyLoadingComplete){
+    //console.log(isProgramLoadingComplete)
+    //console.log(isTaxonomyLoadingComplete)
+    return [isProgramLoadingComplete, isTaxonomyLoadingComplete]
+  }else{
+    
+  return false
+  }
   
 }
 /*
@@ -98,3 +98,27 @@ export default function useCachedResources() {
     }
 
     loadResourcesAndDataAsync();*/
+
+    //import Database from '../types';
+
+        //Database.LocalDatabase = SQLite.openDatabase('ActokidsDB')
+    //let DB = SQLite.openDatabase('ActokidsDB')
+    /*DB.transaction(tx => {
+      tx.executeSql("CREATE TABLE taxonomy (id number, value varchar(20));", [], success)
+    })*/
+
+            /*DB.transaction(tx => {
+          tx.executeSql("INSERT INTO taxonomy (id, value) VALUES (1, 'Cognitive')")
+        })*/
+        /*DB.transaction(tx => {
+          tx.executeSql("SELECT * FROM taxonomy", [], (tx, results) => {
+            let data = results.rows.length;
+            let users = []
+
+            for (let i = 0; i < data; i++){
+              users.push(results.rows.item(i));
+            }
+
+            print(users)
+          })
+        })*/

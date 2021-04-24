@@ -8,7 +8,10 @@ export default function ProgramList(props: any) {
 
   return(
       <View style={{flex:1}}>
-          <ShowPrograms searchTerm={props.searchTerm} navigation={props.navigation}/>
+          <ShowPrograms 
+          searchTerm={props.searchTerm} 
+          navigation={props.navigation}
+          programs={props.programs}/>
       </View>
   );
 }

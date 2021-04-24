@@ -29,43 +29,35 @@ export default function ShowPrograms(props: any){
   const isFocused = useIsFocused()
 
     useEffect(() => {
-      console.log("Current Filter: " + FilterCriteria.Criteria)
+      //console.log("Current Filter: " + FilterCriteria.Criteria)
     } , [isFocused])
 
 
   function drawCards(){
-        //console.log("Filter: " + filter)
-        if(props.navigation === undefined)
-        {
-          console.log("Still Loading")
-          return(null)
-        }else{
-          //console.log("Showing Programs: " + Object.keys(params))
-          
-          let filteredData = applyFilter(FilterCriteria.Criteria)
-          return( 
-            <View>
-              <FlatList
-                data={filteredData}
-                keyExtractor={(x, i) => i.toString()}
-                renderItem={({ item }) => (
-                  <View >
-                    <TouchableHighlight 
-                      accessible = {true}
-                      accessibilityLabel = {item.Program_Name}
-                      accessibilityHint="Click here to learn more."
-                      accessibilityRole="imagebutton" 
-                      onPress= {() => {
-                        props.navigation.navigate('ProgramDetailsScreen', {item: item});
-                      }}>
-                      <ProgramCards item={item} />
-                    </TouchableHighlight>
-                  </View>
-                )}
-              />
+    //console.log("Filter: " + filter)
+    //let filteredData = applyFilter(props.programs)
+    return( 
+      <View>
+        <FlatList
+          data={props.programs}
+          keyExtractor={(x, i) => i.toString()}
+          renderItem={({ item }) => (
+            <View >
+              <TouchableHighlight 
+                accessible = {true}
+                accessibilityLabel = {item.Program_Name}
+                accessibilityHint="Click here to learn more."
+                accessibilityRole="imagebutton" 
+                onPress= {() => {
+                  props.navigation.navigate('ProgramDetailsScreen', {item: item});
+                }}>
+                <ProgramCards item={item} />
+              </TouchableHighlight>
             </View>
-          )
-      }
+          )}
+        />
+      </View>
+    )
   }
 
   function applyFilter(filter: Array<String>){

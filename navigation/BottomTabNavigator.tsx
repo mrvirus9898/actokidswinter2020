@@ -20,11 +20,13 @@ import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList }
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 let searchTerm = "";
+let incomingData= "";
 
 export default function BottomTabNavigator(props: any) {
   const colorScheme = useColorScheme();
 
   searchTerm = props.searchTerm
+  incomingData = props.incomingData
 
   return (
       <BottomTab.Navigator
@@ -113,11 +115,12 @@ function ProgramListNavigator() {
 }
 
 function ProgramComponents({ navigation }) {
-  //console.log("Hit Program Components")
+  //console.log(incomingData[0])
   return(
       <ProgramList 
         searchTerm={searchTerm} 
-        navigation={navigation} />
+        navigation={navigation} 
+        programs={incomingData[0]}/>
   );
 }
 
