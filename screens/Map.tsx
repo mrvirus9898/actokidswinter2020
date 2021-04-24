@@ -12,53 +12,9 @@ import * as Location from 'expo-location';
 
 import Colors from '../constants/Colors';
 
+import {ProgramLocation, Coordinates} from '../types';
+
 export default function Map(props: any) {
-
-    type coordinates = {
-        latitude: number;
-        longitude: number;
-    };
-
-    type programLocation = {
-        title: string;
-        key: number;
-        coordinates: coordinates;
-        description: string;
-    };
-
-    const [programCoordinates, setProgramCoordinates] = useState([]);
-
-    useEffect(() => {
-        //console.log(props.programs);
-        let tempLocations = [];
-        let count = 0;
-        props.programs.forEach(program => {
-            //console.log(element)
-            let tempCoord: coordinates = {
-                //turns out you can convert string to number by using the plus sign
-                //One Free ¯\_(ツ)_/¯
-                latitude: +program.lat,
-                longitude: +program.long,
-            }
-            let tempProLocation: programLocation = {
-                title: program.Program_Name,
-                key: count,
-                coordinates: tempCoord,
-                description: program.Program_Types
-            }
-            count++
-            if((tempProLocation.title === props.searchTerm) || (props.searchTerm === '')){
-                tempLocations.push(tempProLocation)
-           }
-        });
-        //console.log(tempLocations);
-        setProgramCoordinates(tempLocations);
-        return () => {
-            
-        }
-    }, [])
-
-
     const [mapRegion, setRegion] = useState({
         latitude: 47.699829,
         longitude: -122.334801,
@@ -68,7 +24,7 @@ export default function Map(props: any) {
 
     const returnMapMarker = () => {
         return(
-            programCoordinates.map((data, key) => (
+            props.mapOfPrograms.map((data, key) => (
             <Marker 
                 key={key}
                 coordinate={data.coordinates}
@@ -95,24 +51,6 @@ export default function Map(props: any) {
         },
     });
 
-    function applyFilter(){
-        let output: Array<any> = []
-    
-        //console.log("Current Filter: " + filter)
-        if(props.searchTerm != ""){
-          props.programs.forEach(program => {
-            if(props.searchTerm === program.Program_Name){
-              console.log("Target Found")
-              output.push(program)
-            }
-          });
-          return(output)
-        }else{
-          return props.programs
-        }
-      }
-
-
     return(
         <View style={styles.container}>
             <MapView style={styles.mapStyle}
@@ -134,38 +72,37 @@ export default function Map(props: any) {
         return currentLocation
     }
 }
-/*       
-        let tempCoordinates = [];
-        ProgramInformation.Programs.forEach(element => {
+
+/*
+    const [programCoordinates, setProgramCoordinates] = useState([]);
+    useEffect(() => {
+        //console.log(props.programs);
+        let tempLocations: any = [];
+        let count = 0;
+        props.programs.forEach(program => {
             //console.log(element)
-            let tempArray =[];
-            let coordinates = [element.lat, element.long]
-            tempArray.push(element.Program_Name)   
-            tempArray.push(coordinates)   
-            tempCoordinates.push(tempArray)      
+            let tempCoord: Coordinates = {
+                //turns out you can convert string to number by using the plus sign
+                //One Free ¯\_(ツ)_/¯
+                latitude: +program.lat,
+                longitude: +program.long,
+            }
+            let tempProLocation: ProgramLocation = {
+                title: program.Program_Name,
+                key: count,
+                coordinates: tempCoord,
+                description: program.Program_Types
+            }
+            count++
+            if((tempProLocation.title === props.searchTerm) || (props.searchTerm === '')){
+                tempLocations.push(tempProLocation)
+           }
         });
-        console.log(tempCoordinates) 
-        
-            const [thesecoordinates, setCoord] = useState([
-        {   title: 'North Seattle College',
-            key: 0,
-            coordinates: {
-                latitude: 47.699829, 
-                longitude: -122.334801
-            },
-        },
-        {   title: 'The Home Depot',
-            key: 1,
-            coordinates: {
-                latitude: 47.714050, 
-                longitude: -122.342903 
-            },
-        },
-        {   title: 'UW Medical', 
-            key: 2,
-            coordinates: {
-                latitude: 47.714130, 
-                longitude: -122.336998 
-            },
+        //console.log(tempLocations);
+        setProgramCoordinates(tempLocations);
+        return () => {
+            
         }
-    ]);*/
+    }, [])
+    
+    */

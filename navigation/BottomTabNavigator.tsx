@@ -1,15 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 
 import FilterButton from '../components/FilterButton';
-import { NavigationContainer } from '@react-navigation/native';
 
-import ProgramListNavigatorStack from './ProgramListNavigation';
 import ProgramList from '../screens/ProgramList';
 import ProgramDetails from '../screens/ProgramDetails';
 import ActivityList from '../screens/ActivityList';
@@ -183,6 +181,7 @@ function MapComponents() {
   return(
       <Map 
         searchTerm={searchTerm} 
-        programs={incomingData[0]}/>
+        programs={incomingData[0]}
+        mapOfPrograms={incomingData[2]}/>
   );
 }

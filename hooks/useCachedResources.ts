@@ -8,13 +8,12 @@ import * as SQLite from 'expo-sqlite';
 import loadProgramInformation from '../hooks/loadProgramInformation';
 import loadTaxonomyInformation from '../hooks/loadTaxonomyInformation';
 
-import FilterCriteria from '../types';
+import {ProgramLocation, Coordinates} from '../types';
 import IncomingFilter from '../types';
-import ProgramInformation from '../types';
-import SearchTerm from '../types';
 
 export default function useCachedResources() {
   const [isProgramLoadingComplete, setProgramLoadingComplete] = React.useState([[]]);
+  const [isMapProcessingComplete, setMapProcessingComplete] = React.useState([[]]);
   const [isTaxonomyLoadingComplete, setTaxonomyLoadingComplete] = React.useState([[]]);
 
   function success(){
@@ -32,22 +31,33 @@ export default function useCachedResources() {
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
-    FilterCriteria.Criteria = []
-    FilterCriteria.Details = []
     IncomingFilter.IncomingFilterActivties = []
     IncomingFilter.IncomingFilterTaxonomy = []
-    SearchTerm.CurrentSearch = ""
-
 
     const incomingPrograms = loadProgramInformation().then(function(result)
     {
-        let program = result
-        ProgramInformation.Programs = program
-        //incomingData.push(program)
-        //console.log(program)
-
-        //setPrograms(result);
+        let program = result;
         setProgramLoadingComplete(result);
+        let tempLocations: any = [];
+        let count = 0;
+        program.forEach(program => {
+          //console.log(element)
+          let tempCoord: Coordinates = {
+              //turns out you can convert string to number by using the plus sign
+              //One Free ¯\_(ツ)_/¯
+              latitude: +program.lat,
+              longitude: +program.long,
+          }
+          let tempProLocation: ProgramLocation = {
+              title: program.Program_Name,
+              key: count,
+              coordinates: tempCoord,
+              description: program.Program_Types
+          }
+          tempLocations.push(tempProLocation)
+          count++
+        })
+        setMapProcessingComplete(tempLocations)
     })
     const incomingFilter = loadTaxonomyInformation().then(function(result)
     {
@@ -64,13 +74,15 @@ export default function useCachedResources() {
         setTaxonomyLoadingComplete(incomingData);
     })
 
+    
+
 
   }, []);
 
-  if(isProgramLoadingComplete && isTaxonomyLoadingComplete){
+  if(isProgramLoadingComplete && isTaxonomyLoadingComplete && isMapProcessingComplete){
     //console.log(isProgramLoadingComplete)
     //console.log(isTaxonomyLoadingComplete)
-    return [isProgramLoadingComplete, isTaxonomyLoadingComplete]
+    return [isProgramLoadingComplete, isTaxonomyLoadingComplete, isMapProcessingComplete]
   }else{
     
   return false

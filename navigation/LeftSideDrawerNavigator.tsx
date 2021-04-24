@@ -14,12 +14,11 @@ import BottomTabFilterNavigator from './BottomTabFilterNavigator';
 
 import FilterButton from '../components/FilterButton';
 
-import { FilterParamList} from '../types';
-
 
 const Drawer = createDrawerNavigator();
 
 export default function LeftSideDrawerNavigator(props: any) {
+  //SEARCHTERM LIVES HERE IS IS PASSED THROUGH THE DIFFERENT SCREENS
   const [searchTerm, SetSearchTerm] = React.useState("")
 
   //I defined the header and style here like in the other navigations, but for some reason it did work. 

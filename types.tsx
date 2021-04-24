@@ -75,3 +75,15 @@ export type Database = {
 export type SearchTerm = {
   CurrentSearch: string;
 };
+
+export type Coordinates = {
+  latitude: number;
+  longitude: number;
+};
+
+export type ProgramLocation = {
+  title: string;
+  key: number;
+  coordinates: Coordinates;
+  description: string;
+};

@@ -3,21 +3,15 @@ import { View, Text, StyleSheet, TextInput } from 'react-native';
 
 import Colors from '../constants/Colors'
 
-import SearchTerm from '../types'
-
 export default function SearchBarComponent(props: any) {
     const [tempString, SetTemp] = React.useState("")
 
     function updateSearchTerm(input: string){
-        //console.log(input)
-        //props.setTerm(input)
         SetTemp(input)
     }
 
-    function whenUpdated(){
-        //alert(Object.keys(props))    
+    function whenUpdated(){   
         props.setTerm(tempString)
-        //SearchTerm.CurrentSearch = props.searchTerm
     }
 
     return (
