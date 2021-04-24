@@ -115,7 +115,7 @@ function ProgramListNavigator() {
 }
 
 function ProgramComponents({ navigation }) {
-  //console.log(incomingData[0])
+  //console.log(incomingData[1][0])
   return(
       <ProgramList 
         searchTerm={searchTerm} 
@@ -150,7 +150,8 @@ function ActivityListNavigator() {
 
 function ActivityListComponent(){
   return(<ActivityList 
-        searchTerm={searchTerm}/>)
+        searchTerm={searchTerm}
+        activities={incomingData[1][0]}/>)
 }
 
 const MapStack = createStackNavigator<MapParamList>();
@@ -160,7 +161,7 @@ function MapNavigator() {
     <MapStack.Navigator>
       <MapStack.Screen
         name="MapScreen"
-        component={Map}
+        component={MapComponents}
         options={{ 
           headerShown: false,
           headerTitle: 'Map',
@@ -178,9 +179,10 @@ function MapNavigator() {
 }
 
 function MapComponents() {
-  //console.log("Hit Program Components")
+  //console.log(incomingData[0])
   return(
       <Map 
-        searchTerm={searchTerm} />
+        searchTerm={searchTerm} 
+        programs={incomingData[0]}/>
   );
 }

@@ -10,8 +10,6 @@ import MapView, { Marker } from 'react-native-maps';
 
 import * as Location from 'expo-location';
 
-import ProgramInformation from '../types';
-
 import Colors from '../constants/Colors';
 
 export default function Map(props: any) {
@@ -29,29 +27,29 @@ export default function Map(props: any) {
     };
 
     const [programCoordinates, setProgramCoordinates] = useState([]);
-    
-    const [WAKKA, setWAKKA] = useState([]);
 
     useEffect(() => {
-        console.log(ProgramInformation.Programs);
+        //console.log(props.programs);
         let tempLocations = [];
         let count = 0;
-        ProgramInformation.Programs.forEach(element => {
+        props.programs.forEach(program => {
             //console.log(element)
             let tempCoord: coordinates = {
                 //turns out you can convert string to number by using the plus sign
                 //One Free ¯\_(ツ)_/¯
-                latitude: +element.lat,
-                longitude: +element.long,
+                latitude: +program.lat,
+                longitude: +program.long,
             }
             let tempProLocation: programLocation = {
-                title: element.Program_Name,
+                title: program.Program_Name,
                 key: count,
                 coordinates: tempCoord,
-                description: element.Program_Types
+                description: program.Program_Types
             }
-            tempLocations.push(tempProLocation)
             count++
+            if((tempProLocation.title === props.searchTerm) || (props.searchTerm === '')){
+                tempLocations.push(tempProLocation)
+           }
         });
         //console.log(tempLocations);
         setProgramCoordinates(tempLocations);
@@ -96,6 +94,23 @@ export default function Map(props: any) {
             height: Dimensions.get('window').height,
         },
     });
+
+    function applyFilter(){
+        let output: Array<any> = []
+    
+        //console.log("Current Filter: " + filter)
+        if(props.searchTerm != ""){
+          props.programs.forEach(program => {
+            if(props.searchTerm === program.Program_Name){
+              console.log("Target Found")
+              output.push(program)
+            }
+          });
+          return(output)
+        }else{
+          return props.programs
+        }
+      }
 
 
     return(

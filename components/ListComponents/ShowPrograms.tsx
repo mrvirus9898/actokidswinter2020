@@ -18,9 +18,6 @@ import {
 
 import ProgramCards from './ProgramCards';
 
-import FilterCriteria from '../../types';
-import ProgramInformation from '../../types'
-
 export default function ShowPrograms(props: any){
 
   //const [filter, setFilter] = useState<Array<any>>([]);
@@ -35,11 +32,12 @@ export default function ShowPrograms(props: any){
 
   function drawCards(){
     //console.log("Filter: " + filter)
-    //let filteredData = applyFilter(props.programs)
+    let filteredData = applyFilter()
+    //console.log("Filter: " + filteredData)
     return( 
       <View>
         <FlatList
-          data={props.programs}
+          data={filteredData}
           keyExtractor={(x, i) => i.toString()}
           renderItem={({ item }) => (
             <View >
@@ -60,29 +58,21 @@ export default function ShowPrograms(props: any){
     )
   }
 
-  function applyFilter(filter: Array<String>){
+  function applyFilter(){
     let output: Array<any> = []
-    let input: Array<any> = ProgramInformation.Programs
 
     //console.log("Current Filter: " + filter)
-
-    if(filter.length != 0){
-      input.forEach(element => {
-        if(element.accessability.localeCompare(filter[0]) == 0){
-          //console.log(filter[0])
-          output.push(element)
+    if(props.searchTerm != ""){
+      props.programs.forEach(program => {
+        if(props.searchTerm === program.Program_Name){
+          console.log("Target Found")
+          output.push(program)
         }
-        //console.log(output)
       });
+      return(output)
     }else{
-      output = input
+      return props.programs
     }
-    /*var arr = [1, 2, 3, 4];
-    arr.forEach(function (el) {
-      console.log(el);
-    })*/
-    //console.log(output)
-    return(output)
   }
 
   return (drawCards())
@@ -107,5 +97,18 @@ function rightFilterDrawer(){
       </NavigationContainer>
     )
   }
+
+
+      if(filter.length != 0){
+      input.forEach(element => {
+        if(element.accessability.localeCompare(filter[0]) == 0){
+          //console.log(filter[0])
+          output.push(element)
+        }
+        //console.log(output)
+      });
+    }else{
+      output = input
+    }
 
 */

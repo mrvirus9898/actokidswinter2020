@@ -12,8 +12,6 @@ import {
 import Colors from '../../constants/Colors';
 
 import ActivityCards from './ActivityCards';
-import IncomingFilter from '../../types'
-import SearchTerms from '../../types'
 
 export default function ShowActivities(props: any){
 
@@ -22,64 +20,46 @@ export default function ShowActivities(props: any){
     const [refreshList, setRefreshList] = useState(true)
   
     function drawCards(){
-          //console.log("Filter: " + filter)
-          if(IncomingFilter.IncomingFilterActivties === undefined)
-          {
-            console.log("Still Loading")
-            return(null)
-            setRefreshList(true)
-          }else{
-            //console.log("Showing Programs: " + Object.keys(params))
-            
-            let filteredData = IncomingFilter.IncomingFilterActivties
-            //console.log(IncomingFilter.IncomingFilterActivities)
-            applySearch()
-            return( 
-              <View>
-                <FlatList
-                  data={filteredData}
-                  keyExtractor={(x, i) => i.toString()}
-                  renderItem={({ item }) => (
-                    <View style={styles.activityListStyle}>
-                      <TouchableOpacity 
-                        accessible = {true}
-                        accessibilityLabel = {item.value}
-                        accessibilityHint="Click here to learn more."
-                        accessibilityRole="imagebutton" 
-                        onPress= {() => {
-                          alert(props.searchTerm);
-                        }}>
-                        <ActivityCards item={item} />
-                      </TouchableOpacity>
-                    </View>
-                  )}
-                />
+      let filteredData = applySearch()         
+      return( 
+        <View>
+          <FlatList
+            data={filteredData}
+            keyExtractor={(x, i) => i.toString()}
+            renderItem={({ item }) => (
+              <View style={styles.activityListStyle}>
+                <TouchableOpacity 
+                  accessible = {true}
+                  accessibilityLabel = {item.value}
+                  accessibilityHint="Click here to learn more."
+                  accessibilityRole="imagebutton" 
+                  onPress= {() => {
+                    alert("Hello");
+                  }}>
+                  <ActivityCards item={item} />
+                </TouchableOpacity>
               </View>
-            )
-        }
+            )}
+          />
+        </View>
+      )
     }    
 
     function applySearch(){
-      if(IncomingFilter.IncomingFilterActivties === undefined){
-        if(props.searchTerm != ""){
-          let returnData: any = []
-          console.log(IncomingFilter.IncomingFilterActivities)
-          /*
-          IncomingFilter.IncomingFilterActivities.forEach(element => {
-            if(element.value.localeCompare(props.searchTerm) == 0 ){
-              returnData.push(element)
-            }
-          });
-          return returnData
-          */
-          
-          return IncomingFilter.IncomingFilterActivities
-        }else{
-          return IncomingFilter.IncomingFilterActivities
-        }
-        
+      let output: Array<any> = []
+
+      //console.log("Current Filter: " + filter)
+      if(props.searchTerm != ""){
+        props.activities.forEach(activity => {
+          if(props.searchTerm === activity.value){
+            console.log("Target Found")
+            output.push(activity)
+          }
+        });
+        return(output)
+      }else{
+        return props.activities
       }
-      return null
     }
   
     return (drawCards())
@@ -124,3 +104,26 @@ const styles = StyleSheet.create({
                   placeholder="Search for an activity here"
                   onChangeText={SetSearchTerm}
                   value={searchTerm}/>*/
+
+/*
+      if(IncomingFilter.IncomingFilterActivties === undefined){
+        if(props.searchTerm != ""){
+          let returnData: any = []
+          console.log(IncomingFilter.IncomingFilterActivities)
+          
+          IncomingFilter.IncomingFilterActivities.forEach(element => {
+            if(element.value.localeCompare(props.searchTerm) == 0 ){
+              returnData.push(element)
+            }
+          });
+          return returnData
+          
+          
+          return IncomingFilter.IncomingFilterActivities
+        }else{
+          return IncomingFilter.IncomingFilterActivities
+        }
+        
+      }
+      return null
+*/
