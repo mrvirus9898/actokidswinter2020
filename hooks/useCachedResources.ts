@@ -1,5 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
-import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 
@@ -9,30 +7,14 @@ import loadProgramInformation from '../hooks/loadProgramInformation';
 import loadTaxonomyInformation from '../hooks/loadTaxonomyInformation';
 
 import {ProgramLocation, Coordinates} from '../types';
-import IncomingFilter from '../types';
 
 export default function useCachedResources() {
   const [isProgramLoadingComplete, setProgramLoadingComplete] = React.useState([[]]);
   const [isMapProcessingComplete, setMapProcessingComplete] = React.useState([[]]);
   const [isTaxonomyLoadingComplete, setTaxonomyLoadingComplete] = React.useState([[]]);
 
-  function success(){
-    console.log('Success')
-  }
-
-  function failure(){
-    console.log('Failure')
-  }
-
-  function print(input){
-    console.log(input)
-  }
-
-
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
-    IncomingFilter.IncomingFilterActivties = []
-    IncomingFilter.IncomingFilterTaxonomy = []
 
     const incomingPrograms = loadProgramInformation().then(function(result)
     {
@@ -64,8 +46,6 @@ export default function useCachedResources() {
         let incomingData: any = []
         let activities = result.Activities;
         let taxonomy = result.Taxonomy;
-        IncomingFilter.IncomingFilterActivties = activities;
-        IncomingFilter.IncomingFilterTaxonomy = taxonomy;
         incomingData.push(activities)
         incomingData.push(taxonomy)
 
