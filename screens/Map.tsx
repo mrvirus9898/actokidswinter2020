@@ -1,18 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import {
-    StyleSheet,
-    View,
-    Dimensions
-} from 'react-native';
-
-import MapView, { Marker } from 'react-native-maps';
+import ShowMap from '../components/ListComponents/ShowMap';
 
 import * as Location from 'expo-location';
-
-import Colors from '../constants/Colors';
-
-import {ProgramLocation, Coordinates} from '../types';
 
 export default function Map(props: any) {
     const [mapRegion, setRegion] = useState({
@@ -22,49 +12,10 @@ export default function Map(props: any) {
         longitudeDelta: 0.0421,
     });
 
-    const returnMapMarker = () => {
-        return(
-            props.mapOfPrograms.map((data, key) => (
-            <Marker 
-                key={key}
-                coordinate={data.coordinates}
-                title={data.title}
-                description={data.description}
-                pinColor={Colors.Red.color}
-                opacity={0.9} 
-                flat={true}
-                onPress={() => alert("Hello")}/>  
-            ))
-        )
-    }
-
-    const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            backgroundColor: '#fff',
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        mapStyle: {
-            width: Dimensions.get('window').width,
-            height: Dimensions.get('window').height,
-        },
-    });
-
     return(
-        <View style={styles.container}>
-            <MapView style={styles.mapStyle}
-                showsUserLocation
-                initialRegion={{
-                    latitude: mapRegion.latitude,
-                    longitude: mapRegion.longitude,
-                    latitudeDelta: mapRegion.latitudeDelta,
-                    longitudeDelta: mapRegion.longitudeDelta}}>
-                {
-                    returnMapMarker()
-                }
-            </MapView>
-        </View>
+        <ShowMap 
+            mapOfPrograms={props.mapOfPrograms}
+            mapRegion={mapRegion}/>
     );
 
     async function getCurrentLocation(){
