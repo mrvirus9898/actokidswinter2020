@@ -17,28 +17,45 @@ export default function SearchBarComponent(props: any) {
         props.setTerm(tempString)
     }
 
-    if(iconSelection){
+    if(iconSelection && (tempString === "")){
         return (
-            <View>
-                <TouchableOpacity
-                    onPress={() => {
-                        setIcon(false);
-                    }}>
-                <HeaderIcon 
-                    name={"search-outline"} 
-                    color={Colors.OffWhite.color}/>
-                </TouchableOpacity>
+            <View style={styles.iconHeaderStyle}>
+                <View>
+                    <Text style={styles.headerText}>
+                        Actokids
+                    </Text>
+                </View>
+                <View>
+                    <TouchableOpacity
+                        style={styles.opacityStyle}
+                        onPress={() => {
+                            setIcon(false);
+                        }}>
+                    <HeaderIcon 
+                        name={"search-outline"} 
+                        color={Colors.OffWhite.color}/>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }else{
         return(
-            <View>
+            <View style={styles.searchHeaderStyle}>
                 <TextInput
                     style={styles.input}
                     placeholder={"Enter Search Term Here"}
                     onChangeText={updateSearchTerm}
                     onSubmitEditing={whenUpdated}
                     value={tempString} />
+                    <TouchableOpacity
+                        style={styles.opacityStyle}
+                        onPress={() => {
+                            setIcon(true);
+                        }}>
+                    <HeaderIcon 
+                        name={"close-outline"} 
+                        color={Colors.OffWhite.color}/>
+                    </TouchableOpacity>
             </View>
         );
     }
@@ -46,10 +63,11 @@ export default function SearchBarComponent(props: any) {
 }
 
 function HeaderIcon(props: { name: string; color: string }) {
-    return <Ionicons 
+    return (
+        <Ionicons 
             size={30} 
             style={{ marginBottom: -3 }} 
-            {...props} />;
+            {...props} />);
   }
 
 const styles = StyleSheet.create({
@@ -58,6 +76,32 @@ const styles = StyleSheet.create({
         width: '80%',
         borderWidth: 0.5,
         color: Colors.OffWhite.color
-    }
+    },
+    headerIconPosition: {
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginRight: '10%'
+    },
+    headerText:{
+        color: Colors.OffWhite.color,
+        justifyContent: 'center',
+        fontSize: 28
+    },
+    opacityStyle:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent: 'space-evenly'
+    },
+    iconHeaderStyle:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent: 'space-around'
+    },
+    searchHeaderStyle:{
+        flex:1,
+        flexDirection:'row',
+        width: '88%'
+    }  
 
 });
