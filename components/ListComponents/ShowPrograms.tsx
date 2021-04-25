@@ -13,14 +13,20 @@ import { useIsFocused } from '@react-navigation/native'
 import {
   TouchableHighlight,
   View,
-  FlatList
+  FlatList,
+  StyleSheet,
+  useWindowDimensions
 } from 'react-native';
 
 import ProgramCards from './ProgramCards';
 
+import Colors from '../../constants/Colors';
+
 export default function ShowPrograms(props: any){
 
   const [filter, setFilter] = useState<Array<String>>([]);
+
+
 
   const isFocused = useIsFocused()
 
@@ -38,7 +44,7 @@ export default function ShowPrograms(props: any){
           data={filteredData}
           keyExtractor={(x, i) => i.toString()}
           renderItem={({ item }) => (
-            <View >
+            <View style={styles.programListStyle}>
               <TouchableHighlight 
                 accessible = {true}
                 accessibilityLabel = {item.Program_Name}
@@ -76,3 +82,17 @@ export default function ShowPrograms(props: any){
   return (drawCards())
 
 }
+
+const styles = StyleSheet.create({
+  programListStyle:{
+      borderRadius: 6,
+      elevation: 3,
+      backgroundColor: Colors.OffWhite.color,
+      shadowColor: '#333',
+      shadowOffset: {width: 1, height: 1},
+      shadowOpacity: 0.3,
+      shadowRadius: 2,
+      marginHorizontal:12,
+      marginVertical:4,
+  }
+});
