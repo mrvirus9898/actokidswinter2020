@@ -10,11 +10,19 @@ export default function SearchBarComponent(props: any) {
     const [iconSelection, setIcon] = React.useState(true)
 
     function updateSearchTerm(input: string){
+        //console.log("TempString: " + input)
         SetTemp(input)
     }
 
     function whenUpdated(){   
+        setIcon(true)
         props.setTerm(tempString)
+    }
+
+    function clearSearch(){
+        SetTemp("")
+        props.setTerm("")
+        setIcon(true)
     }
 
     if(iconSelection && (tempString === "")){
@@ -23,6 +31,27 @@ export default function SearchBarComponent(props: any) {
                 <View>
                     <Text style={styles.headerText}>
                         Actokids
+                    </Text>
+                </View>
+                <View>
+                    <TouchableOpacity
+                        style={styles.opacityStyle}
+                        onPress={() => {
+                            setIcon(false);
+                        }}>
+                    <HeaderIcon 
+                        name={"search-outline"} 
+                        color={Colors.OffWhite.color}/>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        );
+    }else if(iconSelection && (tempString != "")){
+        return (
+            <View style={styles.iconHeaderStyle}>
+                <View>
+                    <Text style={styles.searchText}>
+                        {props.searchTerm}
                     </Text>
                 </View>
                 <View>
@@ -50,7 +79,7 @@ export default function SearchBarComponent(props: any) {
                     <TouchableOpacity
                         style={styles.opacityStyle}
                         onPress={() => {
-                            setIcon(true);
+                            clearSearch();
                         }}>
                     <HeaderIcon 
                         name={"close-outline"} 
@@ -87,6 +116,11 @@ const styles = StyleSheet.create({
         color: Colors.OffWhite.color,
         justifyContent: 'center',
         fontSize: 28
+    },
+    searchText:{
+        color: Colors.OffWhite.color,
+        justifyContent: 'center',
+        fontSize: 18
     },
     opacityStyle:{
         flex:1,
