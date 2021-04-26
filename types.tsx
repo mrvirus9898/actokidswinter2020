@@ -45,6 +45,7 @@ export type ActivityParamList = {
 
 export type MapParamList = {
   MapScreen: undefined;
+  MapProgramDetailsScreen: undefined;
 };
 
 export type test = {
@@ -88,6 +89,7 @@ export type ProgramLocation = {
   key: number;
   coordinates: Coordinates;
   description: string;
+  program_id: number;
 };
 
 export type ActivityProgramCount = {

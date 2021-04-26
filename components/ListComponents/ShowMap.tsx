@@ -5,8 +5,12 @@ import MapView, { Marker } from 'react-native-maps';
 import {
     StyleSheet,
     View,
-    Dimensions
+    Dimensions,
+    Text,
+    TouchableOpacity
 } from 'react-native';
+
+import MapMarkers from '../ListComponents/MapMarkers';
 
 import Colors from '../../constants/Colors';
 
@@ -14,17 +18,7 @@ export default function ShowMap(props: any){
 
     const returnMapMarker = () => {
         return(
-            props.mapOfPrograms.map((data, key) => (
-            <Marker 
-                key={key}
-                coordinate={data.coordinates}
-                title={data.title}
-                description={data.description}
-                pinColor={Colors.Red.color}
-                opacity={0.9} 
-                flat={true}
-                onPress={() => alert("Hello")}/>  
-            ))
+           <MapMarkers mapOfPrograms={props.mapOfPrograms}/>
         )
     }
 
@@ -38,7 +32,10 @@ export default function ShowMap(props: any){
                     latitudeDelta: props.mapRegion.latitudeDelta,
                     longitudeDelta: props.mapRegion.longitudeDelta}}>
                 {
-                    returnMapMarker()
+                    <MapMarkers
+                        navigation={props.navigation} 
+                        mapOfPrograms={props.mapOfPrograms}
+                        programs={props.programs}/>
                 }
             </MapView>
         </View>

@@ -202,14 +202,30 @@ function MapNavigator() {
           }, 
       }}
       />
+      <MapStack.Screen
+        name="MapProgramDetailsScreen"
+        component={ProgramDetails}
+        options={{ 
+          headerShown: false,
+          headerTitle: 'Map',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}
+      />
     </MapStack.Navigator>
   );
 }
 
-function MapComponents() {
+function MapComponents({navigation}) {
   //console.log(incomingData[0])
   return(
       <Map 
+        navigation={navigation}
         searchTerm={searchTerm} 
         programs={incomingData[0]}
         mapOfPrograms={incomingData[2]}/>

@@ -5,6 +5,7 @@ import ShowMap from '../components/ListComponents/ShowMap';
 import * as Location from 'expo-location';
 
 export default function Map(props: any) {
+    //console.log(Object.keys(props))
     const [mapRegion, setRegion] = useState({
         latitude: 47.699829,
         longitude: -122.334801,
@@ -14,7 +15,9 @@ export default function Map(props: any) {
 
     return(
         <ShowMap 
+            navigation={props.navigation}
             mapOfPrograms={props.mapOfPrograms}
+            programs={props.programs}
             mapRegion={mapRegion}/>
     );
 

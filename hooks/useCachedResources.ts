@@ -35,7 +35,8 @@ export default function useCachedResources() {
             title: program.Program_Name,
             key: count,
             coordinates: tempCoord,
-            description: program.Program_Types
+            description: program.Program_Types,
+            program_id: program.Program_Id
           }
           //searchProgramActivities(program.Program_name)
           tempLocations.push(tempProLocation)
