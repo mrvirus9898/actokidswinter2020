@@ -11,6 +11,7 @@ import FilterButton from '../components/FilterButton';
 import ProgramList from '../screens/ProgramList';
 import ProgramDetails from '../screens/ProgramDetails';
 import ActivityList from '../screens/ActivityList';
+import ActivityDetails from '../screens/ActivityDetails';
 import Map from '../screens/Map';
 
 import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
@@ -140,14 +141,28 @@ function ActivityListNavigator() {
           headerStyle: {
             backgroundColor: Colors.Red.color
           }, 
-      }}
-      />
+      }}/>
+      <ActivityListStack.Screen
+        name="ActivityDetailsScreen"
+        component={ActivityDetails}
+        options={{ 
+          headerShown: false,
+          headerTitle: 'Activity Details',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>
     </ActivityListStack.Navigator>
   );
 }
 
-function ActivityListComponent(){
-  return(<ActivityList 
+function ActivityListComponent({navigation}){
+  return(<ActivityList
+        navigation={navigation} 
         searchTerm={searchTerm}
         activities={incomingData[1][0]}
         programs={incomingData[0]}/>)

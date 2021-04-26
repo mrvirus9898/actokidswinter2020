@@ -39,6 +39,7 @@ export type FilterParamList = {
 
 export type ActivityParamList = {
   ActivityListScreen: undefined;
+  ActivityDetailsScreen: undefined;
 };
 
 export type MapParamList = {

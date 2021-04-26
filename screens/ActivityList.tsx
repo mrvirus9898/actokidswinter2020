@@ -34,11 +34,13 @@ export default function ActivityList(props: any) {
       }
 
       calculateActivityProgramCount()
-      console.log(currentAPCount)  
+      //console.log()  
+      currentAPCount.sort((a, b) => (a.numberOfPrograms < b.numberOfPrograms) ? 1 : -1)
 
     return(
         <View style={{flex:1}}>      
             <ShowActivities 
+                navigation={props.navigation}
                 searchTerm={props.searchTerm}
                 activities={currentAPCount}
                 programs={props.programs}/>

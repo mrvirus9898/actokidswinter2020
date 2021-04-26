@@ -36,7 +36,8 @@ export default function ShowActivities(props: any){
                   accessibilityHint="Click here to learn more."
                   accessibilityRole="imagebutton" 
                   onPress= {() => {
-                    alert("Hello");
+                    props.navigation.navigate('ActivityDetailsScreen', {item: item});
+                    //console.log(props.navigation);
                   }}>
                   <ActivityCards item={item} />
                 </TouchableOpacity>
