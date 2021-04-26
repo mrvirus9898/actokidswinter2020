@@ -6,7 +6,7 @@ import Colors from '../../constants/Colors';
 
 
 export default function ProgramCards(props: any) {
-    //console.log(item.item.Program_Image_Url)
+    //console.log(props.item)
     let imageWidth = (useWindowDimensions().width) * 0.75; 
     let imageHeight = (useWindowDimensions().height) * 0.25; 
     console.log(imageHeight)

@@ -25,8 +25,11 @@ import {
   Linking,
   TouchableOpacity,
   TouchableHighlight,
-  ScrollView
+  ScrollView,
+  Alert
 } from 'react-native';
+
+import Colors from '../constants/Colors'
 
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
@@ -74,15 +77,14 @@ export default function ProgramDetails(params: Array<any>){
 
             <TouchableHighlight
               onPress= {() => {
-                alert('Pass Calander Intent')
+                Linking.openURL(item.Program_Url);
               }}>
               <View style={styles.row2}>
                 <View style={styles.imageWrapper}>
                     <AntDesign name="clockcircle" size={28} color="black" />
                   </View>
                 <View>
-                  <Text style={{fontSize: 16}}>{formattedEventDate}</Text>
-                  <Text style={{fontSize: 16}}>{startTime} - {endTime}</Text>
+                  <Text style={{fontSize: 16}}>{item.Program_Url}</Text>
                 </View>
               </View>
             </TouchableHighlight>
@@ -113,6 +115,20 @@ export default function ProgramDetails(params: Array<any>){
                   </View>
                 <View>
                   <Text style={{fontSize: 16, marginTop: 5}}>{phoneStr}</Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+
+            <TouchableHighlight
+              onPress= {() => {
+                Linking.openURL('mailto:'+item.Cont_Email) 
+                }}>
+              <View style={styles.row5}>
+                <View style={styles.imageWrapper}>
+                  <AntDesign name="mail" size={28} color="black" />
+                  </View>
+                <View>
+                  <Text style={{fontSize: 16, marginTop: 5}}>{item.Cont_Email}</Text>
                 </View>
               </View>
             </TouchableHighlight>
@@ -164,6 +180,11 @@ const styles = StyleSheet.create({
       flex: 4,
       flexDirection: "row"
     },
+    row5: {
+      marginTop: 10,
+      flex: 5,
+      flexDirection: "row"
+    },
     textWrap: {
       flex: 1,
     },
@@ -184,6 +205,7 @@ const styles = StyleSheet.create({
     },
     container: {
       padding: 10,
+      backgroundColor: Colors.OffWhite.color,
     },
     imageWrapper: {
       marginRight: 10
@@ -199,3 +221,10 @@ const styles = StyleSheet.create({
     }
   
   });  
+
+  /*
+                  <View>
+                  <Text style={{fontSize: 16}}>{formattedEventDate}</Text>
+                  <Text style={{fontSize: 16}}>{startTime} - {endTime}</Text>
+                </View>
+            */
