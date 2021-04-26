@@ -149,7 +149,8 @@ function ActivityListNavigator() {
 function ActivityListComponent(){
   return(<ActivityList 
         searchTerm={searchTerm}
-        activities={incomingData[1][0]}/>)
+        activities={incomingData[1][0]}
+        programs={incomingData[0]}/>)
 }
 
 const MapStack = createStackNavigator<MapParamList>();

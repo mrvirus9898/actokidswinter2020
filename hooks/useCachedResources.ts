@@ -25,36 +25,35 @@ export default function useCachedResources() {
         program.forEach(program => {
           //console.log(element)
           let tempCoord: Coordinates = {
-              //turns out you can convert string to number by using the plus sign
-              //One Free ¯\_(ツ)_/¯
-              latitude: +program.lat,
-              longitude: +program.long,
+            //turns out you can convert string to number by using the plus sign
+            //One Free ¯\_(ツ)_/¯
+            latitude: +program.lat,
+            longitude: +program.long,
           }
           let tempProLocation: ProgramLocation = {
-              title: program.Program_Name,
-              key: count,
-              coordinates: tempCoord,
-              description: program.Program_Types
+            title: program.Program_Name,
+            key: count,
+            coordinates: tempCoord,
+            description: program.Program_Types
           }
+          //searchProgramActivities(program.Program_name)
           tempLocations.push(tempProLocation)
           count++
         })
         setMapProcessingComplete(tempLocations)
-    })
+    }) 
+
     const incomingFilter = loadTaxonomyInformation().then(function(result)
     {
         let incomingData: any = []
         let activities = result.Activities;
         let taxonomy = result.Taxonomy;
         incomingData.push(activities)
-        incomingData.push(taxonomy)
-
+        incomingData.push(taxonomy)     
         //console.log(incomingData)
 
         setTaxonomyLoadingComplete(incomingData);
     })
-
-    
 
 
   }, []);

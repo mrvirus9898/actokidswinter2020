@@ -87,3 +87,9 @@ export type ProgramLocation = {
   coordinates: Coordinates;
   description: string;
 };
+
+export type ActivityProgramCount = {
+  activity: string;
+  pic_url: string;
+  numberOfPrograms: number;
+};

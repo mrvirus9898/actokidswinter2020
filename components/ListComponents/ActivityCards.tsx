@@ -8,17 +8,43 @@ export default function ActivityCards(item: any) {
     let picture_url: string = (item.item.pic_url === undefined) ? 
         "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*" : item.item.pic_url;
 
+    function pluralCorrection(program_number: number){
+        if(program_number == 1){
+            return(
+                <Text style={styles.activityCardSubText}>
+                    {item.item.numberOfPrograms} program
+                </Text>
+            )
+        }else{
+            return(
+                <Text style={styles.activityCardSubText}>
+                    {item.item.numberOfPrograms} programs
+                </Text>
+            )
+        }
+    }
+
     return(
         <View style={styles.activityCardStyle}>
-            <Image 
-                style={styles.activityImageStyle}
-                source={{uri: picture_url}}/> 
-            <Text style={styles.activityCardText}>
-                    {item.item.value}
-            </Text>
+            <View>
+                <Image 
+                    style={styles.activityImageStyle}
+                    source={{uri: picture_url}}/> 
+            </View>
+            <View>
+                <Text style={styles.activityCardText}>
+                        {item.item.activity}
+                </Text>
+                {pluralCorrection(item.item.numberOfPrograms)}
+            </View>
+            <View>
+            {//SPLITER VIEW FOR THE MEMES
+            }
+            </View>
         </View>
 
     )
+
 }
 
 /*
@@ -41,16 +67,19 @@ const styles = StyleSheet.create({
         marginHorizontal:18,
         marginVertical:10,
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     activityImageStyle:{
         width: 75,
         height: 75
     },
     activityCardText: {
-        fontSize: 24,
+        fontSize: 26,
         textAlign: 'center',
-        marginVertical: 20,
-        marginHorizontal: 50
+    },
+    activityCardSubText: {
+        fontSize: 16,
+        textAlign: 'center',
     }
 });

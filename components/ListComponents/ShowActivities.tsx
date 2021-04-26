@@ -13,14 +13,16 @@ import Colors from '../../constants/Colors';
 
 import ActivityCards from './ActivityCards';
 
+import { ActivityProgramCount } from '../../types';
+
 export default function ShowActivities(props: any){
 
     //const [filter, setFilter] = useState<Array<any>>([]);
     //const [filter, setFilter] = useState<Array<String>>([]);
-    const [refreshList, setRefreshList] = useState(true)
-  
+    const [refreshList, setRefreshList] = useState(true)  
+
     function drawCards(){
-      let filteredData = applySearch()         
+      let filteredData = applySearch()       
       return( 
         <View>
           <FlatList
@@ -30,7 +32,7 @@ export default function ShowActivities(props: any){
               <View style={styles.activityListStyle}>
                 <TouchableOpacity 
                   accessible = {true}
-                  accessibilityLabel = {item.value}
+                  accessibilityLabel = {item.activity}
                   accessibilityHint="Click here to learn more."
                   accessibilityRole="imagebutton" 
                   onPress= {() => {
@@ -51,7 +53,7 @@ export default function ShowActivities(props: any){
       //console.log("Current Filter: " + filter)
       if(props.searchTerm != ""){
         props.activities.forEach(activity => {
-          if(props.searchTerm === activity.value){
+          if(props.searchTerm === activity.activity){
             console.log("Target Found")
             output.push(activity)
           }

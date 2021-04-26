@@ -9,7 +9,7 @@ export default function ProgramCards(props: any) {
     //console.log(props.item)
     let imageWidth = (useWindowDimensions().width) * 0.75; 
     let imageHeight = (useWindowDimensions().height) * 0.25; 
-    console.log(imageHeight)
+    //console.log(imageHeight)
     return(
         <View style={styles.programCardStyle}>
             <View style={styles.programImageWrapper}>
