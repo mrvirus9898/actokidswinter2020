@@ -27,14 +27,6 @@ export default function ShowPrograms(props: any){
   const [filter, setFilter] = useState<Array<String>>([]);
 
 
-
-  const isFocused = useIsFocused()
-
-    useEffect(() => {
-      //console.log("Current Filter: " + FilterCriteria.Criteria)
-    } , [isFocused])
-
-
   function drawCards(){
     let filteredData = applyFilter()
     //console.log("Filter: " + filteredData)

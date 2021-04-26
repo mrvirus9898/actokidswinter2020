@@ -1,7 +1,5 @@
 import React from 'react';
-import { Card } from 'react-native-elements';
-import { StyleSheet, Text,TouchableOpacity,
-    TouchableHighlight, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 export default function ActivityCards(item: any) {
     //console.log(item.item)
@@ -12,13 +10,13 @@ export default function ActivityCards(item: any) {
         if(program_number == 1){
             return(
                 <Text style={styles.activityCardSubText}>
-                    {item.item.numberOfPrograms} program
+                    {program_number} program
                 </Text>
             )
         }else{
             return(
                 <Text style={styles.activityCardSubText}>
-                    {item.item.numberOfPrograms} programs
+                    {program_number} programs
                 </Text>
             )
         }
@@ -35,7 +33,7 @@ export default function ActivityCards(item: any) {
                 <Text style={styles.activityCardText}>
                         {item.item.activity}
                 </Text>
-                {pluralCorrection(item.item.numberOfPrograms)}
+                {pluralCorrection(item.item.programKeys.length)}
             </View>
             <View>
             {//SPLITER VIEW FOR THE MEMES
@@ -47,15 +45,6 @@ export default function ActivityCards(item: any) {
 
 }
 
-/*
-        <Card>
-            <Card.Image source={{uri: picture_url}} />
-            <Text style={styles.titleText}>
-                    {item.item.value}
-            </Text>
-        </Card>
-
-*/
 
 const styles = StyleSheet.create({
     titleText: {

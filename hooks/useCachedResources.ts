@@ -19,7 +19,8 @@ export default function useCachedResources() {
     const incomingPrograms = loadProgramInformation().then(function(result)
     {
         let program = result;
-        setProgramLoadingComplete(result);
+        program.sort((a, b) => (a.Program_Id > b.Program_Id) ? 1 : -1)
+        setProgramLoadingComplete(program);
         let tempLocations: any = [];
         let count = 0;
         program.forEach(program => {

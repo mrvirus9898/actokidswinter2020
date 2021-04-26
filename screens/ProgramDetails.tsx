@@ -11,22 +11,17 @@ Reorient program details to better match back end.
 
 Restyle program details to be more appealing
 
-Add Calendar Intent
-
-Add ios Intents
 */
 
-import React, {Component} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Image,
   Linking,
-  TouchableOpacity,
   TouchableHighlight,
-  ScrollView,
-  Alert
+  ScrollView
 } from 'react-native';
 
 import Colors from '../constants/Colors'
@@ -41,7 +36,7 @@ export default function ProgramDetails(params: Array<any>){
 
     let item = params.route.params.item
 
-    console.log(item)
+    //console.log(item)
     
     //TODO: Need to resolve taxonomy, then update this section
     if (item.disability_types != null) {

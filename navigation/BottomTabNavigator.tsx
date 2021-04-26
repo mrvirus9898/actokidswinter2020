@@ -156,6 +156,20 @@ function ActivityListNavigator() {
             backgroundColor: Colors.Red.color
           }, 
       }}/>
+      <ActivityListStack.Screen
+        name="ActivityProgramDetailsScreen"
+        component={ProgramDetails}
+        options={{ 
+          headerShown: false,
+          headerTitle: 'Activity Details',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>
     </ActivityListStack.Navigator>
   );
 }

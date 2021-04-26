@@ -40,6 +40,7 @@ export type FilterParamList = {
 export type ActivityParamList = {
   ActivityListScreen: undefined;
   ActivityDetailsScreen: undefined;
+  ActivityProgramDetailsScreen: undefined;
 };
 
 export type MapParamList = {
@@ -93,4 +94,5 @@ export type ActivityProgramCount = {
   activity: string;
   pic_url: string;
   numberOfPrograms: number;
+  programKeys: number[];
 };

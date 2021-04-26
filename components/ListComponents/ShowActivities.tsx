@@ -13,10 +13,8 @@ import Colors from '../../constants/Colors';
 
 import ActivityCards from './ActivityCards';
 
-import { ActivityProgramCount } from '../../types';
-
 export default function ShowActivities(props: any){
-
+    //console.log(Object.keys(props))
     //const [filter, setFilter] = useState<Array<any>>([]);
     //const [filter, setFilter] = useState<Array<String>>([]);
     const [refreshList, setRefreshList] = useState(true)  
@@ -36,7 +34,7 @@ export default function ShowActivities(props: any){
                   accessibilityHint="Click here to learn more."
                   accessibilityRole="imagebutton" 
                   onPress= {() => {
-                    props.navigation.navigate('ActivityDetailsScreen', {item: item});
+                    props.navigation.navigate('ActivityDetailsScreen', {item: item, programs: props.programs});
                     //console.log(props.navigation);
                   }}>
                   <ActivityCards item={item} />

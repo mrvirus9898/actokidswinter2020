@@ -17,17 +17,19 @@ export default function ActivityList(props: any) {
         //console.log(props.programs)
         props.activities.forEach(activity => { 
           let count = 0
-          
+          let tempProgramKey: number[] = new Array()
           props.programs.forEach(program => {
             //console.log(program.Program_Types)
             if(activity.value === program.Program_Types){
                 count++
+                tempProgramKey.push(program.Program_Id)
             }
           });
           let tempAPCount: ActivityProgramCount = {
               activity: activity.value,
               pic_url: activity.pic_url,
-              numberOfPrograms: count
+              numberOfPrograms: count,
+              programKeys: tempProgramKey
           }
           currentAPCount.push(tempAPCount)
         });
