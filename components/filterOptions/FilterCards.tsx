@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     categoryText: {
         fontFamily: 'serif',
         fontSize: 18,
-        color: 'black'
+        color: 'black',
+        justifyContent: 'center'
     }
 });
 

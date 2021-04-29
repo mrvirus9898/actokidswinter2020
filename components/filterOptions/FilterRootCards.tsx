@@ -15,7 +15,9 @@ import { Card } from 'react-native-elements';
 
 import FilterCards from './FilterCards'
 
-import { useNavigation } from '@react-navigation/native';
+import Colors from '../../constants/Colors';
+
+let tileSize = (Dimensions.get("window").width / 3) + (5/3)
 
 export default function FilterRootCards({navigation}) {
     let optionsArray = [
@@ -52,15 +54,12 @@ export default function FilterRootCards({navigation}) {
         route: 'FilterCostsAndTravel'
     }
     ];
-    let screenWidth = Dimensions.get("window").width;
-    let cols = 3;
-    let tileSize = screenWidth / cols
 
     function renderItem({item}){
        //console.log(navigation)
         return(
-            <View style={{height: tileSize, flex: 1/2}}>
-                <TouchableHighlight 
+            <View style={styles.filterCardContainer}>
+                <TouchableOpacity 
                     accessible = {true}
                     accessibilityLabel = {item.title}
                     accessibilityHint="Click here to learn more."
@@ -69,7 +68,7 @@ export default function FilterRootCards({navigation}) {
                     navigation.navigate(item.route);
                 }}>
                 <FilterCards category={item.title}/>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
 
         )
@@ -84,30 +83,13 @@ export default function FilterRootCards({navigation}) {
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
+    filterCardContainer: {
+        flex: 1/2,
+        backgroundColor: Colors.OffWhite.color,
+        height: tileSize,
         justifyContent: 'center',
-        padding: 20,
-        backgroundColor: '#FF5733',
-    },
-    paragraph: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        padding: 20
-      },
-    filterRootCardStyle:{
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    colorDemo:{
-        width: 50, 
-        height: 50, 
-        backgroundColor: 'powderblue'
+        borderWidth: 5
     }
-
 });
 
 /*
