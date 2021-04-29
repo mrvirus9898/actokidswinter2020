@@ -1,13 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet} from 'react-native';
+import React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-
-import { NavigationContainer } from '@react-navigation/native';
 
 import FilterAccessOptions from '../components/filterOptions/FilterAccessOptions';
 import FilterAgesGrades from '../components/filterOptions/FilterAgesGrades';
@@ -19,14 +16,23 @@ import FilterOutdoorPrograms from '../components/filterOptions/FilterOutdoorProg
 import FilterTeamSports from '../components/filterOptions/FilterTeamSports';
 import FilterFormB from '../components/filterOptions/FilterFormB';
 import FilterRootCards from '../components/filterOptions/FilterRootCards';
-import FilterPage from '../screens/FilterPage';
 
 import { FilterParamList } from '../types';
 
+let category: any[] = new Array();
+
 const FilterNavigatorStack = createBottomTabNavigator<FilterParamList>();
 
-export default function BottomTabFilterNavigator() {
+export default function BottomTabFilterNavigator(props: any) {
   const colorScheme = useColorScheme();
+  props.taxonomy[1].forEach(taxonomy => {
+      if(category.indexOf(taxonomy.category) === -1){
+        category.push(taxonomy.category)
+      }
+  });
+  console.log(category)
+
+  //console.log("Prop Keys at Bottom Tab Filter Nav: " + Object.keys(props.taxonomy))
 
   return (
     <FilterNavigatorStack.Navigator

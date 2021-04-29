@@ -5,7 +5,6 @@ import ShowPrograms from '../components/ListComponents/ShowPrograms';
 
 
 export default function ProgramList(props: any) {
-
   return(
       <View style={{flex:1}}>
           <ShowPrograms 

@@ -24,8 +24,8 @@ import TaxonomyCriteria from './filterFormComponents/TaxonomyCriteria'
 import PhysicalIntensity from './filterFormComponents/PhysicalIntensity'
 
 
-export default function FilterFormB({navigation}) {
-    console.log(navigation)
+export default function FilterFormB(props: any) {
+    //console.log(navigation)
 
     return(
         <SafeAreaView style={styles.container}>

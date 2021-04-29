@@ -13,31 +13,33 @@ import { StyleSheet, Text,TouchableOpacity,
     TouchableHighlight, View, Image, FlatList, Dimensions } from 'react-native';
 import { Card } from 'react-native-elements';
 
+import FilterCards from './FilterCards'
+
 import { useNavigation } from '@react-navigation/native';
 
 export default function FilterRootCards({navigation}) {
     let optionsArray = [
-    {   title: 'Accessibility Options',
+    {   title: 'Physical Activity',
         key: 0,
         route: 'FilterAccessOptions'
     },
-    {   title: 'Ages and Grades',
+    {   title: 'Competitiveness',
         key: 1,
         route: 'FilterAgesGrades'
     },
-    {   title: 'Team Sports', 
+    {   title: 'Physical Intensity', 
         key: 2,
         route: 'FilterTeamSports'
     },
-    {   title: 'Individual Sports', 
+    {   title: 'Skill Level', 
         key: 3,
         route: 'FilterIndividualSports'
     },
-    {   title: 'Indoor', 
+    {   title: 'Certifications', 
         key: 4,
         route: 'FilterIndoorPrograms'
     },
-    {   title: 'Outdoor', 
+    {   title: 'Payment Options', 
         key: 5,
         route: 'FilterOutdoorPrograms'
     },
@@ -66,9 +68,7 @@ export default function FilterRootCards({navigation}) {
                     onPress= {() => {
                     navigation.navigate(item.route);
                 }}>
-                <Card>
-                    <Card.Title>{item.title}</Card.Title>
-                </Card>
+                <FilterCards category={item.title}/>
                 </TouchableHighlight>
             </View>
 
@@ -111,6 +111,8 @@ const styles = StyleSheet.create({
 });
 
 /*
+
+
             <Card>
                 <Text style={styles.paragraph}>Criteria 1</Text>
             </Card>
@@ -138,12 +140,9 @@ const styles = StyleSheet.create({
         <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
         <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
       </View>
-      {'Accessibility Options'}, 
-        'Ages and Grades', 
-        'Team Sports', 
-        'Individual Sports', 
-        'Indoor', 
-        'Outdoor', 
-        'Language Options', 
-        'Cost and Travel'
-*/
+
+                      <Card>
+                    <Card.Title>{item.title}</Card.Title>
+                </Card>
+                
+                */

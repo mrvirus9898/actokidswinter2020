@@ -12,14 +12,15 @@ Future react releases will probably fix this but until them, have a free shrug Â
 */
 
 import * as React from 'react';
-import { Button, View, Text, StyleSheet } from 'react-native';
+import { Button, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import Colors from '../constants/Colors'
 
-export default function filterButton() {
+export default function filterButton(props: any) {
   const navigation = useNavigation();
+
+  //console.log("Prop Keys at Bottom Tab Filter Nav: " + Object.keys(props))
 
   return (
     <TouchableOpacity

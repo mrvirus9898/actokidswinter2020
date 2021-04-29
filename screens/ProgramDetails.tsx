@@ -5,11 +5,11 @@ Nick Bennett
 Program Details displays the details from the program selected from Program List
 
 TODO:
-Reorient program details to better match back end.
--the item variable is a section of the json passed in through the program list
--change the keys to match the back end keys
+DISABILITIES CHANGE TO ACCESSIBILITY FEATURES
+PHYSICAL INTENSITY
+SPORTS
+PHYSICAL ACTIVITY CATEGORY 
 
-Restyle program details to be more appealing
 
 */
 
@@ -26,7 +26,7 @@ import {
 
 import Colors from '../constants/Colors'
 
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 //Moment is being depricated, may need to investigate alternate forks.
 import moment from 'moment';

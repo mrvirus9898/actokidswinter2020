@@ -50,6 +50,7 @@ export default function useCachedResources() {
         let incomingData: any = []
         let activities = result.Activities;
         let taxonomy = result.Taxonomy;
+        taxonomy.sort((a, b) => (a.genre_id > b.genre_id) ? 1 : -1)
         incomingData.push(activities)
         incomingData.push(taxonomy)     
         //console.log(incomingData)

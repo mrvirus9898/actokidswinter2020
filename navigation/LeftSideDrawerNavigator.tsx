@@ -21,6 +21,9 @@ export default function LeftSideDrawerNavigator(props: any) {
   //SEARCHTERM LIVES HERE IS IS PASSED THROUGH THE DIFFERENT SCREENS
   const [searchTerm, SetSearchTerm] = React.useState("")
 
+  //console.log(Object.keys(props.incomingData[1]))
+  //console.log(props.incomingData[1])
+
   //I defined the header and style here like in the other navigations, but for some reason it did work. 
   //So I moved the header and those options into the components. One free  ¯\_(ツ)_/¯
 
@@ -45,7 +48,7 @@ export default function LeftSideDrawerNavigator(props: any) {
             fontWeight: 'bold',
             color: Colors.OffWhite.color
           },
-          headerRight: () => (<FilterButton />),
+          headerRight: () => FilterButtonComponent(),
           headerStyle: {
             backgroundColor: Colors.Red.color
           },
@@ -120,7 +123,8 @@ export default function LeftSideDrawerNavigator(props: any) {
   }
   
   function FilterNavigator() {
-    return (<BottomTabFilterNavigator />);
+    return (<BottomTabFilterNavigator 
+              taxonomy={props.incomingData[1]}/>);
   }
   
   function HeaderSearchBar(){
@@ -128,5 +132,8 @@ export default function LeftSideDrawerNavigator(props: any) {
             searchTerm={searchTerm} 
             setTerm={SetSearchTerm}/>);
   }
-}
 
+  function FilterButtonComponent(){
+    return(<FilterButton />);
+  }
+}
