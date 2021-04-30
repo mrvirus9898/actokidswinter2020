@@ -6,14 +6,15 @@ import React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 
-import FilterAccessOptions from '../components/filterOptions/FilterAccessOptions';
-import FilterAgesGrades from '../components/filterOptions/FilterAgesGrades';
+import FilterPhysicalActivity from '../components/filterOptions/FilterPhysicalActivity';
+import FilterCompetitiveStructure from '../components/filterOptions/FilterCompetitiveStructure';
 import FilterCostsAndTravel from '../components/filterOptions/FilterCostsAndTravel';
-import FilterIndividualSports from '../components/filterOptions/FilterIndividualSports';
-import FilterIndoorPrograms from '../components/filterOptions/FilterIndoorPrograms';
+import FilterPhysicalIntensity from '../components/filterOptions/FilterPhysicalIntensity';
+import FilterSkillLevel from '../components/filterOptions/FilterSkillLevel';
 import FilterLanguageOptions from '../components/filterOptions/FilterLanguageOptions';
-import FilterOutdoorPrograms from '../components/filterOptions/FilterOutdoorPrograms';
-import FilterTeamSports from '../components/filterOptions/FilterTeamSports';
+
+import FilterCertifications from '../components/filterOptions/FilterCertifications';
+import FilterPaymentOptions from '../components/filterOptions/FilterPaymentOptions';
 import FilterFormB from '../components/filterOptions/FilterFormB';
 import FilterRootCards from '../components/filterOptions/FilterRootCards';
 
@@ -76,14 +77,14 @@ function FilterCardStack(){
                 headerShown: false,
         }}/> 
         <FilterRootStack.Screen
-            name="FilterAccessOptions"
-            component={FilterAccessOptions}            
+            name="FilterPhysicalActivity"
+            component={FilterPhysicalActivity}            
             options={{
                 headerShown: false,
         }}/>   
         <FilterRootStack.Screen
-            name="FilterAgesGrades"
-            component={FilterAgesGrades}
+            name="FilterCompetitiveStructure"
+            component={FilterCompetitiveStructure}
             options={{
                 headerShown: false,
         }}/>   
@@ -94,14 +95,14 @@ function FilterCardStack(){
                 headerShown: false,
         }}/>   
         <FilterRootStack.Screen
-            name="FilterIndividualSports"
-            component={FilterIndividualSports}
+            name="FilterPhysicalIntensity"
+            component={FilterPhysicalIntensity}
             options={{
                 headerShown: false,
         }}/>   
         <FilterRootStack.Screen
-            name="FilterIndoorPrograms"
-            component={FilterIndoorPrograms}
+            name="FilterSkillLevel"
+            component={FilterSkillLevel}
             options={{
                 headerShown: false,
         }}/>   
@@ -112,14 +113,14 @@ function FilterCardStack(){
                 headerShown: false,
         }}/>   
         <FilterRootStack.Screen
-            name="FilterOutdoorPrograms"
-            component={FilterOutdoorPrograms}
+            name="FilterCertifications"
+            component={FilterCertifications}
             options={{
                 headerShown: false,
         }}/>   
         <FilterRootStack.Screen
-            name="FilterTeamSports"
-            component={FilterTeamSports}
+            name="FilterPaymentOptions"
+            component={FilterPaymentOptions}
             options={{
                 headerShown: false,
         }}/>    

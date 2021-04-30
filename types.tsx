@@ -26,14 +26,14 @@ export type ProgramParamList = {
 export type FilterParamList = {
   ProgramFilterScreen: undefined;
   FilterRootCards: undefined;
-  FilterAccessOptions: undefined;
-  FilterAgesGrades: undefined;
+  FilterPhysicalActivity: undefined;
+  FilterCompetitiveStructure: undefined;
   FilterCostsAndTravel: undefined;
-  FilterIndividualSports: undefined;
-  FilterIndoorPrograms: undefined;
+  FilterPhysicalIntensity: undefined;
+  FilterSkillLevel: undefined;
   FilterLanguageOptions: undefined;
-  FilterOutdoorPrograms: undefined;
-  FilterTeamSports: undefined;
+  FilterCertifications: undefined;
+  FilterPaymentOptions: undefined;
   FilterFormB: undefined;
 };
 

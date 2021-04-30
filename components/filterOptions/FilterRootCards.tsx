@@ -9,9 +9,7 @@ FIlter by Root Cards for the filter options
 
 import React from 'react';
 
-import { StyleSheet, Text,TouchableOpacity,
-    TouchableHighlight, View, Image, FlatList, Dimensions } from 'react-native';
-import { Card } from 'react-native-elements';
+import { StyleSheet, TouchableOpacity, View, FlatList, Dimensions } from 'react-native';
 
 import FilterCards from './FilterCards'
 
@@ -26,32 +24,32 @@ export default function FilterRootCards({navigation}) {
     let optionsArray = [
     {   title: 'Physical Activity',
         key: 0,
-        route: 'FilterAccessOptions',
+        route: 'FilterPhysicalActivity',
         url: "https://images.indianexpress.com/2019/12/child-physical-activity.jpg"
     },
     {   title: 'Competitiveness',
         key: 1,
-        route: 'FilterAgesGrades',
+        route: 'FilterCompetitiveStructure',
         url: "https://static.parenting.com/wp-content/uploads/2010/12/18163927/kids-baseball-1-1200x720.jpg"
     },
     {   title: 'Physical Intensity', 
         key: 2,
-        route: 'FilterTeamSports',
+        route: 'FilterPhysicalIntensity',
         url: "https://ptproductsonline.com/wp-content/uploads/2020/09/IncreaseIntensity.jpg"
     },
     {   title: 'Skill Level', 
         key: 3,
-        route: 'FilterIndividualSports',
+        route: 'FilterSkillLevel',
         url: "https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_450,q_75,w_600/https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/tacoma/Sunrise_from_Mt_Fremont_623d1268-39d7-4d41-a383-fc543ca3eb9e.jpg"
     },
     {   title: 'Certifications', 
         key: 4,
-        route: 'FilterIndoorPrograms',
+        route: 'FilterCertifications',
         url: "https://incowrimo.org/wp-content/uploads/2013/01/How-to-Write-a-Letter.jpg"
     },
     {   title: 'Cost', 
         key: 5,
-        route: 'FilterOutdoorPrograms',
+        route: 'FilterCostsAndTravel',
         url: "https://lh3.googleusercontent.com/proxy/CPEKhsNlyTWYDfOD_X9NNIIlvrLloH6pvCAgubDrP53zZdXHdjqx13c_DeukMoNXI-KWteSnjfqx3oub0kpkrJKyTqtGLzVXrGH-P6kao7bahqwc8cEwQlq1GLHm2O8D8cS8M1iHaVUj-aSr1Xg"
     },
     {   title: 'Language Options', 
@@ -61,7 +59,7 @@ export default function FilterRootCards({navigation}) {
     },
     {   title: 'Payment Options', 
         key: 7,
-        route: 'FilterCostsAndTravel',
+        route: 'FilterPaymentOptions',
         url: "https://d2eehagpk5cl65.cloudfront.net/img/c800x450-w800-q80/uploads/2019/05/Lemonade-stand-800x450.jpg"
     }
     ];
@@ -79,7 +77,7 @@ export default function FilterRootCards({navigation}) {
                     onPress= {() => {
                         navigation.navigate(item.route);
                 }}>
-                      <FilterCards 
+                <FilterCards 
                     category={item.title}
                     url={item.url}/>
                 </TouchableOpacity>
