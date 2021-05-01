@@ -124,7 +124,9 @@ export default function LeftSideDrawerNavigator(props: any) {
   
   function FilterNavigator() {
     return (<BottomTabFilterNavigator 
-              taxonomy={props.incomingData[1]}/>);
+              taxonomy={props.incomingData[1]}
+              currentSelections={props.incomingData[3]}
+              modifyCurrentSelections={props.incomingData[4]}/>);
   }
   
   function HeaderSearchBar(){

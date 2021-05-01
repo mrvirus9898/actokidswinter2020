@@ -9,9 +9,27 @@ import loadTaxonomyInformation from '../hooks/loadTaxonomyInformation';
 import {ProgramLocation, Coordinates} from '../types';
 
 export default function useCachedResources() {
+  let initialCST: string[] = new Array
   const [isProgramLoadingComplete, setProgramLoadingComplete] = React.useState([[]]);
   const [isMapProcessingComplete, setMapProcessingComplete] = React.useState([[]]);
   const [isTaxonomyLoadingComplete, setTaxonomyLoadingComplete] = React.useState([[]]);
+  const [currentSelectedTaxonomy, setCurrentSelectedTaxonomy] = React.useState(initialCST);
+
+  function modifyCurrentSelectedTaxonomy(selection: string){
+    let tempSelection: string[] = currentSelectedTaxonomy
+    let index = tempSelection.indexOf(selection,0)
+    console.log("Taxonomy Selection: " + selection)
+
+    //if the selected taxonomy criteria is already in the current taxonomy then remove it
+    //else add it
+    if(index > -1){
+      tempSelection.splice(index, 1)
+      setCurrentSelectedTaxonomy(tempSelection)
+    }else{
+      tempSelection.push(selection)
+      setCurrentSelectedTaxonomy(tempSelection)
+    }
+  }
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
@@ -64,7 +82,7 @@ export default function useCachedResources() {
   if(isProgramLoadingComplete && isTaxonomyLoadingComplete && isMapProcessingComplete){
     //console.log(isProgramLoadingComplete)
     //console.log(isTaxonomyLoadingComplete)
-    return [isProgramLoadingComplete, isTaxonomyLoadingComplete, isMapProcessingComplete]
+    return [isProgramLoadingComplete, isTaxonomyLoadingComplete, isMapProcessingComplete, currentSelectedTaxonomy, modifyCurrentSelectedTaxonomy]
   }else{
     
   return false
