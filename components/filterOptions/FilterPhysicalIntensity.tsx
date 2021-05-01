@@ -13,7 +13,7 @@ import React from 'react';
 import { StyleSheet, Text,TouchableOpacity,
     TouchableHighlight, View, Image } from 'react-native';
 
-export default function FilterPhysicalIntensity() {
+export default function FilterPhysicalIntensity(props: any) {
     //console.log(item.item)
     return(null)
 }

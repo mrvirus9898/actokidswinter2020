@@ -5,16 +5,15 @@ ACTOKIDS
 FIlter by Root Cards for the filter options
 */
 
-
-
 import React from 'react';
-
-import { StyleSheet, TouchableOpacity, View, FlatList, Dimensions } from 'react-native';
 
 import FilterCards from './FilterCards';
 
 import FilterPhysicalActivity from './FilterPhysicalActivity'
-
+import FilterCompetitiveStructure from './FilterCompetitiveStructure'
+import FilterPhysicalIntensity from './FilterPhysicalIntensity'
+import FilterSkillLevel from './FilterSkillLevel'
+import FilterCostAndTravel from './FilterCostsAndTravel'
 import FilterCertifications from './FilterCertifications'
 import FilterLanguageOptions from './FilterLanguageOptions'
 
@@ -32,6 +31,41 @@ export default function FilterRootCards(props: any) {
         )
     }
 
+    function renderCompetitiveStructure(){
+        return(
+            <FilterCompetitiveStructure 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={setOptionSelect}/>
+        )
+    }
+
+    function renderPhysicalIntensity(){
+        return(
+            <FilterPhysicalIntensity 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={setOptionSelect}/>
+        )
+    }
+
+    function renderSkillLevel(){
+        return(
+            <FilterSkillLevel 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={setOptionSelect}/>
+        )
+    }
+
+    function renderCosts(){
+        return(
+            <FilterCostAndTravel 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={setOptionSelect}/>
+        )
+    }
     
     function renderCertifcationComponent(){
         return(
@@ -64,16 +98,16 @@ export default function FilterRootCards(props: any) {
                 return renderPhysicalActivityComponent()
             }
             case 1:{
-                break;
+                return renderCompetitiveStructure()
             }
             case 2:{
-                break;
+                return renderPhysicalIntensity()
             }
             case 3:{
-                break;
+                return renderSkillLevel();
             }
             case 4:{
-                return renderCertifcationComponent()
+                return renderCosts()
             }
             case 5:{
                 return renderCertifcationComponent()

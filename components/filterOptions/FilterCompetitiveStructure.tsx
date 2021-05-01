@@ -13,7 +13,7 @@ import React from 'react';
 import { StyleSheet, Text,TouchableOpacity,
     TouchableHighlight, View, Image } from 'react-native';
 
-export default function FilterCompetitiveStructure() {
+export default function FilterCompetitiveStructure(props: any) {
     //console.log(item.item)
     return(null)
 }
