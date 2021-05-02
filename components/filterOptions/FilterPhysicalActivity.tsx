@@ -13,7 +13,7 @@ import { StyleSheet, Text,TouchableOpacity,
 import Colors from '../../constants/Colors';
 
 export default function FilterPhysicalActivity(props: any) {
-    console.log(props.currentSelections)
+    console.log(Object.keys(props))
 
     let optionsArray = [
         {   title: 'Movement-based Play',
@@ -35,20 +35,17 @@ export default function FilterPhysicalActivity(props: any) {
         {   title: 'Nature-based', 
             key: 4,
             url: "https://incowrimo.org/wp-content/uploads/2013/01/How-to-Write-a-Letter.jpg"
-        },
-        {   title: 'Accept', 
-            key: 5,
-            url: "https://lh3.googleusercontent.com/proxy/CPEKhsNlyTWYDfOD_X9NNIIlvrLloH6pvCAgubDrP53zZdXHdjqx13c_DeukMoNXI-KWteSnjfqx3oub0kpkrJKyTqtGLzVXrGH-P6kao7bahqwc8cEwQlq1GLHm2O8D8cS8M1iHaVUj-aSr1Xg"
         }
         ];
 
     function modifySelectionOrGoBack(physicalActivity: string){
-        if(physicalActivity === 'Accept'){
+        props.modifyCurrentSelections(physicalActivity)
+        /*if(physicalActivity === 'Accept'){
             props.setOptionSelect(8)
         }else{
             props.modifyCurrentSelections(physicalActivity)
             //alert(props.currentSelections)
-        }
+        }*/
 
     }
 

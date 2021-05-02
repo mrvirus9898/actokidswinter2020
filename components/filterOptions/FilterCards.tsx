@@ -1,14 +1,27 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, useWindowDimensions, Dimensions, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions, Dimensions, TouchableOpacity } from 'react-native';
+
+import Carousel from 'react-native-snap-carousel';
 
 import Colors from '../../constants/Colors';
 
+import FilterPhysicalActivity from './FilterPhysicalActivity'
+import FilterCompetitiveStructure from './FilterCompetitiveStructure'
+import FilterPhysicalIntensity from './FilterPhysicalIntensity'
+import FilterSkillLevel from './FilterSkillLevel'
+import FilterCostAndTravel from './FilterCostsAndTravel'
+import FilterCertifications from './FilterCertifications'
+import FilterLanguageOptions from './FilterLanguageOptions'
+import FilterPayment from './FilterPaymentOptions'
 
 
 export default function FilterCards(props: any) {
-    console.log(useWindowDimensions().height)
-    //let imageHeight = (useWindowDimensions().height) / 4; 
-    //let imageWidth = (useWindowDimensions().width) / 3; 
+    //console.log(useWindowDimensions().height)
+    let windowHeight = (useWindowDimensions().height); 
+    let windowWidth = (useWindowDimensions().width); 
+
+    const [carouselIndex, setCarouselIndex] = React.useState(0)
+    const [savePIKey, setPIKey] = React.useState("")
 
     
     let optionsArray = [
@@ -54,51 +67,139 @@ export default function FilterCards(props: any) {
         }
         ];
 
-        function renderFlatlistOfCards(){
-            return(
-                <FlatList 
-                    style={styles.listContainer}
-                    data={optionsArray} 
-                    renderItem={renderCardItems} 
-                    numColumns={2}>
-              </FlatList>
-            )
-        }
+        
+    function renderCarouselItem({item, index}){
 
-        function renderCardItems({item}){
-            //console.log(navigation)
-             return(
-                 <View >
-                     <TouchableOpacity                          
-                         accessible = {true}
-                         accessibilityLabel = {item.title}
-                         accessibilityHint="Click here to learn more."
-                         accessibilityRole="imagebutton" 
-                         onPress= {() => {
-                             props.setOptionSelect(item.key);
-                             //alert("Hello")
-                     }}>
-                        <View style={styles.filterImageWrapper}>
-                            <View style={styles.item}>
-                                <ImageBackground 
-                                    style={styles.imageDimensions}        
-                                    source={{uri: item.url}}>
-                                    <Text style={styles.categoryText}>
-                                        {item.title}
-                                    </Text> 
-                                </ImageBackground> 
-                
-                            </View>
-                        </View>
-                     </TouchableOpacity>
-                 </View>
-     
-             )
-         }
+        switch(index){
+            case 0:{
+                return renderPhysicalActivityComponent()
+            }
+            case 1:{
+                return renderCompetitiveStructure()
+            }
+            case 2:{
+                return renderPhysicalIntensity()
+            }
+            case 3:{
+                return renderSkillLevel()
+            }
+            case 4:{
+                return renderCertifcationComponent()
+            }
+            case 5:{
+                return renderCosts()
+            }
+            case 6:{
+                return renderLanguageComponent()
+            }
+            case 7:{
+                return renderPaymentComponent()
+            }
+            default:{
+                return (null)
+            }
+        }
+    }
+
+    function renderPhysicalActivityComponent(){
+        return(
+            <FilterPhysicalActivity 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}/>
+        )
+    }
+
+    function renderCompetitiveStructure(){
+        return(
+            <FilterCompetitiveStructure 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={props.setOptionSelect}/>
+        )
+    }
+
+    function renderPhysicalIntensity(){
+        return(
+            <FilterPhysicalIntensity 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={props.setOptionSelect}
+                savePIKey={savePIKey}
+                setPIKey={setPIKey}/>
+        )
+    }
+
+    function renderSkillLevel(){
+        return(
+            <FilterSkillLevel 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={props.setOptionSelect}/>
+        )
+    }
+
+    function renderCosts(){
+        return(
+            <FilterCostAndTravel 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={props.setOptionSelect}/>
+        )
+    }
     
+    function renderCertifcationComponent(){
+        return(
+            <FilterCertifications 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={props.setOptionSelect}/>
+        )
+    }
+
+    function renderLanguageComponent(){
+        return(
+            <FilterLanguageOptions 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={props.setOptionSelect}/>
+        )
+    }
+
+    function renderPaymentComponent(){
+        return(
+            <FilterPayment 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={props.setOptionSelect}/>
+        )
+    }
 
     return(
-        renderFlatlistOfCards()
+        <View style={styles.filterCarouselWrapper}>
+        <Carousel 
+            layout={'default'}
+            ref={ref => true}
+            data={optionsArray}
+            sliderWidth={windowWidth}
+            itemWidth={windowWidth * 0.8}
+            sliderHeight={windowHeight * (3/5)}
+            renderItem={renderCarouselItem}
+            onSnapToItem={index => setCarouselIndex(index)} />
+           <View style={styles.buttonContainer}>
+                <TouchableOpacity    
+                    style={styles.button}                        
+                    accessible = {true}
+                    accessibilityLabel = "Return to Filter Cards"
+                    accessibilityHint="Click here to learn more."
+                    accessibilityRole="imagebutton" 
+                    onPress= {() => {
+                        props.setOptionSelect(8);
+                        //alert("Hello")
+                    }}>
+                    <Text style={styles.buttonText}>Return</Text>
+                </TouchableOpacity>
+            </View>
+    </View>
     )
 
 }
@@ -141,26 +242,81 @@ const styles = StyleSheet.create({
       listContainer: {
         flex: 1,
         padding: 10
+    },    
+    filterCarouselWrapper:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        padding: 10
+    },
+    buttonContainer: {
+        alignItems: "center",
+        marginHorizontal: 10,
+    },
+    button: {
+        alignItems: "center",
+        justifyContent: 'center',
+        width: 150,
+        height: 50,
+        elevation: 8,
+        backgroundColor: Colors.OffWhite.color,
+    },   
+    buttonText: {
+        fontSize: 20,
+        color: Colors.Red.color,
+        textShadowColor: 'black',
+        textShadowRadius: 1,
+        fontWeight: "bold",
+        alignSelf: "center",
+        textTransform: "uppercase"
     },
 
 });
 
 /*
-            <View style={styles.filterImageWrapper}>
-                <Image 
-                    style={{width: imageHeight, height: imageHeight}}        
-                    source={{uri: item.url}}/> 
-            </View>
-            <View style={{width: imageHeight, height: imageHeight}}>
-                <Text style={styles.categoryText}>
-                    {item.category}
-                </Text> 
-            </View>   
 
-                                  <View
-        style={styles.item}
-      >
-        <Text style={styles.itemText}>{item.key}</Text>
-      </View>
+
+    function renderFlatlistOfCards(){
+        return(
+            <FlatList 
+                style={styles.listContainer}
+                data={optionsArray} 
+                renderItem={renderCardItems} 
+                numColumns={2}>
+            </FlatList>
+        )
+    }
+
+        function renderCardItems({item}){
+           // console.log(item)
+             return(
+                <View >
+                    <TouchableOpacity                          
+                        accessible = {true}
+                        accessibilityLabel = {item.title}
+                        accessibilityHint="Click here to learn more."
+                        accessibilityRole="imagebutton" 
+                        onPress= {() => {
+                            props.setOptionSelect(item.key);
+                            //alert("Hello")
+                    }}>
+                        <View style={styles.filterImageWrapper}>
+                            <View style={styles.item}>
+                                <ImageBackground 
+                                    style={styles.imageDimensions}        
+                                    source={{uri: item.url}}>
+                                    <Text style={styles.categoryText}>
+                                        {item.title}
+                                    </Text> 
+                                </ImageBackground> 
+                
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+             )
+         }
+    
 
 */

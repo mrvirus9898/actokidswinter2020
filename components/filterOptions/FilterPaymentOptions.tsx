@@ -35,21 +35,11 @@ export default function FilterPaymentOptions(props: any) {
         {   title: 'WA Apple Health (Medicaid)', 
             key: 4,
             url: "https://incowrimo.org/wp-content/uploads/2013/01/How-to-Write-a-Letter.jpg"
-        },
-        {   title: 'Accept', 
-            key: 5,
-            url: "https://lh3.googleusercontent.com/proxy/CPEKhsNlyTWYDfOD_X9NNIIlvrLloH6pvCAgubDrP53zZdXHdjqx13c_DeukMoNXI-KWteSnjfqx3oub0kpkrJKyTqtGLzVXrGH-P6kao7bahqwc8cEwQlq1GLHm2O8D8cS8M1iHaVUj-aSr1Xg"
         }
         ];
 
     function modifySelectionOrGoBack(physicalActivity: string){
-        if(physicalActivity === 'Accept'){
-            props.setOptionSelect(8)
-        }else{
-            props.modifyCurrentSelections(physicalActivity)
-            //alert(props.currentSelections)
-        }
-
+        props.modifyCurrentSelections(physicalActivity)
     }
 
     function renderPAList(){
@@ -65,8 +55,7 @@ export default function FilterPaymentOptions(props: any) {
 
     function renderPAItems({item}){
         return(
-
-                <View style={styles.filterImageWrapper}>
+            <View style={styles.filterImageWrapper}>
                 <TouchableOpacity 
                     accessible = {true}
                     accessibilityLabel = {item.title}
@@ -79,9 +68,7 @@ export default function FilterPaymentOptions(props: any) {
                             <Text>{item.title}</Text>
                         </View>
                 </TouchableOpacity>
-                </View>
-
-
+            </View>
         )
     }
 

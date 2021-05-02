@@ -14,25 +14,25 @@ import CircleSizeSelector from 'react-native-circle-size-selector'
 
 import Colors from '../../constants/Colors'
 
-import { StyleSheet, Text,TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function FilterPhysicalIntensity(props: any) {
     const [physicalIntensity, setPhysicalIntensity] = React.useState(1)
     
     let optionsArray = [
-        {   title: 'Self-Paced',
+        {   title: 'Any', 
             key: 1,
         },
-        {   title: 'Light',
+        {   title: 'Self-Paced',
             key: 2,
         },
-        {   title: 'Moderate', 
+        {   title: 'Light',
             key: 3,
         },
-        {   title: 'Vigorous', 
+        {   title: 'Moderate', 
             key: 4,
         },
-        {   title: 'Accept', 
+        {   title: 'Vigorous', 
             key: 5,
         }
         ];
@@ -75,54 +75,22 @@ export default function FilterPhysicalIntensity(props: any) {
                 {getIntensity(physicalIntensity)}
                 <Text>Drag the circle to select Intensity</Text>
             </View>
-            <View style={{ borderColor: 'lightgray', borderBottomWidth: 2, marginTop: 30, marginBottom: 20 }}></View>
             <View style={styles.parent}>
-            <CircleSizeSelector
-                minValue={1}
-                maxValue={4}
-                initialValue={1}
-                outermostCircleStyle={{borderWidth:3,
-                                       borderColor: 'black',
-                                       backgroundColor: Colors.OffWhite.Transparent}}
-                graduationLineCircleStyle={{borderWidth:3,
+                <CircleSizeSelector
+                    minValue={1}
+                    maxValue={5}
+                    initialValue={1}
+                    outermostCircleStyle={{borderWidth:3,
                                         borderColor: 'black',
-                                        backgroundColor: Colors.OffWhite.Transparent}} 
-                currentValueCircleStyle={{borderWidth:3,
-                                        borderColor: 'black',
-                                        backgroundColor: Colors.Red.Transparent}} 
-                resizingCurrentValueCircleStyle={{backgroundColor: Colors.Red.CircleTransparent}} 
-                onChange={setPhysicalIntensity}/>
-            </View>
-            <View style={{ borderColor: 'lightgray', borderBottomWidth: 2, marginTop: 30, marginBottom: 20 }}></View>
-            <View style={styles.buttonRowWrapper}>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={styles.button}                          
-                        accessible = {true}
-                        accessibilityLabel = "Return to Filter Cards"
-                        accessibilityHint="Click here to learn more."
-                        accessibilityRole="imagebutton" 
-                        onPress= {() => {
-                            clearIntensity();
-                            //alert("Hello")
-                        }}>
-                        <Text style={styles.buttonText}>Clear</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity    
-                        style={styles.button}                        
-                        accessible = {true}
-                        accessibilityLabel = "Return to Filter Cards"
-                        accessibilityHint="Click here to learn more."
-                        accessibilityRole="imagebutton" 
-                        onPress= {() => {
-                            setIntensity(physicalIntensity);
-                            //alert("Hello")
-                        }}>
-                        <Text style={styles.buttonText}>Accept</Text>
-                    </TouchableOpacity>
-                </View>
+                                        backgroundColor: Colors.OffWhite.Transparent}}
+                    graduationLineCircleStyle={{borderWidth:3,
+                                            borderColor: 'black',
+                                            backgroundColor: Colors.OffWhite.Transparent}} 
+                    currentValueCircleStyle={{borderWidth:3,
+                                            borderColor: 'black',
+                                            backgroundColor: Colors.Red.Transparent}} 
+                    resizingCurrentValueCircleStyle={{backgroundColor: Colors.Red.CircleTransparent}} 
+                    onChange={setPhysicalIntensity}/>
             </View>
         </View>
     )
@@ -131,7 +99,6 @@ export default function FilterPhysicalIntensity(props: any) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
     },
     parent: {
@@ -139,30 +106,6 @@ const styles = StyleSheet.create({
         height: 300,
         justifyContent: 'center',
         alignItems: 'center',
-      },
-    text: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: 'black',
-        textShadowColor: Colors.OffWhite.color,
-        textShadowRadius: 15,
-        justifyContent: 'center'
-      },
-      buttonRowWrapper: {
-          flex: 1,
-          flexDirection: 'row',
-      },
-      buttonContainer: {
-        alignItems: "center",
-        marginHorizontal: 10,
-      },
-      button: {
-        alignItems: "center",
-        justifyContent: 'center',
-        width: 150,
-        height: 50,
-        elevation: 8,
-        backgroundColor: Colors.OffWhite.color,
       },
       topLabel: {
         alignItems: "center",
@@ -174,7 +117,7 @@ const styles = StyleSheet.create({
         padding: 10
       },
       labelText: {
-        fontSize: 40,
+        fontSize: 30,
         color: Colors.Red.color,
         textShadowColor: 'black',
         textShadowRadius: 1,
