@@ -69,8 +69,7 @@ export default function FilterCards(props: any) {
             //console.log(navigation)
              return(
                  <View >
-                     <TouchableOpacity 
-                         
+                     <TouchableOpacity                          
                          accessible = {true}
                          accessibilityLabel = {item.title}
                          accessibilityHint="Click here to learn more."

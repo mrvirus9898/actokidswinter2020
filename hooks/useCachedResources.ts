@@ -1,8 +1,6 @@
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 
-import * as SQLite from 'expo-sqlite';
-
 import loadProgramInformation from '../hooks/loadProgramInformation';
 import loadTaxonomyInformation from '../hooks/loadTaxonomyInformation';
 
@@ -29,6 +27,7 @@ export default function useCachedResources() {
       tempSelection.push(selection)
       setCurrentSelectedTaxonomy(tempSelection)
     }
+    console.log("Current Taxonomy: " + currentSelectedTaxonomy)
   }
 
   // Load any resources or data that we need prior to rendering the app

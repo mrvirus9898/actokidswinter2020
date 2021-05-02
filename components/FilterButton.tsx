@@ -44,6 +44,8 @@ const styles = StyleSheet.create({
   },
   appButtonText: {
     fontSize: 20,
+    textShadowColor: 'black',
+    textShadowRadius: 1,
     color: Colors.Red.color,
     fontWeight: "bold",
     alignSelf: "center",

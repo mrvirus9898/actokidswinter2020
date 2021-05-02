@@ -24,6 +24,7 @@ export default {
   },
   Red:{
     color: Red,
-    Transparent: 'rgba(230, 15, 15, 0.98)'
+    Transparent: 'rgba(230, 15, 15, 0.98)',
+    CircleTransparent: 'rgba(230, 15, 15, 0.80)'
   },
 };

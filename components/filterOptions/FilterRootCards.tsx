@@ -16,11 +16,13 @@ import FilterSkillLevel from './FilterSkillLevel'
 import FilterCostAndTravel from './FilterCostsAndTravel'
 import FilterCertifications from './FilterCertifications'
 import FilterLanguageOptions from './FilterLanguageOptions'
+import FilterPayment from './FilterPaymentOptions'
 
 
 export default function FilterRootCards(props: any) {
 
     const [optionSelect, setOptionSelect] = React.useState(8)
+    const [savePIKey, setPIKey] = React.useState("")
 
     function renderPhysicalActivityComponent(){
         return(
@@ -45,7 +47,9 @@ export default function FilterRootCards(props: any) {
             <FilterPhysicalIntensity 
                 currentSelections={props.currentSelections}
                 modifyCurrentSelections={props.modifyCurrentSelections}
-                setOptionSelect={setOptionSelect}/>
+                setOptionSelect={setOptionSelect}
+                savePIKey={savePIKey}
+                setPIKey={setPIKey}/>
         )
     }
 
@@ -85,6 +89,15 @@ export default function FilterRootCards(props: any) {
         )
     }
 
+    function renderPaymentComponent(){
+        return(
+            <FilterPayment 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={setOptionSelect}/>
+        )
+    }
+
     function renderOptionsCards(){
         return(
             <FilterCards 
@@ -116,7 +129,7 @@ export default function FilterRootCards(props: any) {
                 return renderLanguageComponent()
             }
             case 7:{
-                break;
+                return renderPaymentComponent()
             }
             default:{
                 return renderOptionsCards()
