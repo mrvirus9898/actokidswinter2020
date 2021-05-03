@@ -17,7 +17,7 @@ import Colors from '../../constants/Colors'
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function FilterSKillLevel(props: any) {
-    const [physicalIntensity, setPhysicalIntensity] = React.useState(1)
+    const [skillLevel, setSkillLevel] = React.useState(1)
     
     let optionsArray = [
         {   title: 'All', 
@@ -34,42 +34,43 @@ export default function FilterSKillLevel(props: any) {
         }
         ];
 
-    function getIntensity(key: number){
-        //console.log(optionsArray[key-1])
-        return(
-            <Text style={styles.labelText}>{optionsArray[key-1].title}</Text>
-        )
-    }
-
-    function clearIntensity(){
-        if(props.savePIKey != ""){
-            props.modifyCurrentSelections(optionsArray[props.savePIKey-1].title);
-            props.setPIKey("");
+        function getSkillLevel(key: number){
+            //console.log(optionsArray[key-1])
+            return(
+                <Text style={styles.labelText}>{optionsArray[key-1].title}</Text>
+            )
         }
-        props.setOptionSelect(8);
-    }
-
-    function setIntensity(key: number){
-        //console.log(optionsArray[key-1].title);
-        //console.log("Save: " + props.savePIKey);
-        //console.log("Key: " + key);
-        if(props.savePIKey == ""){
-            props.modifyCurrentSelections(optionsArray[key-1].title);
-            props.setPIKey(key);
-        }else if(props.savePIKey != key){
-            props.modifyCurrentSelections(optionsArray[props.savePIKey-1].title);
-            props.modifyCurrentSelections(optionsArray[key-1].title);
-            props.setPIKey(key);
-        }        
-        props.setOptionSelect(8);
-    }
+    
+        function clearSkill(){
+            if(props.saveSLKey != 1){
+                setSkillLevel(1)
+                props.setSLKey(1);
+                props.modifyCurrentSelections(optionsArray[props.saveSLKey-1].title);
+            }
+        }
+    
+        function setSkill(key: number){
+            if(key == 1){
+                clearSkill()
+            }else if ((key != props.saveSLKey) && (props.saveSLKey != 1)){
+                setSkillLevel(key)
+                props.setSLKey(key)
+                props.modifyCurrentSelections(optionsArray[props.saveSLKey-1].title);
+                props.modifyCurrentSelections(optionsArray[key-1].title);
+            }else if ((key != props.saveSLKey) && (props.saveSLKey == 1)){
+                setSkillLevel(key)
+                props.setSLKey(key)
+                props.modifyCurrentSelections(optionsArray[key-1].title);
+            }
+    
+        }
 
 
     //console.log(item.item)
     return(
         <View style={styles.container}>
             <View style={styles.topLabel}>
-                {getIntensity(physicalIntensity)}
+                {getSkillLevel(skillLevel)}
                 <Text>Drag the circle to select Skill Level</Text>
             </View>
             <View style={styles.parent}>
@@ -87,7 +88,7 @@ export default function FilterSKillLevel(props: any) {
                                             borderColor: 'black',
                                             backgroundColor: Colors.Red.Transparent}} 
                     resizingCurrentValueCircleStyle={{backgroundColor: Colors.Red.CircleTransparent}} 
-                    onChange={setPhysicalIntensity}/>
+                    onChange={setSkill}/>
             </View>
         </View>
     )

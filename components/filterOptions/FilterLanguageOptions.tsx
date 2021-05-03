@@ -13,7 +13,7 @@ import { StyleSheet, Text,TouchableOpacity,
 import Colors from '../../constants/Colors';
 
 export default function FilterLanguageOptions(props: any) {
-    console.log(props.currentSelections)
+    //console.log(props.currentSelections)
 
     let optionsArray = [
         {   title: 'Interpreter Services',

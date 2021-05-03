@@ -13,7 +13,7 @@ import { StyleSheet, Text,TouchableOpacity,
 import Colors from '../../constants/Colors';
 
 export default function FilterPhysicalActivity(props: any) {
-    console.log(Object.keys(props))
+    //console.log(Object.keys(props))
 
     let optionsArray = [
         {   title: 'Movement-based Play',

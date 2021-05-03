@@ -16,18 +16,18 @@ const FilterNavigatorStack = createBottomTabNavigator<FilterParamList>();
 
 export default function BottomTabFilterNavigator(props: any) {
   const colorScheme = useColorScheme();
-  props.taxonomy[1].forEach(taxonomy => {
+  /*props.taxonomy[1].forEach(taxonomy => {
       if(category.indexOf(taxonomy.category) === -1){
         category.push(taxonomy.category)
       }
-  });
+  });*/
   //console.log(category)
 
   //console.log("Prop Keys at Bottom Tab Filter Nav: " + Object.keys(props.taxonomy))
 
   return (
     <FilterNavigatorStack.Navigator
-        initialRouteName="FilterFormB"
+        initialRouteName="FilterRootCards"
         tabBarOptions={{ 
             activeTintColor: Colors[colorScheme].tint,
             activeBackgroundColor: Colors.Red.color,
@@ -35,16 +35,16 @@ export default function BottomTabFilterNavigator(props: any) {
             labelStyle: {color: Colors.OffWhite.color}
         }}>
         <FilterNavigatorStack.Screen
-            name="FilterFormB"
-            component={wrapperFilterFormB}
-            options={{
-                tabBarIcon: ({ color }) => <TabBarIcon name="md-rocket" color={Colors.OffWhite.color} />,
-        }}/>  
-        <FilterNavigatorStack.Screen
             name="FilterRootCards"
             component={wrapperFilterRootCards}
             options={{
                 tabBarIcon: ({ color }) => <TabBarIcon name="md-american-football" color={Colors.OffWhite.color} />,
+        }}/> 
+        <FilterNavigatorStack.Screen
+            name="FilterFormB"
+            component={wrapperFilterFormB}
+            options={{
+                tabBarIcon: ({ color }) => <TabBarIcon name="md-rocket" color={Colors.OffWhite.color} />,
         }}/> 
     </FilterNavigatorStack.Navigator>
   );
@@ -52,6 +52,7 @@ export default function BottomTabFilterNavigator(props: any) {
     function wrapperFilterRootCards(){
        return( 
             <FilterRootCards 
+                navigation={props.navigation}
                 currentSelections={props.currentSelections}
                 modifyCurrentSelections={props.modifyCurrentSelections}/>)
     }

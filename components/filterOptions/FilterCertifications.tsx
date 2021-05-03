@@ -13,7 +13,7 @@ import { StyleSheet, Text,TouchableOpacity,
 import Colors from '../../constants/Colors';
 
 export default function FilterCertifications(props: any) {
-    console.log(props.currentSelections)
+    //console.log(props.currentSelections)
 
     let optionsArray = [
         {   title: 'First Aid/CPR',

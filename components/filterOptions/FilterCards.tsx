@@ -12,16 +12,15 @@ import FilterSkillLevel from './FilterSkillLevel'
 import FilterCostAndTravel from './FilterCostsAndTravel'
 import FilterCertifications from './FilterCertifications'
 import FilterLanguageOptions from './FilterLanguageOptions'
-import FilterPayment from './FilterPaymentOptions'
-
 
 export default function FilterCards(props: any) {
-    //console.log(useWindowDimensions().height)
+    //console.log("Props at Filter Cards: " + Object.keys(props))
     let windowHeight = (useWindowDimensions().height); 
     let windowWidth = (useWindowDimensions().width); 
 
     const [carouselIndex, setCarouselIndex] = React.useState(0)
-    const [savePIKey, setPIKey] = React.useState("")
+    const [savePIKey, setPIKey] = React.useState(1)
+    const [saveSLKey, setSLKey] = React.useState(1)
 
     
     let optionsArray = [
@@ -50,20 +49,15 @@ export default function FilterCards(props: any) {
             route: 'FilterCertifications',
             url: "https://incowrimo.org/wp-content/uploads/2013/01/How-to-Write-a-Letter.jpg"
         },
-        {   title: 'Cost', 
-            key: 5,
-            route: 'FilterCostsAndTravel',
-            url: "https://lh3.googleusercontent.com/proxy/CPEKhsNlyTWYDfOD_X9NNIIlvrLloH6pvCAgubDrP53zZdXHdjqx13c_DeukMoNXI-KWteSnjfqx3oub0kpkrJKyTqtGLzVXrGH-P6kao7bahqwc8cEwQlq1GLHm2O8D8cS8M1iHaVUj-aSr1Xg"
-        },
         {   title: 'Language Options', 
-            key: 6,
+            key: 5,
             route: 'FilterLanguageOptions',
             url: "https://i2.wp.com/www.positiveparentingconnection.net/wp-content/uploads/2013/09/questions-for-kids-6.png?fit=560%2C315&ssl=1"
         },
-        {   title: 'Payment Options', 
-            key: 7,
-            route: 'FilterPaymentOptions',
-            url: "https://d2eehagpk5cl65.cloudfront.net/img/c800x450-w800-q80/uploads/2019/05/Lemonade-stand-800x450.jpg"
+        {   title: 'Cost', 
+            key: 6,
+            route: 'FilterCostsAndTravel',
+            url: "https://lh3.googleusercontent.com/proxy/CPEKhsNlyTWYDfOD_X9NNIIlvrLloH6pvCAgubDrP53zZdXHdjqx13c_DeukMoNXI-KWteSnjfqx3oub0kpkrJKyTqtGLzVXrGH-P6kao7bahqwc8cEwQlq1GLHm2O8D8cS8M1iHaVUj-aSr1Xg"
         }
         ];
 
@@ -87,13 +81,10 @@ export default function FilterCards(props: any) {
                 return renderCertifcationComponent()
             }
             case 5:{
-                return renderCosts()
-            }
-            case 6:{
                 return renderLanguageComponent()
             }
-            case 7:{
-                return renderPaymentComponent()
+            case 6:{
+                return renderCosts()
             }
             default:{
                 return (null)
@@ -134,7 +125,9 @@ export default function FilterCards(props: any) {
             <FilterSkillLevel 
                 currentSelections={props.currentSelections}
                 modifyCurrentSelections={props.modifyCurrentSelections}
-                setOptionSelect={props.setOptionSelect}/>
+                setOptionSelect={props.setOptionSelect}
+                saveSLKey={saveSLKey}
+                setSLKey={setSLKey}/>
         )
     }
 
@@ -165,15 +158,6 @@ export default function FilterCards(props: any) {
         )
     }
 
-    function renderPaymentComponent(){
-        return(
-            <FilterPayment 
-                currentSelections={props.currentSelections}
-                modifyCurrentSelections={props.modifyCurrentSelections}
-                setOptionSelect={props.setOptionSelect}/>
-        )
-    }
-
     return(
         <View style={styles.filterCarouselWrapper}>
         <Carousel 
@@ -193,7 +177,7 @@ export default function FilterCards(props: any) {
                     accessibilityHint="Click here to learn more."
                     accessibilityRole="imagebutton" 
                     onPress= {() => {
-                        props.setOptionSelect(8);
+                        props.navigation.goBack();
                         //alert("Hello")
                     }}>
                     <Text style={styles.buttonText}>Return</Text>

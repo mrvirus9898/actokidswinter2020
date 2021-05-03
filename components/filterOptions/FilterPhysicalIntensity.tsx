@@ -45,26 +45,27 @@ export default function FilterPhysicalIntensity(props: any) {
     }
 
     function clearIntensity(){
-        if(props.savePIKey != ""){
+        if(props.savePIKey != 1){
+            setPhysicalIntensity(1)
+            props.setPIKey(1);
             props.modifyCurrentSelections(optionsArray[props.savePIKey-1].title);
-            props.setPIKey("");
         }
-        props.setOptionSelect(8);
     }
 
     function setIntensity(key: number){
-        //console.log(optionsArray[key-1].title);
-        //console.log("Save: " + props.savePIKey);
-        //console.log("Key: " + key);
-        if(props.savePIKey == ""){
-            props.modifyCurrentSelections(optionsArray[key-1].title);
-            props.setPIKey(key);
-        }else if(props.savePIKey != key){
+        if(key == 1){
+            clearIntensity()
+        }else if ((key != props.savePIKey) && (props.savePIKey != 1)){
+            setPhysicalIntensity(key)
+            props.setPIKey(key)
             props.modifyCurrentSelections(optionsArray[props.savePIKey-1].title);
             props.modifyCurrentSelections(optionsArray[key-1].title);
-            props.setPIKey(key);
-        }        
-        props.setOptionSelect(8);
+        }else if ((key != props.savePIKey) && (props.savePIKey == 1)){
+            setPhysicalIntensity(key)
+            props.setPIKey(key)
+            props.modifyCurrentSelections(optionsArray[key-1].title);
+        }
+
     }
 
 
@@ -90,7 +91,7 @@ export default function FilterPhysicalIntensity(props: any) {
                                             borderColor: 'black',
                                             backgroundColor: Colors.Red.Transparent}} 
                     resizingCurrentValueCircleStyle={{backgroundColor: Colors.Red.CircleTransparent}} 
-                    onChange={setPhysicalIntensity}/>
+                    onChange={setIntensity}/>
             </View>
         </View>
     )
@@ -135,3 +136,13 @@ const styles = StyleSheet.create({
         textTransform: "uppercase"
       }
   });
+  /*
+          if(props.savePIKey == ""){
+            props.modifyCurrentSelections(optionsArray[key-1].title);
+            props.setPIKey(key);
+        }else if(props.savePIKey != key){
+            props.modifyCurrentSelections(optionsArray[props.savePIKey-1].title);
+            props.modifyCurrentSelections(optionsArray[key-1].title);
+            props.setPIKey(key);
+        }        
+        props.setOptionSelect(8);*/
