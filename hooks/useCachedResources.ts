@@ -12,6 +12,7 @@ export default function useCachedResources() {
   const [isMapProcessingComplete, setMapProcessingComplete] = React.useState([[]]);
   const [isTaxonomyLoadingComplete, setTaxonomyLoadingComplete] = React.useState([[]]);
   const [currentSelectedTaxonomy, setCurrentSelectedTaxonomy] = React.useState(initialCST);
+  const [PLEASERERENDER, setPRR] = React.useState(true);
 
   function modifyCurrentSelectedTaxonomy(selection: string){
     let tempSelection: string[] = currentSelectedTaxonomy
@@ -85,7 +86,7 @@ export default function useCachedResources() {
   if(isProgramLoadingComplete && isTaxonomyLoadingComplete && isMapProcessingComplete){
     //console.log(isProgramLoadingComplete)
     //console.log(isTaxonomyLoadingComplete)
-    return [isProgramLoadingComplete, isTaxonomyLoadingComplete, isMapProcessingComplete, currentSelectedTaxonomy, modifyCurrentSelectedTaxonomy]
+    return [isProgramLoadingComplete, isTaxonomyLoadingComplete, isMapProcessingComplete, currentSelectedTaxonomy, modifyCurrentSelectedTaxonomy, setPRR, PLEASERERENDER]
   }else{
     
   return false

@@ -232,6 +232,7 @@ export default function FilterCards(props: any) {
                         accessibilityHint="Click here to learn more."
                         accessibilityRole="imagebutton" 
                         onPress= {() => {
+                            props.setPRR(!props.PRR)
                             props.navigation.goBack();
                             //alert("Hello")
                         }}>

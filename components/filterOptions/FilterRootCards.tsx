@@ -19,7 +19,9 @@ export default function FilterRootCards(props: any) {
             navigation={props.navigation}
             currentSelections={props.currentSelections}
             setOptionSelect={setOptionSelect}
-            modifyCurrentSelections={props.modifyCurrentSelections}/>
+            modifyCurrentSelections={props.modifyCurrentSelections}
+            setPRR={props.setPRR}
+            PRR={props.PRR}/>
     )
 }
 

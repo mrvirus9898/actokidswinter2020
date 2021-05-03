@@ -10,7 +10,8 @@ export default function ProgramList(props: any) {
           <ShowPrograms 
           searchTerm={props.searchTerm} 
           navigation={props.navigation}
-          programs={props.programs}/>
+          programs={props.programs}
+          currentSelectedTaxonomy={props.currentSelectedTaxonomy}/>
       </View>
   );
 }

@@ -127,7 +127,9 @@ export default function LeftSideDrawerNavigator(props: any) {
               taxonomy={props.incomingData[1]}
               currentSelections={props.incomingData[3]}
               modifyCurrentSelections={props.incomingData[4]}
-              navigation={navigation}/>);
+              navigation={navigation}
+              setPRR={props.incomingData[5]}
+              PRR={props.incomingData[6]}/>);
   }
   
   function HeaderSearchBar(){

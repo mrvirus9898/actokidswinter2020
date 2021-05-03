@@ -54,7 +54,9 @@ export default function BottomTabFilterNavigator(props: any) {
             <FilterRootCards 
                 navigation={props.navigation}
                 currentSelections={props.currentSelections}
-                modifyCurrentSelections={props.modifyCurrentSelections}/>)
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setPRR={props.setPRR}
+                PRR={props.PRR}/>)
     }
 
     function wrapperFilterFormB(){

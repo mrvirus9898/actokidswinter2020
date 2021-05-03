@@ -117,6 +117,7 @@ function ProgramComponents({ navigation }) {
   //console.log(incomingData[1][0])
   return(
       <ProgramList 
+        currentSelectedTaxonomy={incomingData[3]}
         searchTerm={searchTerm} 
         navigation={navigation} 
         programs={incomingData[0]}/>

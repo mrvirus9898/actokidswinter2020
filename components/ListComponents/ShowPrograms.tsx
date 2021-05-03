@@ -7,15 +7,13 @@ Show Programs is the actual component that contains the flat list, and the card
 TODO:
 */
 
-import React, { useState, useEffect } from 'react';
-import { useIsFocused } from '@react-navigation/native'
+import React, { useState } from 'react';
 
 import {
   TouchableHighlight,
   View,
   FlatList,
   StyleSheet,
-  useWindowDimensions
 } from 'react-native';
 
 import ProgramCards from './ProgramCards';
@@ -26,7 +24,7 @@ export default function ShowPrograms(props: any){
 
   const [filter, setFilter] = useState<Array<String>>([]);
 
-
+  
   function drawCards(){
     let filteredData = applySearch()
     //console.log("Filter: " + filteredData)
@@ -55,23 +53,48 @@ export default function ShowPrograms(props: any){
   }
 
   function applySearch(){
-    let output: Array<any> = []
-    //console.log("Current Filter: " + filter)
+
+
     if(props.searchTerm != ""){
+      let output: Array<any> = []
       props.programs.forEach(program => {
         if(props.searchTerm === program.Program_Name){
           console.log("Target Found")
           output.push(program)
         }
       });
-      return(output)
+      return(applyFilter(output))
     }else{
-      return props.programs
+      return applyFilter(props.programs)
     }
   }
 
-  function applyFilter(){
-    
+  function applyFilter(input: any){
+    //console.log("Applying Filter")
+    if(props.currentSelectedTaxonomy == undefined){
+      //console.log("UNDEFINDED")
+      return input
+    }else{
+      //console.log("Current Selected" + props.currentSelectedTaxonomy)
+      if(props.currentSelectedTaxonomy.length != 0){
+
+        let output: Array<any> = []
+        input.forEach(program => {  
+          console.log(program.Program_Name + ": " + program.Certs)
+          if(props.currentSelectedTaxonomy.indexOf(program.Certs) != -1){
+            //console.log("Target Found: " + props.currentSelectedTaxonomy.indexOf(program.Certs))
+            output.push(program)
+          }
+          //Stack Ifs as nessisary 
+        });
+
+        return output
+      }else{
+        //console.log(props.currentSelectedTaxonomy)
+        return input
+      }
+
+    }
   }
 
   return (drawCards())
