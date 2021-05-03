@@ -8,7 +8,7 @@ ACTOKIDS
 import React from 'react';
 
 import { StyleSheet, Text,TouchableOpacity,
-    FlatList, View, Dimensions } from 'react-native';
+    FlatList, View, Dimensions, ImageBackground } from 'react-native';
     
 import Colors from '../../constants/Colors';
 
@@ -18,19 +18,19 @@ export default function FilterLanguageOptions(props: any) {
     let optionsArray = [
         {   title: 'Interpreter Services',
             key: 0,
-            url: "https://images.indianexpress.com/2019/12/child-physical-activity.jpg"
+            url: "https://bloximages.newyork1.vip.townnews.com/nola.com/content/tncms/assets/v3/editorial/3/f9/3f9b5d48-1a31-57e5-8b60-4179396a8731/5d1532a976de3.image.jpg?resize=400%2C256"
         },
         {   title: 'Multiliqual Materials',
             key: 1,
-            url: "https://static.parenting.com/wp-content/uploads/2010/12/18163927/kids-baseball-1-1200x720.jpg"
+            url: "https://pro2-bar-s3-cdn-cf.myportfolio.com/17f5e89a2c1fc5c30c602179f7823bb2/12a3f7e4-544d-40fb-8fd6-a11b4a2054f6_rw_1920.jpg?h=8b03d1953c2812aec27734db107ed7e3"
         },
         {   title: 'English', 
             key: 2,
-            url: "https://ptproductsonline.com/wp-content/uploads/2020/09/IncreaseIntensity.jpg"
+            url: "https://previews.123rf.com/images/artursz/artursz1908/artursz190800637/128130597-text-sign-showing-english-language-business-photo-showcasing-third-spoken-native-lang-in-world-after.jpg"
         },
         {   title: 'Spanish', 
             key: 3,
-            url: "https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_450,q_75,w_600/https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/tacoma/Sunrise_from_Mt_Fremont_623d1268-39d7-4d41-a383-fc543ca3eb9e.jpg"
+            url: "https://educrea.cl/wp-content/uploads/2017/09/espanol1200x630.png"
         }
         ];
 
@@ -68,7 +68,13 @@ export default function FilterLanguageOptions(props: any) {
                         modifySelectionOrGoBack(item.title)
                     }}>
                         <View style={styles.item}>
-                            <Text>{item.title}</Text>
+                        <ImageBackground 
+                                style={styles.imageDimensions}        
+                                source={{uri: item.url}}>
+                                <Text style={styles.categoryText}>
+                                    {item.title}
+                                </Text> 
+                        </ImageBackground> 
                         </View>
                 </TouchableOpacity>
                 </View>

@@ -8,7 +8,7 @@ ACTOKIDS
 import React from 'react';
 
 import { StyleSheet, Text,TouchableOpacity,
-    FlatList, View, Dimensions } from 'react-native';
+    FlatList, View, Dimensions, ImageBackground } from 'react-native';
     
 import Colors from '../../constants/Colors';
 
@@ -18,19 +18,19 @@ export default function FilterCertifications(props: any) {
     let optionsArray = [
         {   title: 'First Aid/CPR',
             key: 0,
-            url: "https://images.indianexpress.com/2019/12/child-physical-activity.jpg"
+            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrRX93kDFUwThY3VKd7qVIBK3i1dwLESG_GA&usqp=CAU"
         },
         {   title: 'Concussion Protocols',
             key: 1,
-            url: "https://static.parenting.com/wp-content/uploads/2010/12/18163927/kids-baseball-1-1200x720.jpg"
+            url: "https://cdn.theatlantic.com/assets/media/img/posts/2013/12/phrenoscalp_650/576d30f5a.jpg"
         },
         {   title: 'Safe Sport', 
             key: 2,
-            url: "https://ptproductsonline.com/wp-content/uploads/2020/09/IncreaseIntensity.jpg"
+            url: "https://www.madisoncounty.ny.gov/ImageRepository/Document?documentId=1074"
         },
         {   title: 'Adaptive Sport', 
             key: 3,
-            url: "https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_450,q_75,w_600/https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/tacoma/Sunrise_from_Mt_Fremont_623d1268-39d7-4d41-a383-fc543ca3eb9e.jpg"
+            url: "https://images.squarespace-cdn.com/content/v1/54681802e4b060bcca856e53/1566320414439-1YULZMLUBBZ7XDEJZ0JH/ke17ZwdGBToddI8pDm48kGPVK--wGoWXJsqwlxbZlQN7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0mwONMR1ELp49Lyc52iWr5enfxu_O4VeONvneR-F6W8oeFhFqSrYyNrfPB9Y70_gvQ/20190623_JR_0824.jpg"
         }
         ];
 
@@ -68,7 +68,13 @@ export default function FilterCertifications(props: any) {
                         modifySelectionOrGoBack(item.title)
                     }}>
                         <View style={styles.item}>
-                            <Text>{item.title}</Text>
+                        <ImageBackground 
+                                style={styles.imageDimensions}        
+                                source={{uri: item.url}}>
+                                <Text style={styles.categoryText}>
+                                    {item.title}
+                                </Text> 
+                        </ImageBackground> 
                         </View>
                 </TouchableOpacity>
                 </View>

@@ -7,7 +7,7 @@ ACTOKIDS
 
 import React from 'react';
 
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions, useWindowDimensions, FlatList } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, useWindowDimensions, FlatList, ImageBackground } from 'react-native';
 
 import Carousel from 'react-native-snap-carousel';
     
@@ -23,19 +23,19 @@ export default function FilterCompetitiveStructure(props: any) {
     let optionsArray = [
         {   title: 'Competitive (No Cuts)',
             key: 0,
-            url: "https://images.indianexpress.com/2019/12/child-physical-activity.jpg"
+            url: "https://content.active.com/Assets/Active.com+Content+Site+Digital+Assets/Kids/Galleries/7+Benefits+of+Summer+Swim/Slide-3.jpg"
         },
-        {   title: 'Non-competitive',
+        {   title: 'Non- Competitive',
             key: 1,
-            url: "https://static.parenting.com/wp-content/uploads/2010/12/18163927/kids-baseball-1-1200x720.jpg"
+            url: "https://images.squarespace-cdn.com/content/v1/5c9d352b92441b46111a6e9f/1610752022959-6G3QTSF1LZSHTZFZTCN3/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/image-asset.jpeg?format=2500w"
         },
         {   title: 'Competitive (Cuts)', 
             key: 2,
-            url: "https://ptproductsonline.com/wp-content/uploads/2020/09/IncreaseIntensity.jpg"
+            url: "https://napervillemagazine.com/wp-content/uploads/2013/03/NMAG0812_Feature_Small_1.jpg"
         },
         {   title: 'Sports-Based Youth Development', 
             key: 3,
-            url: "https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_450,q_75,w_600/https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/tacoma/Sunrise_from_Mt_Fremont_623d1268-39d7-4d41-a383-fc543ca3eb9e.jpg"
+            url: "https://ntprd.org/wp-content/uploads/2019/09/youth-soccer.jpg"
         }
         ];
 
@@ -63,7 +63,13 @@ export default function FilterCompetitiveStructure(props: any) {
                         props.modifyCurrentSelections(item.title)
                     }}>
                         <View style={styles.item}>
-                            <Text>{item.title}</Text>
+                        <ImageBackground 
+                                style={styles.imageDimensions}        
+                                source={{uri: item.url}}>
+                                <Text style={styles.categoryText}>
+                                    {item.title}
+                                </Text> 
+                        </ImageBackground> 
                         </View>
                 </TouchableOpacity>
                 </View>
