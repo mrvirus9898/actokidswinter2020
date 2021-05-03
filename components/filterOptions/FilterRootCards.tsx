@@ -17,6 +17,7 @@ export default function FilterRootCards(props: any) {
     return(
         <FilterCards 
             navigation={props.navigation}
+            currentSelections={props.currentSelections}
             setOptionSelect={setOptionSelect}
             modifyCurrentSelections={props.modifyCurrentSelections}/>
     )
