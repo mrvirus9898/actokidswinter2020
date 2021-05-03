@@ -19,10 +19,14 @@ export default function useCachedResources() {
     console.log("Taxonomy Selection: " + selection)
 
     //if the selected taxonomy criteria is already in the current taxonomy then remove it
+    //if Clear is passed, clear the whole thing
     //else add it
     if(index > -1){
       tempSelection.splice(index, 1)
       setCurrentSelectedTaxonomy(tempSelection)
+    }else if(selection === "Clear"){
+      let clearSelection: string[] = new Array
+      setCurrentSelectedTaxonomy(clearSelection)
     }else{
       tempSelection.push(selection)
       setCurrentSelectedTaxonomy(tempSelection)

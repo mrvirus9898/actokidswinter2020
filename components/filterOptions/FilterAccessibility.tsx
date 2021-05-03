@@ -16,7 +16,6 @@ import Colors from '../../constants/Colors';
 
 export default function FilterAccessibility(props: any) {
     const [anyCost, setAnyCost] = React.useState(false)
-    const [anyPayment, setAnyPayment] = React.useState(false)
 
     const [PLEASERERENDER, setPLEASE] = React.useState(false)
 

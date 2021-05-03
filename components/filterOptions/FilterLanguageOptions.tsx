@@ -84,7 +84,11 @@ export default function FilterLanguageOptions(props: any) {
     }
 
     return(
-        renderOptionsList()
+        <View style={{flex: 1}}>
+            <Text style={styles.upperLabelText}>Language Options</Text>
+            {renderOptionsList()}
+        </View>
+        
     )
 }
 
@@ -126,5 +130,14 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10
     },
-
+    upperLabelText: {
+        fontFamily: 'serif',
+        fontSize: 18,
+        color: Colors.Blue.color,
+        textShadowColor: 'black',
+        textShadowRadius: 15,
+        justifyContent: 'center',
+        fontWeight: 'bold',
+        marginHorizontal: 20
+    }
 });

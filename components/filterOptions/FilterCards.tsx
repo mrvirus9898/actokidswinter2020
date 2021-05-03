@@ -9,6 +9,7 @@ import FilterPhysicalActivity from './FilterPhysicalActivity'
 import FilterCompetitiveStructure from './FilterCompetitiveStructure'
 import FilterPhysicalIntensity from './FilterPhysicalIntensity'
 import FilterSkillLevel from './FilterSkillLevel'
+import FilterCompetitiveScale from './FilterCompetitiveScale'
 import FilterCostAndTravel from './FilterCostsAndTravel'
 import FilterCertifications from './FilterCertifications'
 import FilterAccessibility from './FilterAccessibility'
@@ -22,6 +23,7 @@ export default function FilterCards(props: any) {
     const [carouselIndex, setCarouselIndex] = React.useState(0)
     const [savePIKey, setPIKey] = React.useState(1)
     const [saveSLKey, setSLKey] = React.useState(1)
+    const [saveCSKey, setCSKey] = React.useState(1)
 
     
     let optionsArray = [
@@ -45,23 +47,28 @@ export default function FilterCards(props: any) {
             route: 'FilterSkillLevel',
             url: "https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_450,q_75,w_600/https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/tacoma/Sunrise_from_Mt_Fremont_623d1268-39d7-4d41-a383-fc543ca3eb9e.jpg"
         },
-        {   title: 'Certifications', 
+        {   title: 'Competitive Skill', 
             key: 4,
+            route: 'FilterCompetitiveScale',
+            url: "https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_450,q_75,w_600/https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/tacoma/Sunrise_from_Mt_Fremont_623d1268-39d7-4d41-a383-fc543ca3eb9e.jpg"
+        },
+        {   title: 'Certifications', 
+            key: 5,
             route: 'FilterCertifications',
             url: "https://incowrimo.org/wp-content/uploads/2013/01/How-to-Write-a-Letter.jpg"
         },
         {   title: 'Accessibility', 
-            key: 5,
+            key: 6,
             route: 'FilterAccessibility',
             url: "https://incowrimo.org/wp-content/uploads/2013/01/How-to-Write-a-Letter.jpg"
         },
         {   title: 'Language Options', 
-            key: 6,
+            key: 7,
             route: 'FilterLanguageOptions',
             url: "https://i2.wp.com/www.positiveparentingconnection.net/wp-content/uploads/2013/09/questions-for-kids-6.png?fit=560%2C315&ssl=1"
         },
         {   title: 'Cost', 
-            key: 7,
+            key: 8,
             route: 'FilterCostsAndTravel',
             url: "https://lh3.googleusercontent.com/proxy/CPEKhsNlyTWYDfOD_X9NNIIlvrLloH6pvCAgubDrP53zZdXHdjqx13c_DeukMoNXI-KWteSnjfqx3oub0kpkrJKyTqtGLzVXrGH-P6kao7bahqwc8cEwQlq1GLHm2O8D8cS8M1iHaVUj-aSr1Xg"
         }
@@ -84,15 +91,18 @@ export default function FilterCards(props: any) {
                 return renderSkillLevel()
             }
             case 4:{
-                return renderCertifcationComponent()
+                return renderCompetitiveScale()
             }
             case 5:{
-                return renderAccessibilityComponent()
+                return renderCertifcationComponent()
             }
             case 6:{
-                return renderLanguageComponent()
+                return renderAccessibilityComponent()
             }
             case 7:{
+                return renderLanguageComponent()
+            }
+            case 8:{
                 return renderCosts()
             }
             default:{
@@ -140,6 +150,17 @@ export default function FilterCards(props: any) {
         )
     }
 
+    function renderCompetitiveScale(){
+        return(
+            <FilterCompetitiveScale 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={props.setOptionSelect}
+                saveCSKey={saveCSKey}
+                setCSKey={setCSKey}/>
+        )
+    }
+
     function renderCosts(){
         return(
             <FilterCostAndTravel 
@@ -178,30 +199,47 @@ export default function FilterCards(props: any) {
 
     return(
         <View style={styles.filterCarouselWrapper}>
-        <Carousel 
-            layout={'default'}
-            ref={ref => true}
-            data={optionsArray}
-            sliderWidth={windowWidth}
-            itemWidth={windowWidth * 0.8}
-            sliderHeight={windowHeight * (3/5)}
-            renderItem={renderCarouselItem}
-            onSnapToItem={index => setCarouselIndex(index)} />
-           <View style={styles.buttonContainer}>
-                <TouchableOpacity    
-                    style={styles.button}                        
-                    accessible = {true}
-                    accessibilityLabel = "Return to Filter Cards"
-                    accessibilityHint="Click here to learn more."
-                    accessibilityRole="imagebutton" 
-                    onPress= {() => {
-                        props.navigation.goBack();
-                        //alert("Hello")
-                    }}>
-                    <Text style={styles.buttonText}>Return</Text>
-                </TouchableOpacity>
+            <Carousel 
+                layout={'default'}
+                ref={ref => true}
+                data={optionsArray}
+                sliderWidth={windowWidth}
+                itemWidth={windowWidth * 0.8}
+                sliderHeight={windowHeight * (3/5)}
+                renderItem={renderCarouselItem}
+                onSnapToItem={index => setCarouselIndex(index)} />
+            <View style={{flex: 2, flexDirection: 'row', padding: 10}}>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity    
+                        style={styles.button}                        
+                        accessible = {true}
+                        accessibilityLabel = "Return to Filter Cards"
+                        accessibilityHint="Click here to learn more."
+                        accessibilityRole="imagebutton" 
+                        onPress= {() => {
+                            props.modifyCurrentSelections("Clear")
+                            props.navigation.goBack();
+                            //alert("Hello")
+                        }}>
+                        <Text style={styles.buttonText}>Clear</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity    
+                        style={styles.button}                        
+                        accessible = {true}
+                        accessibilityLabel = "Return to Filter Cards"
+                        accessibilityHint="Click here to learn more."
+                        accessibilityRole="imagebutton" 
+                        onPress= {() => {
+                            props.navigation.goBack();
+                            //alert("Hello")
+                        }}>
+                        <Text style={styles.buttonText}>Return</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-    </View>
+        </View>
     )
 
 }

@@ -89,7 +89,10 @@ export default function FilterPhysicalActivity(props: any) {
     }
 
     return(
-        renderPAList()
+        <View style={{flex: 1}}>
+            <Text style={styles.upperLabelText}>Physical Activity</Text>
+            {renderPAList()}
+        </View>
     )
 }
 
@@ -131,5 +134,14 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10
     },
-
+    upperLabelText: {
+        fontFamily: 'serif',
+        fontSize: 18,
+        color: Colors.Blue.color,
+        textShadowColor: 'black',
+        textShadowRadius: 15,
+        justifyContent: 'center',
+        fontWeight: 'bold',
+        marginHorizontal: 20
+    }
 });

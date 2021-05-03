@@ -28,7 +28,7 @@ export default function ShowPrograms(props: any){
 
 
   function drawCards(){
-    let filteredData = applyFilter()
+    let filteredData = applySearch()
     //console.log("Filter: " + filteredData)
     return( 
       <View>
@@ -54,9 +54,8 @@ export default function ShowPrograms(props: any){
     )
   }
 
-  function applyFilter(){
+  function applySearch(){
     let output: Array<any> = []
-
     //console.log("Current Filter: " + filter)
     if(props.searchTerm != ""){
       props.programs.forEach(program => {
@@ -71,8 +70,11 @@ export default function ShowPrograms(props: any){
     }
   }
 
-  return (drawCards())
+  function applyFilter(){
+    
+  }
 
+  return (drawCards())
 }
 
 const styles = StyleSheet.create({

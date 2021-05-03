@@ -53,6 +53,9 @@ export default function FilterCostsAndTravel(props: any) {
         },
         {   title: 'Private Health Insurance', 
             key: 10,
+        },
+        {   title: 'WA State Foster Program', 
+            key: 11,
         }
         ];
 
@@ -73,14 +76,14 @@ export default function FilterCostsAndTravel(props: any) {
             }
             setAnyCost(true)
         }else if(anyPayment && (item == 5)){
-            for (let i = 6; i < 11; i++) {
+            for (let i = 6; i < 12; i++) {
                 if(isCurrentlyInSelection(i)){
                     props.modifyCurrentSelections(optionsArray[i].title)
                 }
             }
             setAnyPayment(false)
         }else if(!anyPayment && (item == 5)){
-            for (let i = 6; i < 11; i++) {
+            for (let i = 6; i < 12; i++) {
                 if(!isCurrentlyInSelection(i)){
                     props.modifyCurrentSelections(optionsArray[i].title)
                 }
@@ -116,7 +119,7 @@ export default function FilterCostsAndTravel(props: any) {
                 setPLEASE(!PLEASERERENDER)
             }else{
                 let straightFlush = true
-                for (let i = 6; i < 11; i++){
+                for (let i = 6; i < 12; i++){
                     if((i != item) && (!isCurrentlyInSelection(i))){
                         straightFlush = false
                     }
@@ -217,6 +220,7 @@ export default function FilterCostsAndTravel(props: any) {
             <View style={styles.panelContainer}>
                 {renderPaymentLabel(9)}
                 {renderPaymentLabel(10)}
+                {renderPaymentLabel(11)}
             </View>
         </View>
     )

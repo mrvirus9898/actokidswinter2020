@@ -77,7 +77,10 @@ export default function FilterCompetitiveStructure(props: any) {
         }
     
         return(
-            renderPAList()
+            <View style={{flex: 1}}>
+                <Text style={styles.upperLabelText}>Competitive Structure</Text>
+                {renderPAList()}
+            </View>
         )
 
 
@@ -149,6 +152,16 @@ const styles = StyleSheet.create({
         height: (Dimensions.get('window').height / 4), 
         width: (Dimensions.get('window').width / 3), 
     },
+    upperLabelText: {
+        fontFamily: 'serif',
+        fontSize: 18,
+        color: Colors.Blue.color,
+        textShadowColor: 'black',
+        textShadowRadius: 15,
+        justifyContent: 'center',
+        fontWeight: 'bold',
+        marginHorizontal: 20
+    }
 });
 
 /*

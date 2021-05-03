@@ -73,6 +73,7 @@ export default function FilterPhysicalIntensity(props: any) {
     return(
         <View style={styles.container}>
             <View style={styles.topLabel}>
+                <Text style={styles.upperLabelText}>Physical Activity</Text>
                 {getIntensity(physicalIntensity)}
                 <Text>Drag the circle to select Intensity</Text>
             </View>
@@ -134,7 +135,17 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         alignSelf: "center",
         textTransform: "uppercase"
-      }
+      },
+      upperLabelText: {
+        fontFamily: 'serif',
+        fontSize: 18,
+        color: Colors.Blue.color,
+        textShadowColor: 'black',
+        textShadowRadius: 15,
+        justifyContent: 'center',
+        fontWeight: 'bold',
+        marginHorizontal: 20
+    }
   });
   /*
           if(props.savePIKey == ""){

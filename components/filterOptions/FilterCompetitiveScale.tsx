@@ -16,51 +16,26 @@ import Colors from '../../constants/Colors'
 
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function FilterSKillLevel(props: any) {
+export default function FilterCompetitiveScale(props: any) {
     const [skillLevel, setSkillLevel] = React.useState(1)
-    
-    let optionsArray = [
-        {   title: 'All', 
-            key: 1,
-        },
-        {   title: 'Beginner',
-            key: 2,
-        },
-        {   title: 'Intermediate',
-            key: 3,
-        },
-        {   title: 'Advanced', 
-            key: 4,
-        }
-        ];
 
         function getSkillLevel(key: number){
             //console.log(optionsArray[key-1])
             return(
-                <Text style={styles.labelText}>{optionsArray[key-1].title}</Text>
+                <Text style={styles.labelText}>{key}</Text>
             )
         }
     
-        function clearSkill(){
-            if(props.saveSLKey != 1){
-                setSkillLevel(1)
-                props.setSLKey(1);
-                props.modifyCurrentSelections(optionsArray[props.saveSLKey-1].title);
-            }
-        }
-    
         function setSkill(key: number){
-            if(key == 1){
-                clearSkill()
-            }else if ((key != props.saveSLKey) && (props.saveSLKey != 1)){
+            if ((key != props.saveCSKey) && (props.saveCSKey != 1)){
                 setSkillLevel(key)
-                props.setSLKey(key)
-                props.modifyCurrentSelections(optionsArray[props.saveSLKey-1].title);
-                props.modifyCurrentSelections(optionsArray[key-1].title);
-            }else if ((key != props.saveSLKey) && (props.saveSLKey == 1)){
+                props.setCSKey(key)
+                props.modifyCurrentSelections(props.saveCSKey);
+                props.modifyCurrentSelections(key);
+            }else if ((key != props.saveCSKey) && (props.saveCSKey == 1)){
                 setSkillLevel(key)
-                props.setSLKey(key)
-                props.modifyCurrentSelections(optionsArray[key-1].title);
+                props.setCSKey(key)
+                props.modifyCurrentSelections(key);
             }
     
         }
@@ -70,22 +45,22 @@ export default function FilterSKillLevel(props: any) {
     return(
         <View style={styles.container}>
             <View style={styles.topLabel}>
-                <Text style={styles.upperLabelText}>Skill Level</Text>
+                <Text style={styles.upperLabelText}>Competitive Skill</Text>
                 {getSkillLevel(skillLevel)}
-                <Text>Drag the circle to select Skill Level</Text>
+                <Text>Drag the circle to select Competitiveness</Text>
             </View>
             <View style={styles.parent}>
                 <CircleSizeSelector
                     minValue={1}
-                    maxValue={4}
+                    maxValue={10}
                     initialValue={1}
-                    outermostCircleStyle={{borderWidth:3,
+                    outermostCircleStyle={{borderWidth:2,
                                         borderColor: 'black',
                                         backgroundColor: Colors.OffWhite.Transparent}}
-                    graduationLineCircleStyle={{borderWidth:3,
+                    graduationLineCircleStyle={{borderWidth:2,
                                             borderColor: 'black',
                                             backgroundColor: Colors.OffWhite.Transparent}} 
-                    currentValueCircleStyle={{borderWidth:3,
+                    currentValueCircleStyle={{borderWidth:2,
                                             borderColor: 'black',
                                             backgroundColor: Colors.Red.Transparent}} 
                     resizingCurrentValueCircleStyle={{backgroundColor: Colors.Red.CircleTransparent}} 

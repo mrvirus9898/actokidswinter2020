@@ -34,7 +34,7 @@ export default function ProgramDetails(params: Array<any>){
 
     let item = params.route.params.item
 
-    //console.log(item)
+    console.log(item)
     
     //TODO: Need to resolve taxonomy, then update this section
     if (item.disability_types != null) {
