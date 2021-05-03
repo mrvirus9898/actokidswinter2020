@@ -8,9 +8,7 @@ TODO:
 DISABILITIES CHANGE TO ACCESSIBILITY FEATURES
 PHYSICAL INTENSITY
 SPORTS
-PHYSICAL ACTIVITY CATEGORY 
-
-
+PHYSICAL ACTIVITY CATEGORY
 */
 
 import React from 'react';
@@ -134,16 +132,14 @@ export default function ProgramDetails(params: Array<any>){
             <Text style={styles.subTitles}>ACTIVITY TYPE</Text>
             <Text style={styles.bodyText}>{item.Program_Types}</Text>
             
-            <Text style={styles.subTitles}>DISABILITIES SERVED</Text>
+            <Text style={styles.subTitles}>ACCESSIBILITY FEATURES</Text>
             <Text style={styles.bodyText}>{item.accessability}</Text>
-            <Text style={styles.subTitles}>AGE RANGE</Text>
+            <Text style={styles.subTitles}>PHYSICAL INTENSITY</Text>
+            <Text style={styles.bodyText}>{item.min_age} - {item.max_age}</Text>
+            <Text style={styles.subTitles}>PHYSICAL ACTIVITY CATEGORY </Text>
             <Text style={styles.bodyText}>{item.min_age} - {item.max_age}</Text>
             <Text style={styles.subTitles}>COST</Text>
             <Text style={styles.bodyText}>${item.Cost}</Text>
-            <Text style={styles.subTitles}>PROGRAM CONTACT</Text>
-            <Text style={styles.bodyText}>{item.Cont_Name}</Text>
-            <Text style={styles.bodyText}>{phoneStr}</Text>
-            <Text style={styles.bodyText}>{item.Cont_Email}</Text>
             <View style={{ borderColor: 'lightgray', borderBottomWidth: 2, marginTop: 30, marginBottom: 20 }}></View>
         </ScrollView>
       </View>

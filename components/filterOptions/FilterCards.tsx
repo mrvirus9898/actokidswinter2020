@@ -11,6 +11,7 @@ import FilterPhysicalIntensity from './FilterPhysicalIntensity'
 import FilterSkillLevel from './FilterSkillLevel'
 import FilterCostAndTravel from './FilterCostsAndTravel'
 import FilterCertifications from './FilterCertifications'
+import FilterAccessibility from './FilterAccessibility'
 import FilterLanguageOptions from './FilterLanguageOptions'
 
 export default function FilterCards(props: any) {
@@ -29,15 +30,15 @@ export default function FilterCards(props: any) {
             route: 'FilterPhysicalActivity',
             url: "https://images.indianexpress.com/2019/12/child-physical-activity.jpg"
         },
-        {   title: 'Competitiveness',
-            key: 1,
-            route: 'FilterCompetitiveStructure',
-            url: "https://static.parenting.com/wp-content/uploads/2010/12/18163927/kids-baseball-1-1200x720.jpg"
-        },
         {   title: 'Physical Intensity', 
-            key: 2,
+            key: 1,
             route: 'FilterPhysicalIntensity',
             url: "https://ptproductsonline.com/wp-content/uploads/2020/09/IncreaseIntensity.jpg"
+        },
+        {   title: 'Competitiveness',
+            key: 2,
+            route: 'FilterCompetitiveStructure',
+            url: "https://static.parenting.com/wp-content/uploads/2010/12/18163927/kids-baseball-1-1200x720.jpg"
         },
         {   title: 'Skill Level', 
             key: 3,
@@ -49,13 +50,18 @@ export default function FilterCards(props: any) {
             route: 'FilterCertifications',
             url: "https://incowrimo.org/wp-content/uploads/2013/01/How-to-Write-a-Letter.jpg"
         },
-        {   title: 'Language Options', 
+        {   title: 'Accessibility', 
             key: 5,
+            route: 'FilterAccessibility',
+            url: "https://incowrimo.org/wp-content/uploads/2013/01/How-to-Write-a-Letter.jpg"
+        },
+        {   title: 'Language Options', 
+            key: 6,
             route: 'FilterLanguageOptions',
             url: "https://i2.wp.com/www.positiveparentingconnection.net/wp-content/uploads/2013/09/questions-for-kids-6.png?fit=560%2C315&ssl=1"
         },
         {   title: 'Cost', 
-            key: 6,
+            key: 7,
             route: 'FilterCostsAndTravel',
             url: "https://lh3.googleusercontent.com/proxy/CPEKhsNlyTWYDfOD_X9NNIIlvrLloH6pvCAgubDrP53zZdXHdjqx13c_DeukMoNXI-KWteSnjfqx3oub0kpkrJKyTqtGLzVXrGH-P6kao7bahqwc8cEwQlq1GLHm2O8D8cS8M1iHaVUj-aSr1Xg"
         }
@@ -69,10 +75,10 @@ export default function FilterCards(props: any) {
                 return renderPhysicalActivityComponent()
             }
             case 1:{
-                return renderCompetitiveStructure()
+                return renderPhysicalIntensity()
             }
             case 2:{
-                return renderPhysicalIntensity()
+                return renderCompetitiveStructure()
             }
             case 3:{
                 return renderSkillLevel()
@@ -81,9 +87,12 @@ export default function FilterCards(props: any) {
                 return renderCertifcationComponent()
             }
             case 5:{
-                return renderLanguageComponent()
+                return renderAccessibilityComponent()
             }
             case 6:{
+                return renderLanguageComponent()
+            }
+            case 7:{
                 return renderCosts()
             }
             default:{
@@ -143,6 +152,15 @@ export default function FilterCards(props: any) {
     function renderCertifcationComponent(){
         return(
             <FilterCertifications 
+                currentSelections={props.currentSelections}
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setOptionSelect={props.setOptionSelect}/>
+        )
+    }
+
+    function renderAccessibilityComponent(){
+        return(
+            <FilterAccessibility 
                 currentSelections={props.currentSelections}
                 modifyCurrentSelections={props.modifyCurrentSelections}
                 setOptionSelect={props.setOptionSelect}/>
