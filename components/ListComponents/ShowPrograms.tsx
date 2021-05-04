@@ -12,6 +12,7 @@ import React, { useState } from 'react';
 import {
   TouchableHighlight,
   View,
+  Text,
   FlatList,
   StyleSheet,
 } from 'react-native';
@@ -24,12 +25,22 @@ export default function ShowPrograms(props: any){
 
   const [filter, setFilter] = useState<Array<String>>([]);
 
+  const programNotFound = {
+    Program_Image_Url: "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/intTFNX2AHxk/v0/-1x-1.jpg",
+    Program_Name: "NO MATCHING PROGRAMS FOUND",
+    Loct_Text: 'Return to Filter to look for different programs',
+    Cost: 0,
+  }
+
   
   function drawCards(){
     let filteredData = applySearch()
     //console.log("Filter: " + filteredData)
     return( 
       <View>
+        <View>
+          <Text>HELLO</Text>
+        </View>
         <FlatList
           data={filteredData}
           keyExtractor={(x, i) => i.toString()}
@@ -75,18 +86,28 @@ export default function ShowPrograms(props: any){
       //console.log("UNDEFINDED")
       return input
     }else{
-      //console.log("Current Selected" + props.currentSelectedTaxonomy)
+      //INCLUSIVE FILTRATION
       if(props.currentSelectedTaxonomy.length != 0){
 
         let output: Array<any> = []
         input.forEach(program => {  
-          console.log(program.Program_Name + ": " + program.Certs)
-          if(props.currentSelectedTaxonomy.indexOf(program.Certs) != -1){
+          //console.log(program.Program_Name + ": " + (props.currentSelectedTaxonomy.indexOf((program.competitive_skill))))
+          if((props.currentSelectedTaxonomy.indexOf(program.Certs) != -1) || 
+              (props.currentSelectedTaxonomy.indexOf(program.accessability) != -1) || 
+              (props.currentSelectedTaxonomy.indexOf(program.physical_activity) != -1) ||
+              (props.currentSelectedTaxonomy.indexOf(program.physical_intensity) != -1) ||
+              (props.currentSelectedTaxonomy.indexOf((program.competitive_skill)) != -1) ||
+              (props.currentSelectedTaxonomy.indexOf(program.language_options) != -1) ||
+              (props.currentSelectedTaxonomy.indexOf(program.skill_level) != -1) ||
+              (props.currentSelectedTaxonomy.indexOf(program.payment_method) != -1) ||
+              (props.currentSelectedTaxonomy.indexOf(program.competitive_structure) != -1)) {
             //console.log("Target Found: " + props.currentSelectedTaxonomy.indexOf(program.Certs))
-            output.push(program)
+              output.push(program)
           }
-          //Stack Ifs as nessisary 
         });
+        if(output.length == 0){
+          output.push(programNotFound)
+        }
 
         return output
       }else{

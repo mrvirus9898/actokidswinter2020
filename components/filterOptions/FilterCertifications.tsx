@@ -15,6 +15,8 @@ import Colors from '../../constants/Colors';
 export default function FilterCertifications(props: any) {
     //console.log(props.currentSelections)
 
+    const [pleaseReRenderFlag, setPRRF] = React.useState(true)
+
     let optionsArray = [
         {   title: 'First Aid/CPR',
             key: 0,
@@ -50,6 +52,11 @@ export default function FilterCertifications(props: any) {
         }
         ];
 
+    function modifySelectionOrGoBack(certification: string){
+        props.modifyCurrentSelections(certification)
+        setPRRF(!pleaseReRenderFlag)    
+    }
+
 
     function renderCertList(){
         return(
@@ -63,6 +70,14 @@ export default function FilterCertifications(props: any) {
     }
 
     function renderCertItems({item}){
+        if(props.currentSelections.indexOf(item.title) == -1){
+            return getCertItem(item, styles.dimmerImageDimensions)
+        }else{
+            return getCertItem(item, styles.brighterImageDimensions)
+        }
+    }
+
+    function getCertItem(item: any, opacity: any){
         return(
             <View style={styles.filterImageWrapper}>
             <TouchableOpacity 
@@ -71,11 +86,11 @@ export default function FilterCertifications(props: any) {
                 accessibilityHint="Click here to learn more."
                 accessibilityRole="imagebutton" 
                 onPress= {() => {
-                    props.modifyCurrentSelections(item.title)
+                    modifySelectionOrGoBack(item.title)
                 }}>
                     <View style={styles.item}>
                     <ImageBackground 
-                            style={styles.imageDimensions}        
+                            style={opacity}        
                             source={{uri: item.url}}>
                             <Text style={styles.categoryText}>
                                 {item.title}
@@ -122,9 +137,16 @@ const styles = StyleSheet.create({
         height: (Dimensions.get('window').height / 7),
         width: (Dimensions.get('window').width / 3), 
     },
-    itemText: {
-        color: '#fff',
-    },
+    dimmerImageDimensions: {
+        height: "100%",
+        width: "100%",
+        opacity: 0.5
+      },
+      brighterImageDimensions: {
+        height: "100%",
+        width: "100%",
+        opacity: 1.0
+      },
     imageDimensions: {
         height: (Dimensions.get('window').height / 7),
         width: (Dimensions.get('window').width / 3), 

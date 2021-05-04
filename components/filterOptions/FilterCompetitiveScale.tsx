@@ -30,12 +30,12 @@ export default function FilterCompetitiveScale(props: any) {
             if ((key != props.saveCSKey) && (props.saveCSKey != 1)){
                 setSkillLevel(key)
                 props.setCSKey(key)
-                props.modifyCurrentSelections(props.saveCSKey);
-                props.modifyCurrentSelections(key);
+                props.modifyCurrentSelections(props.saveCSKey.toString());
+                props.modifyCurrentSelections(key.toString());
             }else if ((key != props.saveCSKey) && (props.saveCSKey == 1)){
                 setSkillLevel(key)
                 props.setCSKey(key)
-                props.modifyCurrentSelections(key);
+                props.modifyCurrentSelections(key.toString());
             }
     
         }

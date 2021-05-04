@@ -14,6 +14,8 @@ import Colors from '../../constants/Colors';
 
 export default function FilterLanguageOptions(props: any) {
     //console.log(props.currentSelections)
+    
+    const [pleaseReRenderFlag, setPRRF] = React.useState(true)
 
     let optionsArray = [
         {   title: 'Interpreter Services',
@@ -35,13 +37,8 @@ export default function FilterLanguageOptions(props: any) {
         ];
 
     function modifySelectionOrGoBack(certification: string){
-        if(certification === 'Accept'){
-            props.setOptionSelect(8)
-        }else{
-            props.modifyCurrentSelections(certification)
-            //alert(props.currentSelections)
-        }
-
+        props.modifyCurrentSelections(certification)
+        setPRRF(!pleaseReRenderFlag)    
     }
 
     function renderOptionsList(){
@@ -56,31 +53,36 @@ export default function FilterLanguageOptions(props: any) {
     }
 
     function renderOptionsItems({item}){
+        if(props.currentSelections.indexOf(item.title) == -1){
+            return getCertItem(item, styles.dimmerImageDimensions)
+        }else{
+            return getCertItem(item, styles.brighterImageDimensions)
+        }
+    }
+
+    function getCertItem(item: any, opacity: any){
         return(
-
-                <View style={styles.filterImageWrapper}>
-                <TouchableOpacity 
-                    accessible = {true}
-                    accessibilityLabel = {item.title}
-                    accessibilityHint="Click here to learn more."
-                    accessibilityRole="imagebutton" 
-                    onPress= {() => {
-                        modifySelectionOrGoBack(item.title)
-                    }}>
-                        <View style={styles.item}>
-                        <ImageBackground 
-                                style={styles.imageDimensions}        
-                                source={{uri: item.url}}>
-                                <Text style={styles.categoryText}>
-                                    {item.title}
-                                </Text> 
-                        </ImageBackground> 
-                        </View>
-                </TouchableOpacity>
-                </View>
-
-
-        )
+            <View style={styles.filterImageWrapper}>
+            <TouchableOpacity 
+                accessible = {true}
+                accessibilityLabel = {item.title}
+                accessibilityHint="Click here to learn more."
+                accessibilityRole="imagebutton" 
+                onPress= {() => {
+                    modifySelectionOrGoBack(item.title)
+                }}>
+                    <View style={styles.item}>
+                    <ImageBackground 
+                            style={opacity}        
+                            source={{uri: item.url}}>
+                            <Text style={styles.categoryText}>
+                                {item.title}
+                            </Text> 
+                    </ImageBackground> 
+                    </View>
+            </TouchableOpacity>
+            </View>
+    )
     }
 
     return(
@@ -110,6 +112,16 @@ const styles = StyleSheet.create({
         height: (Dimensions.get('window').height / 4), 
         width: (Dimensions.get('window').width / 3), 
     },
+    dimmerImageDimensions: {
+        height: "100%",
+        width: "100%",
+        opacity: 0.5
+      },
+      brighterImageDimensions: {
+        height: "100%",
+        width: "100%",
+        opacity: 1.0
+      },
     item: {
         backgroundColor: '#4D243D',
         alignItems: 'center',

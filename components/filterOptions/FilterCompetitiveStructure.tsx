@@ -15,10 +15,8 @@ import Colors from '../../constants/Colors';
 
 export default function FilterCompetitiveStructure(props: any) {
     //console.log(props.currentSelections)
-    const [carouselIndex, setCarouselIndex] = React.useState(0)
 
-    let imageWidth = (useWindowDimensions().width); 
-    let imageHeight = (useWindowDimensions().height); 
+    const [pleaseReRenderFlag, setPRRF] = React.useState(true)
 
     let optionsArray = [
         {   title: 'Competitive (No Cuts)',
@@ -39,6 +37,10 @@ export default function FilterCompetitiveStructure(props: any) {
         }
         ];
 
+        function modifySelectionOrGoBack(competitiveStructure: string){
+            props.modifyCurrentSelections(competitiveStructure)
+            setPRRF(!pleaseReRenderFlag)    
+        }
 
         function renderPAList(){
             return(
@@ -52,6 +54,14 @@ export default function FilterCompetitiveStructure(props: any) {
         }
     
         function renderPAItems({item}){
+            if(props.currentSelections.indexOf(item.title) == -1){
+                return getPAItem(item, styles.dimmerImageDimensions)
+            }else{
+                return getPAItem(item, styles.brighterImageDimensions)
+            }
+        }
+
+        function getPAItem(item: any, opacity: any){
             return(    
                 <View style={styles.filterImageWrapper}>
                 <TouchableOpacity 
@@ -60,11 +70,11 @@ export default function FilterCompetitiveStructure(props: any) {
                     accessibilityHint="Click here to learn more."
                     accessibilityRole="imagebutton" 
                     onPress= {() => {
-                        props.modifyCurrentSelections(item.title)
+                        modifySelectionOrGoBack(item.title)
                     }}>
                         <View style={styles.item}>
                         <ImageBackground 
-                                style={styles.imageDimensions}        
+                                style={opacity}        
                                 source={{uri: item.url}}>
                                 <Text style={styles.categoryText}>
                                     {item.title}
@@ -97,12 +107,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         fontWeight: 'bold'
     },
-    filterCarouselWrapper:{
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        padding: 10
-    },
+    dimmerImageDimensions: {
+        height: "100%",
+        width: "100%",
+        opacity: 0.5
+      },
+      brighterImageDimensions: {
+        height: "100%",
+        width: "100%",
+        opacity: 1.0
+      },
     item: {
         backgroundColor: '#4D243D',
         alignItems: 'center',

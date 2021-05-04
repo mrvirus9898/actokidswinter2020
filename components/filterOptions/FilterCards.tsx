@@ -115,7 +115,9 @@ export default function FilterCards(props: any) {
         return(
             <FilterPhysicalActivity 
                 currentSelections={props.currentSelections}
-                modifyCurrentSelections={props.modifyCurrentSelections}/>
+                modifyCurrentSelections={props.modifyCurrentSelections}
+                setPRR={props.setPRR}
+                PRR={props.PRR}/>
         )
     }
 

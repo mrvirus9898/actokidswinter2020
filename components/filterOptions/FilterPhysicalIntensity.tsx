@@ -73,7 +73,7 @@ export default function FilterPhysicalIntensity(props: any) {
     return(
         <View style={styles.container}>
             <View style={styles.topLabel}>
-                <Text style={styles.upperLabelText}>Physical Activity</Text>
+                <Text style={styles.upperLabelText}>Physical Intensity</Text>
                 {getIntensity(physicalIntensity)}
                 <Text>Drag the circle to select Intensity</Text>
             </View>
