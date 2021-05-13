@@ -12,75 +12,72 @@ import React from 'react';
 
 import CircleSizeSelector from 'react-native-circle-size-selector'
 
-import Colors from '../../constants/Colors'
+import Colors from '../../../constants/Colors'
 
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function FilterPhysicalIntensity(props: any) {
-    const [physicalIntensity, setPhysicalIntensity] = React.useState(1)
+export default function FilterSKillLevel(props: any) {
+    const [skillLevel, setSkillLevel] = React.useState(1)
     
     let optionsArray = [
-        {   title: 'Any', 
+        {   title: 'All', 
             key: 1,
         },
-        {   title: 'Self-Paced',
+        {   title: 'Beginner',
             key: 2,
         },
-        {   title: 'Light',
+        {   title: 'Intermediate',
             key: 3,
         },
-        {   title: 'Moderate', 
+        {   title: 'Advanced', 
             key: 4,
-        },
-        {   title: 'Vigorous', 
-            key: 5,
         }
         ];
 
-    function getIntensity(key: number){
-        //console.log(optionsArray[key-1])
-        return(
-            <Text style={styles.labelText}>{optionsArray[key-1].title}</Text>
-        )
-    }
-
-    function clearIntensity(){
-        if(props.savePIKey != 1){
-            setPhysicalIntensity(1)
-            props.setPIKey(1);
-            props.modifyCurrentSelections(optionsArray[props.savePIKey-1].title);
+        function getSkillLevel(key: number){
+            //console.log(optionsArray[key-1])
+            return(
+                <Text style={styles.labelText}>{optionsArray[key-1].title}</Text>
+            )
         }
-    }
-
-    function setIntensity(key: number){
-        if(key == 1){
-            clearIntensity()
-        }else if ((key != props.savePIKey) && (props.savePIKey != 1)){
-            setPhysicalIntensity(key)
-            props.setPIKey(key)
-            props.modifyCurrentSelections(optionsArray[props.savePIKey-1].title);
-            props.modifyCurrentSelections(optionsArray[key-1].title);
-        }else if ((key != props.savePIKey) && (props.savePIKey == 1)){
-            setPhysicalIntensity(key)
-            props.setPIKey(key)
-            props.modifyCurrentSelections(optionsArray[key-1].title);
+    
+        function clearSkill(){
+            if(props.saveSLKey != 1){
+                setSkillLevel(1)
+                props.setSLKey(1);
+                props.modifyCurrentSelections(optionsArray[props.saveSLKey-1].title);
+            }
         }
-
-    }
+    
+        function setSkill(key: number){
+            if(key == 1){
+                clearSkill()
+            }else if ((key != props.saveSLKey) && (props.saveSLKey != 1)){
+                setSkillLevel(key)
+                props.setSLKey(key)
+                props.modifyCurrentSelections(optionsArray[props.saveSLKey-1].title);
+                props.modifyCurrentSelections(optionsArray[key-1].title);
+            }else if ((key != props.saveSLKey) && (props.saveSLKey == 1)){
+                setSkillLevel(key)
+                props.setSLKey(key)
+                props.modifyCurrentSelections(optionsArray[key-1].title);
+            }
+    
+        }
 
 
     //console.log(item.item)
     return(
         <View style={styles.container}>
             <View style={styles.topLabel}>
-                <Text style={styles.upperLabelText}>Physical Intensity</Text>
-                {getIntensity(physicalIntensity)}
-                <Text>Drag the circle to select Intensity</Text>
+                <Text style={styles.upperLabelText}>Skill Level</Text>
+                {getSkillLevel(skillLevel)}
+                <Text>Drag the circle to select Skill Level</Text>
             </View>
             <View style={styles.parent}>
                 <CircleSizeSelector
                     minValue={1}
-                    maxValue={5}
+                    maxValue={4}
                     initialValue={1}
                     outermostCircleStyle={{borderWidth:3,
                                         borderColor: 'black',
@@ -92,7 +89,7 @@ export default function FilterPhysicalIntensity(props: any) {
                                             borderColor: 'black',
                                             backgroundColor: Colors.Red.Transparent}} 
                     resizingCurrentValueCircleStyle={{backgroundColor: Colors.Red.CircleTransparent}} 
-                    onChange={setIntensity}/>
+                    onChange={setSkill}/>
             </View>
         </View>
     )
@@ -147,13 +144,3 @@ const styles = StyleSheet.create({
         marginHorizontal: 20
     }
   });
-  /*
-          if(props.savePIKey == ""){
-            props.modifyCurrentSelections(optionsArray[key-1].title);
-            props.setPIKey(key);
-        }else if(props.savePIKey != key){
-            props.modifyCurrentSelections(optionsArray[props.savePIKey-1].title);
-            props.modifyCurrentSelections(optionsArray[key-1].title);
-            props.setPIKey(key);
-        }        
-        props.setOptionSelect(8);*/

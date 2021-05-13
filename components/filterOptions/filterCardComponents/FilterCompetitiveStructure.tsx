@@ -7,11 +7,9 @@ ACTOKIDS
 
 import React from 'react';
 
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions, useWindowDimensions, FlatList, ImageBackground } from 'react-native';
-
-import Carousel from 'react-native-snap-carousel';
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, FlatList, ImageBackground } from 'react-native';
     
-import Colors from '../../constants/Colors';
+import Colors from '../../../constants/Colors';
 
 export default function FilterCompetitiveStructure(props: any) {
     //console.log(props.currentSelections)
@@ -34,34 +32,42 @@ export default function FilterCompetitiveStructure(props: any) {
         {   title: 'Sports-Based Youth Development', 
             key: 3,
             url: "https://ntprd.org/wp-content/uploads/2019/09/youth-soccer.jpg"
+        },
+        {   title: 'Accept', 
+            key: 4,
+            url: "https://www.seekpng.com/png/detail/134-1348302_white-check-mark-icon-png-download-black-and.png"
         }
         ];
 
-        function modifySelectionOrGoBack(competitiveStructure: string){
-            props.modifyCurrentSelections(competitiveStructure)
-            setPRRF(!pleaseReRenderFlag)    
+        function modifySelectionOrGoBack(competitiveStructure: any){
+            if(competitiveStructure.key != 4){
+                props.modifyCurrentSelections(competitiveStructure.title)
+                setPRRF(!pleaseReRenderFlag)
+            }else{
+                props.setOptionSelect(9)
+            }
         }
 
-        function renderPAList(){
+        function renderCSList(){
             return(
                 <FlatList 
                     style={styles.listContainer}
                     data={optionsArray} 
-                    renderItem={renderPAItems} 
+                    renderItem={renderCSItems} 
                     numColumns={2}>
                 </FlatList>
             )
         }
     
-        function renderPAItems({item}){
+        function renderCSItems({item}){
             if(props.currentSelections.indexOf(item.title) == -1){
-                return getPAItem(item, styles.dimmerImageDimensions)
+                return getCSItem(item, styles.dimmerImageDimensions)
             }else{
-                return getPAItem(item, styles.brighterImageDimensions)
+                return getCSItem(item, styles.brighterImageDimensions)
             }
         }
 
-        function getPAItem(item: any, opacity: any){
+        function getCSItem(item: any, opacity: any){
             return(    
                 <View style={styles.filterImageWrapper}>
                 <TouchableOpacity 
@@ -70,7 +76,7 @@ export default function FilterCompetitiveStructure(props: any) {
                     accessibilityHint="Click here to learn more."
                     accessibilityRole="imagebutton" 
                     onPress= {() => {
-                        modifySelectionOrGoBack(item.title)
+                        modifySelectionOrGoBack(item)
                     }}>
                         <View style={styles.item}>
                         <ImageBackground 
@@ -89,7 +95,7 @@ export default function FilterCompetitiveStructure(props: any) {
         return(
             <View style={{flex: 1}}>
                 <Text style={styles.upperLabelText}>Competitive Structure</Text>
-                {renderPAList()}
+                {renderCSList()}
             </View>
         )
 
@@ -124,14 +130,14 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 1,
         height: (Dimensions.get('window').height / 4),
-        width: (Dimensions.get('window').width / 3), 
+        width: (Dimensions.get('window').width / 2.5), 
     },
     itemText: {
         color: '#fff',
     },
     imageDimensions: {
         height: (Dimensions.get('window').height / 4),
-        width: (Dimensions.get('window').width / 3), 
+        width: (Dimensions.get('window').width / 2.5), 
     },
     listContainer: {
         flex: 1,

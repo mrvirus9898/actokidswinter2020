@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet} from 'react-native';
+import { View, Text, Modal} from 'react-native';
 
 import ShowPrograms from '../components/ListComponents/ShowPrograms';
 
@@ -7,11 +7,21 @@ import ShowPrograms from '../components/ListComponents/ShowPrograms';
 export default function ProgramList(props: any) {
   return(
       <View style={{flex:1}}>
-          <ShowPrograms 
-          searchTerm={props.searchTerm} 
-          navigation={props.navigation}
-          programs={props.programs}
-          currentSelectedTaxonomy={props.currentSelectedTaxonomy}/>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={props.filterOverlayFlag}
+          onRequestClose={() => {
+            alert("Close")
+            props.SetFilterOverlay(!props.filterOverlayFlag)
+          }}>
+            <Text>HELLO</Text>
+        </Modal>
+        <ShowPrograms 
+            searchTerm={props.searchTerm} 
+            navigation={props.navigation}
+            programs={props.programs}
+            currentSelectedTaxonomy={props.currentSelectedTaxonomy}/>
       </View>
   );
 }

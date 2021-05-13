@@ -9,8 +9,8 @@ export default function Map(props: any) {
     const [mapRegion, setRegion] = useState({
         latitude: 47.699829,
         longitude: -122.334801,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitudeDelta: 0.15,
+        longitudeDelta: 0.1,
     });
 
     return(

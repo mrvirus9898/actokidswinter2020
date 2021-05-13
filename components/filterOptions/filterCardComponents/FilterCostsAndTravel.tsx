@@ -12,102 +12,101 @@ import React from 'react';
 
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 
-import Colors from '../../constants/Colors';
+import FilterReturnButton from './filterButtonsAndLabels/FilterReturnButton'
 
-export default function FilterAccessibility(props: any) {
+import Colors from '../../../constants/Colors';
+
+export default function FilterCostsAndTravel(props: any) {
     const [anyCost, setAnyCost] = React.useState(false)
+    const [anyPayment, setAnyPayment] = React.useState(false)
 
     const [PLEASERERENDER, setPLEASE] = React.useState(false)
 
     let optionsArray = [
-        {   title: 'All Accessibility Options',
+        {   title: 'Any Cost',
             key: 0,
         },
-        {   title: 'Unified',
+        {   title: 'Free',
             key: 1,
         },
-        {   title: 'Adaptive', 
+        {   title: 'Equipment Fees', 
             key: 2,
         },
-        {   title: 'Chair-based', 
+        {   title: 'Travel Fees', 
             key: 3,
         },
-        {   title: 'Paralympic pathway', 
+        {   title: 'Other Costs', 
             key: 4,
         },
-        {   title: 'Special Olympics Pathway',
+        {   title: 'Any Payment Method',
             key: 5,
         },
-        {   title: 'Other',
+        {   title: 'Pay As You Go',
             key: 6,
         },
-        {   title: 'Autism Friendly', 
+        {   title: 'Sliding Scale', 
             key: 7,
         },
-        {   title: 'Support Person Allowed', 
+        {   title: 'Scholarships Available', 
             key: 8,
         },
-        {   title: 'Peer Inclusive', 
+        {   title: 'WA Apple Health (Medicaid)', 
             key: 9,
         },
-        {   title: 'Personal Support Animials', 
+        {   title: 'Private Health Insurance', 
             key: 10,
         },
-        {   title: 'Braille', 
+        {   title: 'WA State Foster Program', 
             key: 11,
-        },
-        {   title: 'Audio Materials', 
-            key: 12,
-        },
-        {   title: 'Large Print Materials', 
-            key: 13,
-        },
-        {   title: 'Paved Pathway', 
-            key: 14,
-        },
-        {   title: 'Mechanical Lifts', 
-            key: 15,
-        },
-        {   title: 'Wheelchair Charging', 
-            key: 16,
-        },        
-        {   title: 'Family Bathroom', 
-            key: 17,
-        },
-        {   title: 'Ramps', 
-            key: 18,
         }
         ];
 
     function setTopLabelSelection(item: number){
         //console.log("Any Cost " + item)
         if(anyCost && (item == 0)){
-            for (let i = 1; i < 19; i++) {
+            for (let i = 1; i < 5; i++) {
                 if(isCurrentlyInSelection(i)){
                     props.modifyCurrentSelections(optionsArray[i].title)
                 }
             }
             setAnyCost(false)
         }else if(!anyCost && (item == 0)){
-            for (let i = 1; i < 19; i++) {
+            for (let i = 1; i < 5; i++) {
                 if(!isCurrentlyInSelection(i)){
                     props.modifyCurrentSelections(optionsArray[i].title)
                 }
             }
             setAnyCost(true)
+        }else if(anyPayment && (item == 5)){
+            for (let i = 6; i < 12; i++) {
+                if(isCurrentlyInSelection(i)){
+                    props.modifyCurrentSelections(optionsArray[i].title)
+                }
+            }
+            setAnyPayment(false)
+        }else if(!anyPayment && (item == 5)){
+            for (let i = 6; i < 12; i++) {
+                if(!isCurrentlyInSelection(i)){
+                    props.modifyCurrentSelections(optionsArray[i].title)
+                }
+            }
+            setAnyPayment(true)
         }
     }
 
     function setSubLabelSelection(item: number){
         if(isCurrentlyInSelection(item)){
-            if(anyCost){
+            if(anyCost && (item < 5)){
                 setAnyCost(false)
+            }else if(anyPayment && (item > 5)){
+                setAnyPayment(false)
             }
             props.modifyCurrentSelections(optionsArray[item].title)
             setPLEASE(!PLEASERERENDER)
         }else{
+            if(item < 5){
                 let straightFlush = true
-                for (let i = 1; i < 19; i++){
+                for (let i = 1; i < 5; i++){
                     if((i != item) && (!isCurrentlyInSelection(i))){
                         straightFlush = false
                     }
@@ -120,7 +119,25 @@ export default function FilterAccessibility(props: any) {
                 }
                 props.modifyCurrentSelections(optionsArray[item].title)
                 setPLEASE(!PLEASERERENDER)
+            }else{
+                let straightFlush = true
+                for (let i = 6; i < 12; i++){
+                    if((i != item) && (!isCurrentlyInSelection(i))){
+                        straightFlush = false
+                    }
+                }
+                if(straightFlush){
+                    setAnyPayment(true)
+                }else{
+                    setAnyPayment(false)
+
+                }
+                props.modifyCurrentSelections(optionsArray[item].title)
+                setPLEASE(!PLEASERERENDER)
             }
+            
+        }
+        
     }
 
     function isCurrentlyInSelection(item: number){
@@ -128,11 +145,17 @@ export default function FilterAccessibility(props: any) {
     }
 
     function renderTopLabel(item: number){
-        if(anyCost){
+        if(anyCost && (item == 0)){
             return(labelComponent(styles.topCostSelected, styles.labelCostSelectedText, item, setTopLabelSelection))
-        }else if(!anyCost){
+        }else if(!anyCost && (item == 0)){
             return(labelComponent(styles.topLabelStyle, styles.labelText, item, setTopLabelSelection))
         }
+        else if(anyPayment && (item == 5)){
+            return(labelComponent(styles.topPaymentSelected, styles.labelPaymentSelectedText, item, setTopLabelSelection))
+        }else{
+            return(labelComponent(styles.topLabelStyle, styles.paymentLableText, item, setTopLabelSelection))
+        }
+
     }
 
     function renderCostLabel(item: number){
@@ -141,6 +164,15 @@ export default function FilterAccessibility(props: any) {
             return(labelComponent(styles.subLabelStyle, styles.subText, item, setSubLabelSelection))
         }else{
             return(labelComponent(styles.subLabelSelectedStyle, styles.subCostTextSelected, item, setSubLabelSelection))
+        }
+    }
+
+    function renderPaymentLabel(item: number){
+        //console.log(props.currentSelections.indexOf(optionsArray[item].title))
+        if(props.currentSelections.indexOf(optionsArray[item].title) == -1){
+            return(labelComponent(styles.subLabelStyle, styles.paymentText, item, setSubLabelSelection))
+        }else{
+            return(labelComponent(styles.subPaymentSelectedStyle, styles.subCostTextSelected, item, setSubLabelSelection))
         }
     }
 
@@ -172,30 +204,28 @@ export default function FilterAccessibility(props: any) {
             <View style={styles.panelContainer}>
                 {renderCostLabel(1)}
                 {renderCostLabel(2)}
+            </View>
+            <View style={styles.panelContainer}>
                 {renderCostLabel(3)}
                 {renderCostLabel(4)}
             </View>
-            <View style={styles.panelContainer}>
-                {renderCostLabel(5)}
-                {renderCostLabel(16)}
-                {renderCostLabel(7)}
-                {renderCostLabel(17)}
+            <View style={{flex:1}}>
+                <View style={styles.panelContainer}>
+                    {renderTopLabel(5)}
+                </View>
             </View>
             <View style={styles.panelContainer}>
-                {renderCostLabel(9)}
-                {renderCostLabel(18)}
-                {renderCostLabel(11)}
-                {renderCostLabel(12)}
+                {renderPaymentLabel(6)}
+                {renderPaymentLabel(7)}
+                {renderPaymentLabel(8)}
             </View>
             <View style={styles.panelContainer}>
-                {renderCostLabel(13)}
-                {renderCostLabel(14)}
-                {renderCostLabel(15)}
-                {renderCostLabel(6)}
+                {renderPaymentLabel(9)}
+                {renderPaymentLabel(10)}
+                {renderPaymentLabel(11)}
             </View>
             <View style={styles.panelContainer}>
-                {renderCostLabel(8)}
-                {renderCostLabel(10)}
+                <FilterReturnButton setOnPress={props.setOptionSelect} />
             </View>
         </View>
     )
@@ -203,7 +233,7 @@ export default function FilterAccessibility(props: any) {
 
 const styles = StyleSheet.create({
     outerContainer: {
-        height: Dimensions.get('window').height * (3/5),
+        height: Dimensions.get('window').height * (4/5),
       },
     panelContainer: {
       flex: 1,
@@ -244,7 +274,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: "black",
         borderWidth: 2,
-        height:44,
+        height:36,
         backgroundColor: Colors.OffWhite.color
     },
     subLabelSelectedStyle: {
@@ -254,7 +284,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: "black",
         borderWidth: 2,
-        height:44,
+        height:36,
         backgroundColor: Colors.Red.color
     },
     subPaymentSelectedStyle: {
@@ -264,7 +294,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: "black",
         borderWidth: 2,
-        height:44,
+        height:36,
         backgroundColor: Colors.Blue.color
     },
     labelText: {
@@ -338,5 +368,35 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         alignSelf: "center",
         textTransform: "uppercase"
-      },
+      }
   })
+
+  /*
+                          <View style={styles.switchStyle}>
+                            <Switch 
+                                style={styles.verticalSwitch}
+                                value={acceptAny}
+                                onTintColor="blue"
+                                onValueChange={() =>(setAcceptAny(!acceptAny))}
+                            />
+                        </View>
+  */
+
+                        /*
+                            function renderSubLabel(item: number){
+        return( 
+            <TouchableOpacity 
+                style={styles.subLabelStyle}
+                accessible = {true}
+                accessibilityLabel = {optionsArray[item].title}
+                accessibilityHint="Click here to learn more."
+                accessibilityRole="imagebutton" 
+                onPress= {() => {
+                    props.modifyCurrentSelections(optionsArray[item].title)
+            }}>
+                <View>
+                    <Text style={styles.subText}>{optionsArray[item].title}</Text>
+                </View>
+            </TouchableOpacity>)
+    }
+                        */

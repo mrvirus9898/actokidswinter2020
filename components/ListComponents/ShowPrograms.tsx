@@ -10,7 +10,6 @@ TODO:
 import React from 'react';
 
 import {
-  TouchableHighlight,
   TouchableOpacity,
   View,
   Text,

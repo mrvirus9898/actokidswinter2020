@@ -20,12 +20,16 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 let searchTerm = "";
 let incomingData= "";
+let filterOverlayFlag = false;
+let SetFilterOverlay = "";
 
 export default function BottomTabNavigator(props: any) {
   const colorScheme = useColorScheme();
 
   searchTerm = props.searchTerm
   incomingData = props.incomingData
+  filterOverlayFlag = props.showFilterOverlay
+  SetFilterOverlay = props.SetFilterOverlay
 
   return (
       <BottomTab.Navigator
@@ -120,7 +124,9 @@ function ProgramComponents({ navigation }) {
         currentSelectedTaxonomy={incomingData[3]}
         searchTerm={searchTerm} 
         navigation={navigation} 
-        programs={incomingData[0]}/>
+        programs={incomingData[0]}
+        filterOverlayFlag={filterOverlayFlag}
+        SetFilterOverlay={SetFilterOverlay}/>
   );
 }
 
@@ -176,11 +182,12 @@ function ActivityListNavigator() {
 }
 
 function ActivityListComponent({navigation}){
-  return(<ActivityList
-        navigation={navigation} 
-        searchTerm={searchTerm}
-        activities={incomingData[1][0]}
-        programs={incomingData[0]}/>)
+  return(
+    <ActivityList
+      navigation={navigation} 
+      searchTerm={searchTerm}
+      activities={incomingData[1][0]}
+      programs={incomingData[0]}/>)
 }
 
 const MapStack = createStackNavigator<MapParamList>();

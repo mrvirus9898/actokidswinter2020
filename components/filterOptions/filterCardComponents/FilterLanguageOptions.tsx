@@ -10,7 +10,7 @@ import React from 'react';
 import { StyleSheet, Text,TouchableOpacity,
     FlatList, View, Dimensions, ImageBackground } from 'react-native';
     
-import Colors from '../../constants/Colors';
+import Colors from '../../../constants/Colors';
 
 export default function FilterLanguageOptions(props: any) {
     //console.log(props.currentSelections)
@@ -33,12 +33,20 @@ export default function FilterLanguageOptions(props: any) {
         {   title: 'Spanish', 
             key: 3,
             url: "https://educrea.cl/wp-content/uploads/2017/09/espanol1200x630.png"
+        },
+        {   title: 'Accept', 
+            key: 4,
+            url: "https://www.seekpng.com/png/detail/134-1348302_white-check-mark-icon-png-download-black-and.png"
         }
         ];
 
-    function modifySelectionOrGoBack(certification: string){
-        props.modifyCurrentSelections(certification)
-        setPRRF(!pleaseReRenderFlag)    
+    function modifySelectionOrGoBack(certification: any){
+        if(certification.key != 4){
+            props.modifyCurrentSelections(certification.title)
+            setPRRF(!pleaseReRenderFlag)
+        }else{
+            props.setOptionSelect(9)
+        }   
     }
 
     function renderOptionsList(){
@@ -69,7 +77,7 @@ export default function FilterLanguageOptions(props: any) {
                 accessibilityHint="Click here to learn more."
                 accessibilityRole="imagebutton" 
                 onPress= {() => {
-                    modifySelectionOrGoBack(item.title)
+                    modifySelectionOrGoBack(item)
                 }}>
                     <View style={styles.item}>
                     <ImageBackground 
@@ -110,7 +118,7 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 1,
         height: (Dimensions.get('window').height / 4), 
-        width: (Dimensions.get('window').width / 3), 
+        width: (Dimensions.get('window').width / 2.5), 
     },
     dimmerImageDimensions: {
         height: "100%",
@@ -129,14 +137,14 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 1,
         height: (Dimensions.get('window').height / 4),
-        width: (Dimensions.get('window').width / 3), 
+        width: (Dimensions.get('window').width / 2.5), 
       },
       itemText: {
         color: '#fff',
       },
       imageDimensions: {
         height: (Dimensions.get('window').height / 4),
-        width: (Dimensions.get('window').width / 3), 
+        width: (Dimensions.get('window').width / 2.5), 
       },
       listContainer: {
         flex: 1,

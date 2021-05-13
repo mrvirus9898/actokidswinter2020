@@ -1,10 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, useWindowDimensions } from 'react-native';
 
-import Colors from '../../constants/Colors';
-
-
-
 export default function ProgramCards(props: any) {
     //console.log(props.item)
     let imageWidth = (useWindowDimensions().width) * 0.75; 
@@ -27,7 +23,7 @@ export default function ProgramCards(props: any) {
                     {props.item.Loct_Text}
                 </Text>
                 <Text style={styles.costText}>
-                    ${props.item.Cost}
+                    {props.item.Cost}
                 </Text>
             </View>
         </View>

@@ -14,12 +14,13 @@ import BottomTabFilterNavigator from './BottomTabFilterNavigator';
 
 import FilterButton from '../components/FilterButton';
 
-
 const Drawer = createDrawerNavigator();
 
 export default function LeftSideDrawerNavigator(props: any) {
   //SEARCHTERM LIVES HERE IS IS PASSED THROUGH THE DIFFERENT SCREENS
   const [searchTerm, SetSearchTerm] = React.useState("")
+
+  const [showFilterOverlay, SetFilterOverlay] = React.useState(false)
 
   //console.log(Object.keys(props.incomingData[1]))
   //console.log(props.incomingData[1])
@@ -43,7 +44,7 @@ export default function LeftSideDrawerNavigator(props: any) {
         options={{
           headerShown: true,
           drawerLabel: "Home Screen",
-          headerTitle: props => HeaderSearchBar(),
+          headerTitle: "Actokids",
           headerTitleStyle: {
             fontWeight: 'bold',
             color: Colors.OffWhite.color
@@ -106,7 +107,9 @@ export default function LeftSideDrawerNavigator(props: any) {
     return(
       <BottomTabNavigation 
         searchTerm={searchTerm}
-        incomingData={props.incomingData}/>
+        incomingData={props.incomingData}
+        showFilterOverlay={showFilterOverlay}
+        SetFilterOverlay={SetFilterOverlay}/>
     );
   }
   
@@ -123,22 +126,30 @@ export default function LeftSideDrawerNavigator(props: any) {
   }
   
   function FilterNavigator({navigation}) {
-    return (<BottomTabFilterNavigator 
-              taxonomy={props.incomingData[1]}
-              currentSelections={props.incomingData[3]}
-              modifyCurrentSelections={props.incomingData[4]}
-              navigation={navigation}
-              setPRR={props.incomingData[5]}
-              PRR={props.incomingData[6]}/>);
+    return (
+      <BottomTabFilterNavigator 
+        taxonomy={props.incomingData[1]}
+        currentSelections={props.incomingData[3]}
+        modifyCurrentSelections={props.incomingData[4]}
+        navigation={navigation}
+        setPRR={props.incomingData[5]}
+        PRR={props.incomingData[6]}/>);
   }
   
   function HeaderSearchBar(){
-    return(<SearchBarComponent 
-            searchTerm={searchTerm} 
-            setTerm={SetSearchTerm}/>);
+    return(
+      <SearchBarComponent 
+        searchTerm={searchTerm} 
+        setTerm={SetSearchTerm}/>);
   }
 
   function FilterButtonComponent(){
-    return(<FilterButton />);
+    return(
+      <FilterButton 
+        showFilterOverlay={showFilterOverlay}
+        SetFilterOverlay={SetFilterOverlay}/>);
   }
 }
+
+/*
+          headerTitle: props => HeaderSearchBar(),*/

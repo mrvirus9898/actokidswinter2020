@@ -10,7 +10,7 @@ import React from 'react';
 import { StyleSheet, Text,TouchableOpacity,
     FlatList, View, Dimensions, ImageBackground } from 'react-native';
     
-import Colors from '../../constants/Colors';
+import Colors from '../../../constants/Colors';
 
 export default function FilterCertifications(props: any) {
     //console.log(props.currentSelections)
@@ -49,12 +49,20 @@ export default function FilterCertifications(props: any) {
         {   title: 'Volunteer Coaches', 
             key: 7,
             url: "https://d21gd0ap5v1ndt.cloudfront.net/web04/img.php?src=/images/2013-14/photo_1.jpg&site=swedes&crop"
+        },
+        {   title: 'Accept', 
+            key: 8,
+            url: "https://www.seekpng.com/png/detail/134-1348302_white-check-mark-icon-png-download-black-and.png"
         }
         ];
 
     function modifySelectionOrGoBack(certification: string){
-        props.modifyCurrentSelections(certification)
-        setPRRF(!pleaseReRenderFlag)    
+        if(certification.key != 8){
+            props.modifyCurrentSelections(certification.title)
+            setPRRF(!pleaseReRenderFlag)
+        }else{
+            props.setOptionSelect(9)
+        }  
     }
 
 
@@ -86,7 +94,7 @@ export default function FilterCertifications(props: any) {
                 accessibilityHint="Click here to learn more."
                 accessibilityRole="imagebutton" 
                 onPress= {() => {
-                    modifySelectionOrGoBack(item.title)
+                    modifySelectionOrGoBack(item)
                 }}>
                     <View style={styles.item}>
                     <ImageBackground 
@@ -126,7 +134,7 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 1,
         height: (Dimensions.get('window').height / 7), 
-        width: (Dimensions.get('window').width / 3), 
+        width: (Dimensions.get('window').width / 2.5), 
     },
     item: {
         backgroundColor: '#4D243D',
@@ -135,7 +143,7 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 1,
         height: (Dimensions.get('window').height / 7),
-        width: (Dimensions.get('window').width / 3), 
+        width: (Dimensions.get('window').width / 2.5), 
     },
     dimmerImageDimensions: {
         height: "100%",
@@ -149,7 +157,7 @@ const styles = StyleSheet.create({
       },
     imageDimensions: {
         height: (Dimensions.get('window').height / 7),
-        width: (Dimensions.get('window').width / 3), 
+        width: (Dimensions.get('window').width / 2.5), 
     },
     listContainer: {
         flex: 1,

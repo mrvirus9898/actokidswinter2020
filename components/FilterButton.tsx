@@ -23,12 +23,13 @@ export default function filterButton(props: any) {
   //console.log("Prop Keys at Bottom Tab Filter Nav: " + Object.keys(props))
 
   return (
-    <TouchableOpacity
-      style={styles.appButtonContainer}
-      onPress={() => navigation.navigate('Filter')}
-    >
-      <Text style={styles.appButtonText}>Filter</Text>
-    </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.appButtonContainer}
+        onPress={() => 
+          props.SetFilterOverlay(!props.showFilterOverlay)}
+      >
+        <Text style={styles.appButtonText}>Filter</Text>
+      </TouchableOpacity>
   );
 }
 
@@ -71,4 +72,12 @@ const styles = StyleSheet.create({
       onPress={() => navigation.navigate('ProgramFilterScreen')}
     />
 
+*/
+/*
+    <TouchableOpacity
+      style={styles.appButtonContainer}
+      onPress={() => navigation.navigate('Filter')}
+    >
+      <Text style={styles.appButtonText}>Filter</Text>
+    </TouchableOpacity>
 */
