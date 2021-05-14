@@ -2,7 +2,8 @@ const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 const Red = '#E60F0F';
 const OffWhite = '#F8F8FF';
-const Blue = '#2200e4eb'
+const Blue = '#2200e4eb';
+const DarkGrey = '#5d5d5d';
 
 export default {
   light: {
@@ -21,7 +22,8 @@ export default {
   },
   OffWhite:{
     color: OffWhite,
-    Transparent: 'rgba(248, 248, 255, 0.98)'
+    Transparent: 'rgba(248, 248, 255, 0.98)',
+    Faint: 'rgba(248, 248, 255, 0.50)'
   },
   Red:{
     color: Red,
@@ -33,4 +35,8 @@ export default {
     Transparent: 'rgba(34, 0, 228, 0.92)',
     CircleTransparent: 'rgba(34, 0, 228, 0.80)'
   },
+  DarkGrey:{
+    color: DarkGrey,
+    Transparent: 'rgba(93, 93, 93, 0.75)'
+  }
 };

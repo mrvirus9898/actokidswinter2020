@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Modal} from 'react-native';
+import { View } from 'react-native';
 
 import ShowPrograms from '../components/ListComponents/ShowPrograms';
 
@@ -7,16 +7,6 @@ import ShowPrograms from '../components/ListComponents/ShowPrograms';
 export default function ProgramList(props: any) {
   return(
       <View style={{flex:1}}>
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={props.filterOverlayFlag}
-          onRequestClose={() => {
-            alert("Close")
-            props.SetFilterOverlay(!props.filterOverlayFlag)
-          }}>
-            <Text>HELLO</Text>
-        </Modal>
         <ShowPrograms 
             searchTerm={props.searchTerm} 
             navigation={props.navigation}
@@ -31,3 +21,17 @@ export default function ProgramList(props: any) {
 /*
 F8F8FF = Decently light grey, slight blue
 */
+
+/*        
+import Dialog, { DialogContent } from 'react-native-popup-dialog';
+
+                <Dialog 
+          visible={props.filterOverlayFlag}
+          onTouchOutside={() => {
+            props.SetFilterOverlay(!props.filterOverlayFlag)
+          }}
+        >
+          <DialogContent>
+            <Text>HELLO</Text>
+          </DialogContent>
+        </Dialog>*/

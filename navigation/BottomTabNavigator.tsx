@@ -3,6 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
+import { View } from 'react-native';
+import FilterPopUp from '../components/filterOptions/filterPopUpComponents/FilterPopUp'
+
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 
@@ -20,50 +23,48 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 let searchTerm = "";
 let incomingData= "";
-let filterOverlayFlag = false;
-let SetFilterOverlay = "";
 
 export default function BottomTabNavigator(props: any) {
   const colorScheme = useColorScheme();
 
   searchTerm = props.searchTerm
   incomingData = props.incomingData
-  filterOverlayFlag = props.showFilterOverlay
-  SetFilterOverlay = props.SetFilterOverlay
+  let filterOverlayFlag  = props.showFilterOverlay
 
   return (
+    <View style={{flex:1}}>
+
+      <FilterPopUp 
+        filterOverlayFlag={filterOverlayFlag}
+        SetFilterOverlay={props.SetFilterOverlay}/>
+
       <BottomTab.Navigator
         initialRouteName="Programs"
         tabBarOptions={{ 
           activeTintColor: Colors[colorScheme].tint,
           activeBackgroundColor: Colors.Red.color,
           inactiveBackgroundColor: Colors.Red.color,
-          labelStyle: {color: Colors.OffWhite.color}
-        }}>
+          labelStyle: {color: Colors.OffWhite.color}}}>
           <BottomTab.Screen
             name="Programs"
             component={ProgramListNavigator}
             options={{
               tabBarIcon: ({ color }) => <TabBarIcon name="md-rocket" color={Colors.OffWhite.color} />,
-            }}
-            
-          />
+          }}/>
           <BottomTab.Screen
             name="Activities"
             component={ActivityListNavigator}
             options={{
               tabBarIcon: ({ color }) => <TabBarIcon name="md-american-football" color={Colors.OffWhite.color} />,
-            }}
-          />
+          }}/>
           <BottomTab.Screen
             name="Map"
             component={MapNavigator}
             options={{
-              tabBarIcon: ({ color }) => <TabBarIcon name="md-map" color={Colors.OffWhite.color} />,
-              
-            }}
-          />
+              tabBarIcon: ({ color }) => <TabBarIcon name="md-map" color={Colors.OffWhite.color} />,  
+          }}/>
       </BottomTab.Navigator>
+      </View>
   );
 
 }
@@ -124,9 +125,7 @@ function ProgramComponents({ navigation }) {
         currentSelectedTaxonomy={incomingData[3]}
         searchTerm={searchTerm} 
         navigation={navigation} 
-        programs={incomingData[0]}
-        filterOverlayFlag={filterOverlayFlag}
-        SetFilterOverlay={SetFilterOverlay}/>
+        programs={incomingData[0]}/>
   );
 }
 
