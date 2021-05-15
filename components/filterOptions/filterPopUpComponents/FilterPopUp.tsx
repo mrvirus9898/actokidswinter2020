@@ -8,13 +8,39 @@ FILTER POP UP
 
 import React from 'react';
 
-import {StyleSheet, View, Text, Modal, Pressable} from 'react-native';
+import {StyleSheet, View, Text, Modal, Pressable, Dimensions} from 'react-native';
+
+import FilterPopUpOptions from './FilterPopUpOptions';
+import { AntDesign } from '@expo/vector-icons';
 
 import Colors from '../../../constants/Colors'
 
 export default function FilterPopUp(props: any) {
-    return(
 
+
+    function returnDefaultFilterMenu(){
+      return(
+        <View>
+        <View style={styles.filterOptionsRowStyle}>
+          <Pressable
+              style={styles.searchButton}
+              onPress={() => props.SetFilterOverlay(!props.filterOverlayFlag)}>
+              <Text style={styles.buttonTextStyle}>Search</Text>
+          </Pressable>
+          <Pressable
+              style={styles.cancelButton}
+              onPress={() => props.SetFilterOverlay(!props.filterOverlayFlag)}>
+              <View style={styles.closeIconWrapper}>
+                <AntDesign name="close" size={22} color="black" />
+              </View>
+          </Pressable>
+          </View>
+        <FilterPopUpOptions />
+      </View>
+      )
+    }
+
+    return(
             <Modal
                 animationType="fade"
                 transparent={true}
@@ -26,20 +52,7 @@ export default function FilterPopUp(props: any) {
                 }}>
                 <View style={styles.transparentModalOverlay}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Physical Activity</Text>
-                        <Text style={styles.modalText}>Physical Intensity</Text>
-                        <Text style={styles.modalText}>Competitiveness</Text>
-                        <Text style={styles.modalText}>Skill Level</Text>
-                        <Text style={styles.modalText}>Competitive Skill</Text>
-                        <Text style={styles.modalText}>Certifications</Text>
-                        <Text style={styles.modalText}>Accessibility</Text>
-                        <Text style={styles.modalText}>Language Options</Text>
-                        <Text style={styles.modalText}>Cost</Text>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => props.SetFilterOverlay(!props.filterOverlayFlag)}>
-                            <Text style={styles.textStyle}>Hide Modal</Text>
-                        </Pressable>
+                      {returnDefaultFilterMenu()}
                     </View>
                 </View>
             </Modal>
@@ -50,15 +63,15 @@ export default function FilterPopUp(props: any) {
 const styles = StyleSheet.create({
     transparentModalOverlay: {
         flex: 1,
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
         backgroundColor: Colors.DarkGrey.Transparent
       },
       modalView: {
-        margin: 20,
-        backgroundColor: "white",
+        marginVertical: 30,
+        padding: 3,
+        backgroundColor: 'lightgrey',
         borderRadius: 20,
-        padding: 35,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
@@ -67,26 +80,42 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        elevation: 5
+        elevation: 5,
+        width: (Dimensions.get('window').width * 5/6),
+        height: (Dimensions.get('window').height * 5/6 ) 
       },
-      button: {
+      searchButton: {
         borderRadius: 20,
-        padding: 10,
-        elevation: 2
+        elevation: 2,
+        backgroundColor: Colors.OffWhite.color,
+        width:(Dimensions.get('window').width * 8/12),
+      },      
+      cancelButton: {
+        borderRadius: 20,
+        elevation: 2,
+        backgroundColor: Colors.OffWhite.color,
+        width:(Dimensions.get('window').width * 1/12),
       },
-      buttonOpen: {
-        backgroundColor: "#F194FF",
-      },
-      buttonClose: {
-        backgroundColor: "#2196F3",
-      },
-      textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
+      buttonTextStyle: {
+        color: "black",
+        textAlign: "center",
+        fontSize: 18
       },
       modalText: {
         marginBottom: 15,
         textAlign: "center"
-      }
+      },
+      filterOptionsRowStyle: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "center"
+      },
+      closeIconWrapper: {
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center'
+      }   
 });
+
+/*
+*/
