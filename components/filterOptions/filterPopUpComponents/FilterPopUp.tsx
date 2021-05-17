@@ -10,6 +10,13 @@ import React from 'react';
 
 import {StyleSheet, View, Text, Modal, Pressable, Dimensions} from 'react-native';
 
+import PhysicalActivityFilterList from './PhysicalActivityFilterLIst';
+import CompetitiveStructureFilter from './CompetitiveStructureFilter';
+import PhysicalIntensityFilter from './PhysicalIntensityFilter';
+import SkillLevelFilter from './SkillLevelFilter';
+import FilterCertificationsPopUp from './FilterCertificationsPopUp';
+import FilterLanguageOptionsPopUp from './FilterLanguageOptionsPopUp';
+
 import FilterPopUpOptions from './FilterPopUpOptions';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -17,10 +24,130 @@ import Colors from '../../../constants/Colors'
 
 export default function FilterPopUp(props: any) {
 
+  const [optionSelect, setOptionSelect] = React.useState(9)
 
-    function returnDefaultFilterMenu(){
-      return(
-        <View>
+  function chooseModalFilterComponents(){
+
+    //console.log(optionSelect)
+    switch(optionSelect){
+        case 0:{
+          return renderPhysicalActivityFilter()
+        }
+        case 1:{
+          return renderPhysicalIntensityFilter()
+        }
+        case 2:{
+          return renderCompetitiveStructureFilter()
+        }
+        case 3:{
+          return renderSkillLevelFilter()
+        }
+        case 4:{
+          return renderCompetitiveScaleFilter()
+        }
+        case 5:{
+          return renderCertifcationFilter()
+        }
+        case 6:{
+          return renderAccessibilityFilter()
+        }
+        case 7:{
+          return renderLanguageComponent()
+        }
+        case 8:{
+          return renderCostsFilter()
+        }
+        default:{
+          return returnDefaultFilterMenu()
+        }
+    }
+  }
+
+  function renderPhysicalActivityFilter(){
+    //console.log(optionSelect)
+    return(
+      <PhysicalActivityFilterList 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+    )
+  }
+
+  function renderCompetitiveStructureFilter(){
+    return(
+      <CompetitiveStructureFilter 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+    )
+  }
+
+  function renderPhysicalIntensityFilter(){
+    return(
+      <PhysicalIntensityFilter 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+    )
+  }
+
+  function renderSkillLevelFilter(){
+    return(
+      <SkillLevelFilter 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+    )
+  }
+
+  function renderCompetitiveScaleFilter(){
+    alert("Hello")
+    return(null)
+  }
+
+  function renderCostsFilter(){
+    alert("Hello")
+    return(null)
+  }
+
+  function renderCertifcationFilter(){
+    return(
+      <FilterCertificationsPopUp 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+    )
+  }
+
+  function renderAccessibilityFilter(){
+    alert("Hello")
+    return(null)
+  }
+
+  function renderLanguageComponent(){
+    return(
+      <FilterLanguageOptionsPopUp 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+    )
+  }
+
+  function returnDefaultFilterMenu(){
+    return(
+      <View>
         <View style={styles.filterOptionsRowStyle}>
           <Pressable
               style={styles.searchButton}
@@ -35,28 +162,30 @@ export default function FilterPopUp(props: any) {
               </View>
           </Pressable>
           </View>
-        <FilterPopUpOptions />
+        <FilterPopUpOptions 
+          setOptionSelect={setOptionSelect} />
       </View>
-      )
-    }
+    )
+  }
 
     return(
-            <Modal
-                animationType="fade"
-                transparent={true}
-                statusBarTranslucent={true}
-                visible={props.filterOverlayFlag}
-                onRequestClose={() => {
-                    //alert("Close")
-                    props.SetFilterOverlay(!props.filterOverlayFlag)
-                }}>
-                <View style={styles.transparentModalOverlay}>
-                    <View style={styles.modalView}>
-                      {returnDefaultFilterMenu()}
-                    </View>
-                </View>
-            </Modal>
-
+      <Modal
+          animationType="fade"
+          transparent={true}
+          statusBarTranslucent={true}
+          visible={props.filterOverlayFlag}
+          onRequestClose={() => {
+              //alert("Close")
+              props.SetFilterOverlay(!props.filterOverlayFlag)
+          }}>
+          <Pressable
+            style={styles.transparentModalOverlay}
+            onPress={() => props.SetFilterOverlay(!props.filterOverlayFlag)}>
+              <View style={styles.modalView}>
+                {chooseModalFilterComponents()}
+              </View>
+          </Pressable>
+      </Modal>
     )
 }
 

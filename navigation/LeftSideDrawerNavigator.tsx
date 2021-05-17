@@ -109,7 +109,11 @@ export default function LeftSideDrawerNavigator(props: any) {
         searchTerm={searchTerm}
         incomingData={props.incomingData}
         showFilterOverlay={showFilterOverlay}
-        SetFilterOverlay={SetFilterOverlay}/>
+        SetFilterOverlay={SetFilterOverlay}
+        currentSelections={props.incomingData[3]}
+        modifyCurrentSelections={props.incomingData[4]}
+        setPRR={props.incomingData[5]}
+        PRR={props.incomingData[6]}/>
     );
   }
   

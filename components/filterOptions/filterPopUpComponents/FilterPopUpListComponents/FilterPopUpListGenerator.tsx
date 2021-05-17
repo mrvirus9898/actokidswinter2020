@@ -1,47 +1,27 @@
 import * as React from 'react';
 import { Text, StyleSheet, TouchableOpacity , FlatList , View , Dimensions} from 'react-native';
-import { Icon } from 'react-native-elements';
+
 import { AntDesign } from '@expo/vector-icons';
 
-import Colors from '../../../constants/Colors';
+import Colors from '../../../../constants/Colors';
 
-export default function FilterPopUpOptions(props: any) {
+export default function FilterPopUpListGenerator(props: any) {
 
-    let optionsArray = [
-        {   title: 'Physical Activity',
-            key: "0"
-        },
-        {   title: 'Physical Intensity', 
-            key: "1"
-        },
-        {   title: 'Competitiveness',
-            key: "2"
-        },
-        {   title: 'Skill Level', 
-            key: "3"
-        },
-        {   title: 'Competitive Skill', 
-            key: "4"
-        },
-        {   title: 'Certifications', 
-            key: "5"
-        },
-        {   title: 'Accessibility', 
-            key: "6"
-        },
-        {   title: 'Language Options', 
-            key: "7"
-        },
-        {   title: 'Cost', 
-            key: "8"
-        }
-    ];
+    //console.log("Hit Generator")
+
+    const [pleaseReRenderFlag, setPRRF] = React.useState(true)
+
+    
+    function modifySelectionOrGoBack(item: any){
+        props.modifyCurrentSelections(item.title)
+        setPRRF(!pleaseReRenderFlag)
+    }
 
     function renderFlatlistOfFilterOptions(){
         return(
             <FlatList 
                 style={styles.listContainer}
-                data={optionsArray} 
+                data={props.optionsArray} 
                 renderItem={renderFilterOptionItem}>
             </FlatList>
         )
@@ -56,7 +36,7 @@ export default function FilterPopUpOptions(props: any) {
                 accessibilityHint="Click here to learn more."
                 accessibilityRole="imagebutton" 
                 onPress= {() => {
-                    props.setOptionSelect(parseInt(item.key));
+                    modifySelectionOrGoBack(item)
                     //alert("Hello")
             }}>
             <View style={styles.filterOptionItemStyle}>
@@ -69,9 +49,10 @@ export default function FilterPopUpOptions(props: any) {
          )
      }
 
-  return (
-    renderFlatlistOfFilterOptions()
-  );
+     return (
+        renderFlatlistOfFilterOptions()
+      );
+
 }
 
 const styles = StyleSheet.create({
@@ -101,18 +82,3 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     }    
 });
-
-/*
-                    <View style={styles.filterImageWrapper}>
-                        <View style={styles.item}>
-                            <ImageBackground 
-                                style={styles.imageDimensions}        
-                                source={{uri: item.url}}>
-                                <Text style={styles.categoryText}>
-                                    {item.title}
-                                </Text> 
-                            </ImageBackground> 
-            
-                        </View>
-                    </View>
-                    */

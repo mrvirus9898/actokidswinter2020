@@ -162,12 +162,12 @@ export default function FilterRootCards(props: any) {
             return(
                 <View style={styles.listContainer}>
                     <FilterCards 
-                    navigation={props.navigation}
-                    currentSelections={props.currentSelections}
-                    setOptionSelect={setOptionSelect}
-                    modifyCurrentSelections={props.modifyCurrentSelections}
-                    setPRR={props.setPRR}
-                    PRR={props.PRR}/>
+                        navigation={props.navigation}
+                        currentSelections={props.currentSelections}
+                        setOptionSelect={setOptionSelect}
+                        modifyCurrentSelections={props.modifyCurrentSelections}
+                        setPRR={props.setPRR}
+                        PRR={props.PRR}/>
                     <View style={{flex: 0.15, flexDirection: 'row', padding: 10}}>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity    

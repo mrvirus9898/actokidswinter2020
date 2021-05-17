@@ -36,7 +36,11 @@ export default function BottomTabNavigator(props: any) {
 
       <FilterPopUp 
         filterOverlayFlag={filterOverlayFlag}
-        SetFilterOverlay={props.SetFilterOverlay}/>
+        SetFilterOverlay={props.SetFilterOverlay}
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections}
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
 
       <BottomTab.Navigator
         initialRouteName="Programs"
