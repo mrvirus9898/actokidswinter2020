@@ -2,19 +2,32 @@ import * as React from 'react';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import AppLogin from '../components/AppLogin';
 import SearchBarComponent from '../components/SearchBar';
 import FontSettings from '../components/LeftBarSettings/FontSettings';
+
+import ProgramList from '../screens/ProgramList';
+import ProgramDetails from '../screens/ProgramDetails';
+import ActivityList from '../screens/ActivityList';
+import ActivityDetails from '../screens/ActivityDetails';
+import Map from '../screens/Map'
 
 import Colors from '../constants/Colors';
 
 import BottomTabNavigation from './BottomTabNavigator';
 import BottomTabFilterNavigator from './BottomTabFilterNavigator';
 
+
 import FilterButton from '../components/FilterButton';
 
+import { BottomTabParamList, ProgramParamList, ActivityParamList, MapParamList } from '../types';
+
 const Drawer = createDrawerNavigator();
+const ProgramListStack = createStackNavigator<ProgramParamList>();
+const ActivityListStack = createStackNavigator<ActivityParamList>();
+const MapStack = createStackNavigator<MapParamList>();
 
 export default function LeftSideDrawerNavigator(props: any) {
   //SEARCHTERM LIVES HERE IS IS PASSED THROUGH THE DIFFERENT SCREENS
@@ -40,10 +53,42 @@ export default function LeftSideDrawerNavigator(props: any) {
       }}>
       <Drawer.Screen 
         name="Programs" 
-        component={ProgramComponents}
+        component={ProgramListNavigator}
         options={{
           headerShown: true,
           drawerLabel: "Home Screen",
+          headerTitle: "Actokids",
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerRight: () => FilterButtonComponent(),
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          },
+      }}/>
+      <Drawer.Screen 
+        name="Search by Sport" 
+        component={ActivityListNavigator}
+        options={{
+          headerShown: true,
+          drawerLabel: "Search By Sport",
+          headerTitle: "Actokids",
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerRight: () => FilterButtonComponent(),
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          },
+      }}/>
+      <Drawer.Screen 
+        name="Map" 
+        component={MapNavigator}
+        options={{
+          headerShown: true,
+          drawerLabel: "Search The Map",
           headerTitle: "Actokids",
           headerTitleStyle: {
             fontWeight: 'bold',
@@ -103,17 +148,156 @@ export default function LeftSideDrawerNavigator(props: any) {
     </NavigationContainer>
   );
 
-  function ProgramComponents( ) {
+function ProgramListNavigator() {
+  return (
+    <ProgramListStack.Navigator>
+      <ProgramListStack.Screen
+        name="ProgramListScreen"
+        component={ProgramComponents}
+        options={{ 
+          headerTitle: 'Program Details',
+          headerShown: false,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerRight: () => (<FilterButton />),
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>
+      <ProgramListStack.Screen
+        name="ProgramDetailsScreen"
+        component={ProgramDetails}
+        options={{ 
+          headerTitle: 'Program Details',
+          headerShown: false,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>      
+    </ProgramListStack.Navigator>
+  );
+}
+
+function ActivityListNavigator() {
+  return (
+    <ActivityListStack.Navigator>
+      <ActivityListStack.Screen
+        name="ActivityListScreen"
+        component={ActivityListComponent}
+        options={{ 
+          headerShown: false,
+          headerTitle: 'Activity List',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>
+      <ActivityListStack.Screen
+        name="ActivityDetailsScreen"
+        component={ActivityDetails}
+        options={{ 
+          headerShown: false,
+          headerTitle: 'Activity Details',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>
+      <ActivityListStack.Screen
+        name="ActivityProgramDetailsScreen"
+        component={ProgramDetails}
+        options={{ 
+          headerShown: false,
+          headerTitle: 'Activity Details',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}/>
+    </ActivityListStack.Navigator>
+  );
+}
+
+function MapNavigator() {
+  return (
+    <MapStack.Navigator>
+      <MapStack.Screen
+        name="MapScreen"
+        component={MapComponents}
+        options={{ 
+          headerShown: false,
+          headerTitle: 'Map',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}
+      />
+      <MapStack.Screen
+        name="MapProgramDetailsScreen"
+        component={ProgramDetails}
+        options={{ 
+          headerShown: false,
+          headerTitle: 'Map',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: Colors.OffWhite.color
+          },
+          headerStyle: {
+            backgroundColor: Colors.Red.color
+          }, 
+      }}
+      />
+    </MapStack.Navigator>
+  );
+}
+
+
+  function ProgramComponents({navigation}) {
     return(
-      <BottomTabNavigation 
+      <ProgramList 
+        currentSelectedTaxonomy={props.incomingData[3]}
+        searchTerm={searchTerm} 
+        navigation={navigation} 
+        programs={props.incomingData[0]}/>);
+  }
+
+
+  function ActivityListComponent({navigation}){
+    return(
+      <ActivityList
+        navigation={navigation} 
         searchTerm={searchTerm}
-        incomingData={props.incomingData}
-        showFilterOverlay={showFilterOverlay}
-        SetFilterOverlay={SetFilterOverlay}
-        currentSelections={props.incomingData[3]}
-        modifyCurrentSelections={props.incomingData[4]}
-        setPRR={props.incomingData[5]}
-        PRR={props.incomingData[6]}/>
+        activities={props.incomingData[1][0]}
+        programs={props.incomingData[0]}/>)
+  }
+
+  function MapComponents({navigation}) {
+    //console.log(incomingData[0])
+    return(
+        <Map 
+          navigation={navigation}
+          searchTerm={searchTerm} 
+          programs={props.incomingData[0]}
+          mapOfPrograms={props.incomingData[2]}/>
     );
   }
   
@@ -157,3 +341,18 @@ export default function LeftSideDrawerNavigator(props: any) {
 
 /*
           headerTitle: props => HeaderSearchBar(),*/
+
+/*
+  function ProgramComponents( ) {
+    return(
+      <BottomTabNavigation 
+        searchTerm={searchTerm}
+        incomingData={props.incomingData}
+        showFilterOverlay={showFilterOverlay}
+        SetFilterOverlay={SetFilterOverlay}
+        currentSelections={props.incomingData[3]}
+        modifyCurrentSelections={props.incomingData[4]}
+        setPRR={props.incomingData[5]}
+        PRR={props.incomingData[6]}/>
+    );
+  }*/

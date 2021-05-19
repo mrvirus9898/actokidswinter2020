@@ -64,7 +64,6 @@ export default function FilterPopUp(props: any) {
   }
 
   function renderPhysicalActivityFilter(){
-    //console.log(optionSelect)
     return(
       <PhysicalActivityFilterList 
         setOptionSelect={setOptionSelect} 
