@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Text, StyleSheet, TouchableOpacity , FlatList , View , Dimensions} from 'react-native';
-import { Icon } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
 
 import Colors from '../../../constants/Colors';
@@ -8,32 +7,35 @@ import Colors from '../../../constants/Colors';
 export default function FilterPopUpOptions(props: any) {
 
     let optionsArray = [
-        {   title: 'Physical Activity',
+        {   title: 'Accessibility: Engagement & Accommodations',
             key: "0"
         },
-        {   title: 'Physical Intensity', 
+        {   title: 'Accessibility Features: Communication Formats', 
             key: "1"
         },
-        {   title: 'Competitiveness',
+        {   title: 'Accessibility Features: Physical Environment Features',
             key: "2"
         },
-        {   title: 'Skill Level', 
+        {   title: 'Language', 
             key: "3"
         },
-        {   title: 'Competitive Skill', 
+        {   title: 'Cost', 
             key: "4"
         },
-        {   title: 'Certifications', 
+        {   title: 'Skill Level', 
             key: "5"
         },
-        {   title: 'Accessibility', 
+        {   title: 'Coach/Instructor Certifications', 
             key: "6"
         },
-        {   title: 'Language Options', 
+        {   title: 'Physical Activity Intensity Level', 
             key: "7"
         },
-        {   title: 'Cost', 
+        {   title: 'Competitive Structure', 
             key: "8"
+        },
+        {   title: 'Age', 
+            key: "9"
         }
     ];
 
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginVertical: 5,
         borderRadius: 10,
-        width:(Dimensions.get('window').width * 9/12),
+        width:(Dimensions.get('window').width * 19/24),
         height:(Dimensions.get('window').height / 15),
         justifyContent: 'center'
     },
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
     filterOptionsText: {
         marginHorizontal: 5,
         color: 'black',
-        fontSize: 18,
+        fontSize: 12,
         fontWeight: "bold",
     },
     filterOptionsRowStyle: {

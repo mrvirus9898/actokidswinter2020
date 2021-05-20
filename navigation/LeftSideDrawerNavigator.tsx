@@ -4,9 +4,12 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { View } from 'react-native';
+
 import AppLogin from '../components/AppLogin';
 import SearchBarComponent from '../components/SearchBar';
 import FontSettings from '../components/LeftBarSettings/FontSettings';
+import FilterPopUp from '../components/filterOptions/filterPopUpComponents/FilterPopUp'
 
 import ProgramList from '../screens/ProgramList';
 import ProgramDetails from '../screens/ProgramDetails';
@@ -56,7 +59,7 @@ export default function LeftSideDrawerNavigator(props: any) {
         component={ProgramListNavigator}
         options={{
           headerShown: true,
-          drawerLabel: "Home Screen",
+          drawerLabel: "Programs",
           headerTitle: "Actokids",
           headerTitleStyle: {
             fontWeight: 'bold',
@@ -272,12 +275,24 @@ function MapNavigator() {
 
 
   function ProgramComponents({navigation}) {
+    //console.log("modify props" + props.incomingData[4])
     return(
+      <View style={{flex:1}}>
+      <FilterPopUp 
+        filterOverlayFlag={showFilterOverlay}
+        SetFilterOverlay={SetFilterOverlay}
+        currentSelections={props.incomingData[3]}
+        modifyCurrentSelections={props.incomingData[4]}
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+
       <ProgramList 
         currentSelectedTaxonomy={props.incomingData[3]}
         searchTerm={searchTerm} 
         navigation={navigation} 
-        programs={props.incomingData[0]}/>);
+        programs={props.incomingData[0]}/>
+      </View>);
+
   }
 
 

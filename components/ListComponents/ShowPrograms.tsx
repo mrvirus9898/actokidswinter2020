@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flex: 1,
-    padding: 10
+
   },
   currentFilterText: {
     fontSize: 18,

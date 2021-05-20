@@ -10,12 +10,15 @@ import React from 'react';
 
 import {StyleSheet, View, Text, Modal, Pressable, Dimensions} from 'react-native';
 
-import PhysicalActivityFilterList from './PhysicalActivityFilterLIst';
+import AccessEngagementFilter from './AccessEngagementFilter';
+import AccessCommunicationFilter from './AccessCommunicationFilter';
+import AccessPhysicalFeatures from './AccessPhysicalFeatures';
 import CompetitiveStructureFilter from './CompetitiveStructureFilter';
 import PhysicalIntensityFilter from './PhysicalIntensityFilter';
 import SkillLevelFilter from './SkillLevelFilter';
 import FilterCertificationsPopUp from './FilterCertificationsPopUp';
 import FilterLanguageOptionsPopUp from './FilterLanguageOptionsPopUp';
+import FilterCostPopUp from './FilterCostsPopUp';
 
 import FilterPopUpOptions from './FilterPopUpOptions';
 import { AntDesign } from '@expo/vector-icons';
@@ -24,48 +27,50 @@ import Colors from '../../../constants/Colors'
 
 export default function FilterPopUp(props: any) {
 
-  const [optionSelect, setOptionSelect] = React.useState(9)
+  const [optionSelect, setOptionSelect] = React.useState(100)
 
   function chooseModalFilterComponents(){
 
     //console.log(optionSelect)
     switch(optionSelect){
         case 0:{
-          return renderPhysicalActivityFilter()
+          return renderEngagementFilter()
         }
         case 1:{
-          return renderPhysicalIntensityFilter()
+          return renderCommunicationFormatFilter()
         }
         case 2:{
-          return renderCompetitiveStructureFilter()
+          return renderPhysicalAccessibilityFilter()
         }
         case 3:{
-          return renderSkillLevelFilter()
-        }
-        case 4:{
-          return renderCompetitiveScaleFilter()
-        }
-        case 5:{
-          return renderCertifcationFilter()
-        }
-        case 6:{
-          return renderAccessibilityFilter()
-        }
-        case 7:{
           return renderLanguageComponent()
         }
-        case 8:{
+        case 4:{
           return renderCostsFilter()
+        }
+        case 5:{
+          return renderSkillLevelFilter()
+        }
+        case 6:{
+          return renderCertifcationFilter()
+        }
+        case 7:{
+          return renderPhysicalIntensityFilter()
+        }
+        case 8:{
+          return renderCompetitiveStructureFilter()
+        }
+        case 9: {
+          return null
         }
         default:{
           return returnDefaultFilterMenu()
         }
     }
   }
-
-  function renderPhysicalActivityFilter(){
+  function renderEngagementFilter(){
     return(
-      <PhysicalActivityFilterList 
+      <AccessEngagementFilter 
         setOptionSelect={setOptionSelect} 
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
@@ -74,9 +79,9 @@ export default function FilterPopUp(props: any) {
     )
   }
 
-  function renderCompetitiveStructureFilter(){
+  function renderCommunicationFormatFilter(){
     return(
-      <CompetitiveStructureFilter 
+      <AccessCommunicationFilter 
         setOptionSelect={setOptionSelect} 
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
@@ -85,9 +90,32 @@ export default function FilterPopUp(props: any) {
     )
   }
 
-  function renderPhysicalIntensityFilter(){
+  function renderPhysicalAccessibilityFilter(){
     return(
-      <PhysicalIntensityFilter 
+      <AccessPhysicalFeatures 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+    )
+  }
+
+  function renderLanguageComponent(){
+    return(
+      <FilterLanguageOptionsPopUp 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+    )
+  }
+
+  
+  function renderCostsFilter(){
+    return(
+      <FilterCostPopUp 
         setOptionSelect={setOptionSelect} 
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
@@ -107,16 +135,6 @@ export default function FilterPopUp(props: any) {
     )
   }
 
-  function renderCompetitiveScaleFilter(){
-    alert("Hello")
-    return(null)
-  }
-
-  function renderCostsFilter(){
-    alert("Hello")
-    return(null)
-  }
-
   function renderCertifcationFilter(){
     return(
       <FilterCertificationsPopUp 
@@ -128,14 +146,20 @@ export default function FilterPopUp(props: any) {
     )
   }
 
-  function renderAccessibilityFilter(){
-    alert("Hello")
-    return(null)
+  function renderPhysicalIntensityFilter(){
+    return(
+      <PhysicalIntensityFilter 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+    )
   }
 
-  function renderLanguageComponent(){
+  function renderCompetitiveStructureFilter(){
     return(
-      <FilterLanguageOptionsPopUp 
+      <CompetitiveStructureFilter 
         setOptionSelect={setOptionSelect} 
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
@@ -209,8 +233,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
-        width: (Dimensions.get('window').width * 5/6),
-        height: (Dimensions.get('window').height * 5/6 ) 
+        width: (Dimensions.get('window').width * 21/24),
+        height: (Dimensions.get('window').height * 11/12 ) 
       },
       searchButton: {
         borderRadius: 20,
@@ -246,4 +270,26 @@ const styles = StyleSheet.create({
 });
 
 /*
+  function renderPhysicalActivityFilter(){
+    return(
+      <PhysicalActivityFilterList 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}/>
+    )
+  }
+
+    function renderAccessibilityFilter(){
+    alert("Hello")
+    return(null)
+  }
+
+    function renderCompetitiveScaleFilter(){
+    alert("Hello")
+    return(null)
+  }
+
+
 */
