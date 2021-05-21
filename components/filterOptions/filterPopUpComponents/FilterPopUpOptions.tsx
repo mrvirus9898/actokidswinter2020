@@ -7,13 +7,13 @@ import Colors from '../../../constants/Colors';
 export default function FilterPopUpOptions(props: any) {
 
     let optionsArray = [
-        {   title: 'Accessibility: Engagement & Accommodations',
+        {   title: 'Accessibility: Engagement',
             key: "0"
         },
-        {   title: 'Accessibility Features: Communication Formats', 
+        {   title: 'Accessibility: Communication', 
             key: "1"
         },
-        {   title: 'Accessibility Features: Physical Environment Features',
+        {   title: 'Accessibility: Environment',
             key: "2"
         },
         {   title: 'Language', 
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     filterOptionsText: {
         marginHorizontal: 5,
         color: 'black',
-        fontSize: 12,
+        fontSize: 16,
         fontWeight: "bold",
     },
     filterOptionsRowStyle: {

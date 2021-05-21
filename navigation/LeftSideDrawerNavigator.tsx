@@ -284,13 +284,17 @@ function MapNavigator() {
         currentSelections={props.incomingData[3]}
         modifyCurrentSelections={props.incomingData[4]}
         setPRR={props.setPRR}
-        PRR={props.PRR}/>
+        PRR={props.PRR}
+        applyFilter={props.incomingData[7]}
+        setApplyFilter={props.incomingData[8]}/>
 
       <ProgramList 
         currentSelectedTaxonomy={props.incomingData[3]}
         searchTerm={searchTerm} 
         navigation={navigation} 
-        programs={props.incomingData[0]}/>
+        programs={props.incomingData[0]}
+        applyFilter={props.incomingData[7]}
+        setApplyFilter={props.incomingData[8]}/>
       </View>);
 
   }

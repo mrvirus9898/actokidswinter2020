@@ -173,15 +173,25 @@ export default function FilterPopUp(props: any) {
       <View>
         <View style={styles.filterOptionsRowStyle}>
           <Pressable
-              style={styles.searchButton}
+              style={styles.cancelButton}
               onPress={() => props.SetFilterOverlay(!props.filterOverlayFlag)}>
+              <View style={styles.closeIconWrapper}>
+                <AntDesign name="caretleft" size={22} color={Colors.Red.color} />
+              </View>
+          </Pressable>
+          <Pressable
+              style={styles.searchButton}
+              onPress={() => props.setApplyFilter(true)}>
               <Text style={styles.buttonTextStyle}>Search</Text>
           </Pressable>
           <Pressable
               style={styles.cancelButton}
-              onPress={() => props.SetFilterOverlay(!props.filterOverlayFlag)}>
+              onPress={() => {
+                alert("Filter has been cleared")
+                props.modifyCurrentSelections("Clear")
+              }}>
               <View style={styles.closeIconWrapper}>
-                <AntDesign name="close" size={22} color="black" />
+                <AntDesign name="close" size={22} color={Colors.Red.color} />
               </View>
           </Pressable>
           </View>
@@ -204,9 +214,13 @@ export default function FilterPopUp(props: any) {
           <Pressable
             style={styles.transparentModalOverlay}
             onPress={() => props.SetFilterOverlay(!props.filterOverlayFlag)}>
+              <Pressable
+                style={{flex: 1}}
+                onPress={() => {}}>
               <View style={styles.modalView}>
                 {chooseModalFilterComponents()}
               </View>
+              </Pressable>
           </Pressable>
       </Modal>
     )
@@ -238,20 +252,25 @@ const styles = StyleSheet.create({
       },
       searchButton: {
         borderRadius: 20,
+        borderColor: Colors.Red.color,
+        borderWidth: 1,
         elevation: 2,
         backgroundColor: Colors.OffWhite.color,
-        width:(Dimensions.get('window').width * 8/12),
+        width:(Dimensions.get('window').width * 7/12),
+        height: (Dimensions.get('window').height * 1/24 ) 
       },      
       cancelButton: {
         borderRadius: 20,
         elevation: 2,
         backgroundColor: Colors.OffWhite.color,
         width:(Dimensions.get('window').width * 1/12),
+        height: (Dimensions.get('window').height * 1/24 ) 
       },
       buttonTextStyle: {
         color: "black",
         textAlign: "center",
-        fontSize: 18
+        fontSize: 18,
+        fontWeight: "bold",
       },
       modalText: {
         marginBottom: 15,
@@ -265,7 +284,10 @@ const styles = StyleSheet.create({
       closeIconWrapper: {
         flex: 1, 
         justifyContent: 'center', 
-        alignItems: 'center'
+        alignItems: 'center',
+        borderWidth: 1,
+        borderRadius: 20,
+        borderColor: Colors.Red.color
       }   
 });
 

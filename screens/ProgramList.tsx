@@ -11,7 +11,9 @@ export default function ProgramList(props: any) {
             searchTerm={props.searchTerm} 
             navigation={props.navigation}
             programs={props.programs}
-            currentSelectedTaxonomy={props.currentSelectedTaxonomy}/>
+            currentSelectedTaxonomy={props.currentSelectedTaxonomy}
+            applyFilter={props.applyFilter}
+            setApplyFilter={props.setApplyFilter}/>
       </View>
   );
 }

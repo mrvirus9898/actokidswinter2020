@@ -129,7 +129,7 @@ export default function ShowPrograms(props: any){
 
   function applyFilter(input: any){
     //console.log("Applying Filter")
-    if(props.currentSelectedTaxonomy == undefined){
+    if(props.currentSelectedTaxonomy == undefined || !props.applyFilter){
       //console.log("UNDEFINDED")
       return input
     }else{

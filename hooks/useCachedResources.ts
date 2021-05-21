@@ -13,26 +13,35 @@ export default function useCachedResources() {
   const [isTaxonomyLoadingComplete, setTaxonomyLoadingComplete] = React.useState([[]]);
   const [currentSelectedTaxonomy, setCurrentSelectedTaxonomy] = React.useState(initialCST);
   const [PLEASERERENDER, setPRR] = React.useState(true);
+  const [applyFilter, setApplyFilter] = React.useState(false)
 
   function modifyCurrentSelectedTaxonomy(selection: string){
     let tempSelection: string[] = currentSelectedTaxonomy
     let index = tempSelection.indexOf(selection,0)
     console.log("Taxonomy Selection: " + selection)
+    //console.log("Selection Length: " + tempSelection.length)
 
     //if the selected taxonomy criteria is already in the current taxonomy then remove it
     //if Clear is passed, clear the whole thing
     //else add it
-    if(index > -1){
+    if(selection === "Clear"){
+      /*let clearSelection: string[] = new Array
+      setCurrentSelectedTaxonomy(clearSelection)*/
+      if(tempSelection.length != 0){
+        //Yeah this is how you empty an array in Javascript
+        //Get a free shrug 
+        tempSelection.length = 0
+        setCurrentSelectedTaxonomy(tempSelection)
+        setApplyFilter(false)
+      }
+    }else if(index > -1){
       tempSelection.splice(index, 1)
       setCurrentSelectedTaxonomy(tempSelection)
-    }else if(selection === "Clear"){
-      let clearSelection: string[] = new Array
-      setCurrentSelectedTaxonomy(clearSelection)
     }else{
       tempSelection.push(selection)
       setCurrentSelectedTaxonomy(tempSelection)
     }
-    console.log("Current Taxonomy: " + currentSelectedTaxonomy)
+    //console.log("Current Taxonomy: " + currentSelectedTaxonomy)
   }
 
   // Load any resources or data that we need prior to rendering the app
@@ -86,7 +95,9 @@ export default function useCachedResources() {
   if(isProgramLoadingComplete && isTaxonomyLoadingComplete && isMapProcessingComplete){
     //console.log(isProgramLoadingComplete)
     //console.log(isTaxonomyLoadingComplete)
-    return [isProgramLoadingComplete, isTaxonomyLoadingComplete, isMapProcessingComplete, currentSelectedTaxonomy, modifyCurrentSelectedTaxonomy, setPRR, PLEASERERENDER]
+    return [isProgramLoadingComplete, isTaxonomyLoadingComplete, isMapProcessingComplete, 
+      currentSelectedTaxonomy, modifyCurrentSelectedTaxonomy, setPRR, PLEASERERENDER,
+      applyFilter, setApplyFilter]
   }else{
     
   return false
