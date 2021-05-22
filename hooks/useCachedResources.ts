@@ -13,7 +13,8 @@ export default function useCachedResources() {
   const [isTaxonomyLoadingComplete, setTaxonomyLoadingComplete] = React.useState([[]]);
   const [currentSelectedTaxonomy, setCurrentSelectedTaxonomy] = React.useState(initialCST);
   const [PLEASERERENDER, setPRR] = React.useState(true);
-  const [applyFilter, setApplyFilter] = React.useState(false)
+  const [applyFilter, setApplyFilter] = React.useState(false);
+  const [filterMinMaxAge, setFilterMinMaxAge] = React.useState([5,18])
 
   function modifyCurrentSelectedTaxonomy(selection: string){
     let tempSelection: string[] = currentSelectedTaxonomy
@@ -97,7 +98,7 @@ export default function useCachedResources() {
     //console.log(isTaxonomyLoadingComplete)
     return [isProgramLoadingComplete, isTaxonomyLoadingComplete, isMapProcessingComplete, 
       currentSelectedTaxonomy, modifyCurrentSelectedTaxonomy, setPRR, PLEASERERENDER,
-      applyFilter, setApplyFilter]
+      applyFilter, setApplyFilter, filterMinMaxAge, setFilterMinMaxAge]
   }else{
     
   return false

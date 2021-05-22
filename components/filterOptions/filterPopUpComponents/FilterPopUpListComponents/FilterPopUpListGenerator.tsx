@@ -23,7 +23,7 @@ export default function FilterPopUpListGenerator(props: any) {
                 <View style={styles.filterOptionsRowStyle}>
                     <Pressable
                         style={styles.cancelButton}
-                        onPress={() => props.SetFilterOverlay(!props.filterOverlayFlag)}>
+                        onPress={() => props.setOptionSelect(10)}>
                         <View style={styles.closeIconWrapper}>
                             <AntDesign name="caretleft" size={22} color={Colors.Red.color} />
                         </View>

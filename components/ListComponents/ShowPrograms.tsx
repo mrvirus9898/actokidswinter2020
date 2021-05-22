@@ -107,8 +107,11 @@ export default function ShowPrograms(props: any){
   function printCurrentTaxonomy(currentTaxonomy: any){
     let output = ""
     currentTaxonomy.forEach(taxonomy => {
-      output = output + taxonomy + ", "
+      output = output + taxonomy + " "
     });
+    if(props.filterMinMaxAge[0] > 5 || props.filterMinMaxAge[1] < 18){
+      output = output + "Minimum Age: " + props.filterMinMaxAge[0] + ", Maximum Age: " + props.filterMinMaxAge[1]
+    }
     return output
   }
 
@@ -136,15 +139,15 @@ export default function ShowPrograms(props: any){
       //INCLUSIVE FILTRATION
       if(props.currentSelectedTaxonomy.length != 0){
         let output: Array<any> = []
+
+        //Default flat is True, or Inclusive
+
         if(exclusiveInclusiveToggle){
           input.forEach(program => { 
             //NOT PRETTY BUT IT WORKS
-            //console.log(program.Program_Name + ": " + (props.currentSelectedTaxonomy.indexOf((program.competitive_skill))))
-
             let tempProgramTaxonomy = [
               program.Certs,
               program.accessability,
-              program.physical_activity,
               program.physical_intensity,
               program.competitive_skill,
               program.language_options,
@@ -153,8 +156,8 @@ export default function ShowPrograms(props: any){
               program.competitive_structure
             ]
 
-            if(tempProgramTaxonomy.some( ai => props.currentSelectedTaxonomy.includes(ai))) {
-              //console.log("Target Found: " + props.currentSelectedTaxonomy.indexOf(program.Certs))
+            if(tempProgramTaxonomy.some( ai => props.currentSelectedTaxonomy.includes(ai)) && 
+            (props.filterMinMaxAge[0] <= program.MaxAge) && (props.filterMinMaxAge[1] >= program.MinAge)) {
                 output.push(program)
             }
           });
@@ -164,7 +167,6 @@ export default function ShowPrograms(props: any){
             let tempProgramTaxonomy = [
               program.Certs,
               program.accessability,
-              program.physical_activity,
               program.physical_intensity,
               program.competitive_skill,
               program.language_options,
@@ -173,7 +175,8 @@ export default function ShowPrograms(props: any){
               program.competitive_structure
             ]
 
-            if(props.currentSelectedTaxonomy.every( ai => tempProgramTaxonomy.includes(ai))){
+            if(props.currentSelectedTaxonomy.every( ai => tempProgramTaxonomy.includes(ai)) &&
+            (props.filterMinMaxAge[0] <= program.MaxAge) && (props.filterMinMaxAge[1] >= program.MinAge)){
               output.push(program)
             }
           });

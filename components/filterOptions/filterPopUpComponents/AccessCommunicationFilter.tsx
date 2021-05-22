@@ -26,6 +26,7 @@ export default function AccessCommunicationFilter(props: any) {
             currentSelections={props.currentSelections}
             modifyCurrentSelections={props.modifyCurrentSelections}
             setPRR={props.setPRR}
-            PRR={props.PRR} />
+            PRR={props.PRR} 
+            setApplyFilter={props.setApplyFilter}/>
       );
 }

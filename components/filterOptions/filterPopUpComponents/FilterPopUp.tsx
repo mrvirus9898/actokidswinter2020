@@ -19,6 +19,7 @@ import SkillLevelFilter from './SkillLevelFilter';
 import FilterCertificationsPopUp from './FilterCertificationsPopUp';
 import FilterLanguageOptionsPopUp from './FilterLanguageOptionsPopUp';
 import FilterCostPopUp from './FilterCostsPopUp';
+import FilterAgeRange from './FilterAgeRange';
 
 import FilterPopUpOptions from './FilterPopUpOptions';
 import { AntDesign } from '@expo/vector-icons';
@@ -61,7 +62,7 @@ export default function FilterPopUp(props: any) {
           return renderCompetitiveStructureFilter()
         }
         case 9: {
-          return null
+          return renderFilterAgeRange()
         }
         default:{
           return returnDefaultFilterMenu()
@@ -75,7 +76,8 @@ export default function FilterPopUp(props: any) {
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
-        PRR={props.PRR}/>
+        PRR={props.PRR}
+        setApplyFilter={props.setApplyFilter}/>
     )
   }
 
@@ -86,7 +88,8 @@ export default function FilterPopUp(props: any) {
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
-        PRR={props.PRR}/>
+        PRR={props.PRR}
+        setApplyFilter={props.setApplyFilter}/>
     )
   }
 
@@ -97,7 +100,8 @@ export default function FilterPopUp(props: any) {
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
-        PRR={props.PRR}/>
+        PRR={props.PRR}
+        setApplyFilter={props.setApplyFilter}/>
     )
   }
 
@@ -108,7 +112,8 @@ export default function FilterPopUp(props: any) {
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
-        PRR={props.PRR}/>
+        PRR={props.PRR}
+        setApplyFilter={props.setApplyFilter}/>
     )
   }
 
@@ -120,7 +125,8 @@ export default function FilterPopUp(props: any) {
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
-        PRR={props.PRR}/>
+        PRR={props.PRR}
+        setApplyFilter={props.setApplyFilter}/>
     )
   }
 
@@ -131,7 +137,8 @@ export default function FilterPopUp(props: any) {
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
-        PRR={props.PRR}/>
+        PRR={props.PRR}
+        setApplyFilter={props.setApplyFilter}/>
     )
   }
 
@@ -142,7 +149,8 @@ export default function FilterPopUp(props: any) {
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
-        PRR={props.PRR}/>
+        PRR={props.PRR}
+        setApplyFilter={props.setApplyFilter}/>
     )
   }
 
@@ -153,7 +161,8 @@ export default function FilterPopUp(props: any) {
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
-        PRR={props.PRR}/>
+        PRR={props.PRR}
+        setApplyFilter={props.setApplyFilter}/>
     )
   }
 
@@ -164,7 +173,22 @@ export default function FilterPopUp(props: any) {
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
-        PRR={props.PRR}/>
+        PRR={props.PRR}
+        setApplyFilter={props.setApplyFilter}/>
+    )
+  }
+
+  function renderFilterAgeRange(){
+    return(
+      <FilterAgeRange 
+        setOptionSelect={setOptionSelect} 
+        currentSelections={props.currentSelections}
+        modifyCurrentSelections={props.modifyCurrentSelections} 
+        setPRR={props.setPRR}
+        PRR={props.PRR}
+        setApplyFilter={props.setApplyFilter}
+        filterMinMaxAge={props.filterMinMaxAge}
+        setFilterMinMaxAge={props.setFilterMinMaxAge}/>
     )
   }
 

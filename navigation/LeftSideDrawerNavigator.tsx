@@ -286,7 +286,9 @@ function MapNavigator() {
         setPRR={props.setPRR}
         PRR={props.PRR}
         applyFilter={props.incomingData[7]}
-        setApplyFilter={props.incomingData[8]}/>
+        setApplyFilter={props.incomingData[8]}
+        filterMinMaxAge={props.incomingData[9]}
+        setFilterMinMaxAge={props.incomingData[10]}/>
 
       <ProgramList 
         currentSelectedTaxonomy={props.incomingData[3]}
@@ -294,7 +296,9 @@ function MapNavigator() {
         navigation={navigation} 
         programs={props.incomingData[0]}
         applyFilter={props.incomingData[7]}
-        setApplyFilter={props.incomingData[8]}/>
+        setApplyFilter={props.incomingData[8]}
+        filterMinMaxAge={props.incomingData[9]}
+        setFilterMinMaxAge={props.incomingData[10]}/>
       </View>);
 
   }

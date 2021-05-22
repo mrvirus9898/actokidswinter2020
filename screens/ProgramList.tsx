@@ -13,7 +13,9 @@ export default function ProgramList(props: any) {
             programs={props.programs}
             currentSelectedTaxonomy={props.currentSelectedTaxonomy}
             applyFilter={props.applyFilter}
-            setApplyFilter={props.setApplyFilter}/>
+            setApplyFilter={props.setApplyFilter}
+            filterMinMaxAge={props.filterMinMaxAge}
+            setFilterMinMaxAge={props.setFilterMinMaxAge}/>
       </View>
   );
 }
