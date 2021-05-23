@@ -30,7 +30,10 @@ export default function FilterPopUpListGenerator(props: any) {
                     </Pressable>
                     <Pressable
                         style={styles.searchButton}
-                        onPress={() => props.setApplyFilter(true)}>
+                        onPress={() => {
+                            props.setApplyFilter(true)
+                            props.SetFilterOverlay(false)
+                        }}>
                         <Text style={styles.buttonTextStyle}>Search</Text>
                     </Pressable>
                     <Pressable

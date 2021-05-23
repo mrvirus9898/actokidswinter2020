@@ -26,6 +26,7 @@ export default function CompetitiveStructureFilter(props: any) {
             modifyCurrentSelections={props.modifyCurrentSelections}
             setPRR={props.setPRR}
             PRR={props.PRR} 
-            setApplyFilter={props.setApplyFilter}/>
+            setApplyFilter={props.setApplyFilter}
+            SetFilterOverlay={props.SetFilterOverlay}/>
       );
 }

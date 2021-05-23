@@ -35,6 +35,7 @@ export default function useCachedResources() {
         setCurrentSelectedTaxonomy(tempSelection)
         setApplyFilter(false)
       }
+      setFilterMinMaxAge([5,18])
     }else if(index > -1){
       tempSelection.splice(index, 1)
       setCurrentSelectedTaxonomy(tempSelection)

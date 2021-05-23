@@ -73,6 +73,7 @@ export default function FilterPopUp(props: any) {
     return(
       <AccessEngagementFilter 
         setOptionSelect={setOptionSelect} 
+        SetFilterOverlay={props.SetFilterOverlay}
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
@@ -85,6 +86,7 @@ export default function FilterPopUp(props: any) {
     return(
       <AccessCommunicationFilter 
         setOptionSelect={setOptionSelect} 
+        SetFilterOverlay={props.SetFilterOverlay}
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
@@ -97,6 +99,7 @@ export default function FilterPopUp(props: any) {
     return(
       <AccessPhysicalFeatures 
         setOptionSelect={setOptionSelect} 
+        SetFilterOverlay={props.SetFilterOverlay}
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
@@ -109,6 +112,7 @@ export default function FilterPopUp(props: any) {
     return(
       <FilterLanguageOptionsPopUp 
         setOptionSelect={setOptionSelect} 
+        SetFilterOverlay={props.SetFilterOverlay}
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
@@ -122,6 +126,7 @@ export default function FilterPopUp(props: any) {
     return(
       <FilterCostPopUp 
         setOptionSelect={setOptionSelect} 
+        SetFilterOverlay={props.SetFilterOverlay}
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
@@ -134,6 +139,7 @@ export default function FilterPopUp(props: any) {
     return(
       <SkillLevelFilter 
         setOptionSelect={setOptionSelect} 
+        SetFilterOverlay={props.SetFilterOverlay}
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
@@ -146,6 +152,7 @@ export default function FilterPopUp(props: any) {
     return(
       <FilterCertificationsPopUp 
         setOptionSelect={setOptionSelect} 
+        SetFilterOverlay={props.SetFilterOverlay}
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
@@ -158,6 +165,7 @@ export default function FilterPopUp(props: any) {
     return(
       <PhysicalIntensityFilter 
         setOptionSelect={setOptionSelect} 
+        SetFilterOverlay={props.SetFilterOverlay}
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
@@ -170,6 +178,7 @@ export default function FilterPopUp(props: any) {
     return(
       <CompetitiveStructureFilter 
         setOptionSelect={setOptionSelect} 
+        SetFilterOverlay={props.SetFilterOverlay}
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
@@ -182,6 +191,7 @@ export default function FilterPopUp(props: any) {
     return(
       <FilterAgeRange 
         setOptionSelect={setOptionSelect} 
+        SetFilterOverlay={props.SetFilterOverlay}
         currentSelections={props.currentSelections}
         modifyCurrentSelections={props.modifyCurrentSelections} 
         setPRR={props.setPRR}
@@ -190,6 +200,12 @@ export default function FilterPopUp(props: any) {
         filterMinMaxAge={props.filterMinMaxAge}
         setFilterMinMaxAge={props.setFilterMinMaxAge}/>
     )
+  }
+
+  function clearFilter(){
+    alert("Filter has been cleared")
+    props.modifyCurrentSelections("Clear")
+    props.SetFilterOverlay(false)
   }
 
   function returnDefaultFilterMenu(){
@@ -205,15 +221,15 @@ export default function FilterPopUp(props: any) {
           </Pressable>
           <Pressable
               style={styles.searchButton}
-              onPress={() => props.setApplyFilter(true)}>
+              onPress={() => {
+                props.setApplyFilter(true)
+                props.SetFilterOverlay(false)
+              }}>
               <Text style={styles.buttonTextStyle}>Search</Text>
           </Pressable>
           <Pressable
               style={styles.cancelButton}
-              onPress={() => {
-                alert("Filter has been cleared")
-                props.modifyCurrentSelections("Clear")
-              }}>
+              onPress={() => clearFilter()}>
               <View style={styles.closeIconWrapper}>
                 <AntDesign name="close" size={22} color={Colors.Red.color} />
               </View>

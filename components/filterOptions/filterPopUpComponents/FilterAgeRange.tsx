@@ -43,8 +43,12 @@ export default function FilterAgeRange(props: any) {
     }
 
     function commitSearch(){
-        props.setApplyFilter(true)
-        props.setFilterMinMaxAge(minMaxAge)
+        if(minMaxAge[0] != 5 || minMaxAge[1] != 18){
+            props.setApplyFilter(true)
+            props.setFilterMinMaxAge(minMaxAge)
+        }
+        props.SetFilterOverlay(false)
+
     }
 
     function AgeSlider(){
@@ -121,7 +125,7 @@ export default function FilterAgeRange(props: any) {
                             sliderLength={(Dimensions.get('window').width * 9/12)}
                             onValuesChange={minMaxAgeChange}
                             min={5}
-                            max={25}
+                            max={18}
                             step={1}/>
                     </View>
                 </View>
