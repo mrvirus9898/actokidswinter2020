@@ -21,6 +21,17 @@ export default function FilterPopUpListGenerator(props: any) {
         props.setApplyFilter()
     }
 
+    function clearLocalFilter(){
+        //console.log(props.optionsArray)
+        props.optionsArray.forEach(element => {
+            if(props.currentSelections.indexOf(element.title) != -1){
+                //console.log("Target FOund")
+                props.currentSelections.splice(props.currentSelections.indexOf(element.title), 1)
+                setPRRF(!pleaseReRenderFlag)
+            }
+        });
+    }
+
     function renderFlatlistOfFilterOptions(){
         return(
             <View>
@@ -43,7 +54,7 @@ export default function FilterPopUpListGenerator(props: any) {
                         style={styles.cancelButton}
                         onPress={() => {
                             //alert("Filter has been cleared")
-                            props.modifyCurrentSelections("Clear")
+                            clearLocalFilter()
                         }}>
                         <View style={styles.closeIconWrapper}>
                             <AntDesign name="close" size={22} color={Colors.Red.color} />

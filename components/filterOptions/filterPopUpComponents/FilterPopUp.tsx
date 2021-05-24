@@ -30,7 +30,7 @@ export default function FilterPopUp(props: any) {
 
   let initialCST: string[] = new Array
   const [optionSelect, setOptionSelect] = React.useState(100)
-  const [selectedModalOptions, modifyModalSelections] = React.useState(initialCST)
+  const [selectedModalOptions, modifyModalSelections] = React.useState(props.currentSelections)
   const [minMaxAge, setAges] = React.useState([props.filterMinMaxAge[0], props.filterMinMaxAge[1]])
 
   function modifySelectedFilter(selection: string){
@@ -229,7 +229,7 @@ export default function FilterPopUp(props: any) {
 
   function clearFilter(){
     //alert("Filter has been cleared")
-    props.modifyCurrentSelections("Clear")
+    props.modifyCurrentSelections(selectedModalOptions, true, minMaxAge)
     props.setApplyFilter(false)
     props.SetFilterOverlay(false)
   }
