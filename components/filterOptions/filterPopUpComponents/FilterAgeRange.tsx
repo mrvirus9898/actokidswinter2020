@@ -6,7 +6,7 @@ import Colors from '../../../constants/Colors';
 
 import { AntDesign } from '@expo/vector-icons';
 
-import { Text, StyleSheet, TouchableOpacity , FlatList , View , Dimensions , Pressable} from 'react-native';
+import { Text, StyleSheet, View , Dimensions , Pressable} from 'react-native';
 
 export default function FilterAgeRange(props: any) {
 
@@ -37,18 +37,28 @@ export default function FilterAgeRange(props: any) {
 
     function increaseMaxAge(){
         console.log(minMaxAge[1])
-        if(minMaxAge[1] < 25){
+        if(minMaxAge[1] < 18){
             setAges([minMaxAge[0],minMaxAge[1]+1])
         }
     }
 
     function commitSearch(){
-        if(minMaxAge[0] != 5 || minMaxAge[1] != 18){
-            props.setApplyFilter(true)
+        if(minMaxAge[0] != 5 || 
+        minMaxAge[1] != 18 ||
+        (minMaxAge[0] == 5 && props.filterMinMaxAge[0] != 5) ||
+        (minMaxAge[1] == 18 && props.filterMinMaxAge[1] != 18)){
+            //console.log("Commiting Age Filter")
             props.setFilterMinMaxAge(minMaxAge)
+            props.setApplyFilter(true)
         }
         props.SetFilterOverlay(false)
 
+    }
+
+    function clearAgeFilter(){
+        //alert("Filter has been cleared")
+        props.modifyCurrentSelections("Clear")
+        setAges([5,18])
     }
 
     function AgeSlider(){
@@ -70,8 +80,7 @@ export default function FilterAgeRange(props: any) {
                     <Pressable
                         style={styles.cancelButton}
                         onPress={() => {
-                            alert("Filter has been cleared")
-                            props.modifyCurrentSelections("Clear")
+                            clearAgeFilter()
                         }}>
                         <View style={styles.closeIconWrapper}>
                             <AntDesign name="close" size={22} color={Colors.Red.color} />

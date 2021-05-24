@@ -13,7 +13,7 @@ export default function useCachedResources() {
   const [isTaxonomyLoadingComplete, setTaxonomyLoadingComplete] = React.useState([[]]);
   const [currentSelectedTaxonomy, setCurrentSelectedTaxonomy] = React.useState(initialCST);
   const [PLEASERERENDER, setPRR] = React.useState(true);
-  const [applyFilter, setApplyFilter] = React.useState(false);
+
   const [filterMinMaxAge, setFilterMinMaxAge] = React.useState([5,18])
 
   function modifyCurrentSelectedTaxonomy(selection: string){
@@ -28,14 +28,17 @@ export default function useCachedResources() {
     if(selection === "Clear"){
       /*let clearSelection: string[] = new Array
       setCurrentSelectedTaxonomy(clearSelection)*/
+      //console.log("Temp Selections Length: " + tempSelection.length)
       if(tempSelection.length != 0){
         //Yeah this is how you empty an array in Javascript
         //Get a free shrug 
         tempSelection.length = 0
         setCurrentSelectedTaxonomy(tempSelection)
-        setApplyFilter(false)
       }
-      setFilterMinMaxAge([5,18])
+      filterMinMaxAge[0] = 5
+      filterMinMaxAge[1] = 18
+      //setFilterMinMaxAge([5,18])
+
     }else if(index > -1){
       tempSelection.splice(index, 1)
       setCurrentSelectedTaxonomy(tempSelection)
@@ -98,8 +101,8 @@ export default function useCachedResources() {
     //console.log(isProgramLoadingComplete)
     //console.log(isTaxonomyLoadingComplete)
     return [isProgramLoadingComplete, isTaxonomyLoadingComplete, isMapProcessingComplete, 
-      currentSelectedTaxonomy, modifyCurrentSelectedTaxonomy, setPRR, PLEASERERENDER,
-      applyFilter, setApplyFilter, filterMinMaxAge, setFilterMinMaxAge]
+      currentSelectedTaxonomy, modifyCurrentSelectedTaxonomy, PLEASERERENDER, setPRR,
+      filterMinMaxAge, setFilterMinMaxAge]
   }else{
     
   return false

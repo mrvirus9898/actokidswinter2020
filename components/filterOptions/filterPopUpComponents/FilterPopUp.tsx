@@ -28,7 +28,34 @@ import Colors from '../../../constants/Colors'
 
 export default function FilterPopUp(props: any) {
 
+  let initialCST: string[] = new Array
   const [optionSelect, setOptionSelect] = React.useState(100)
+  const [selectedModalOptions, modifyModalSelections] = React.useState(initialCST)
+  const [minMaxAge, setAges] = React.useState([5, 18])
+
+  function modifySelectedFilter(selection: string){
+    let tempSelection: string[] = selectedModalOptions
+    let index = tempSelection.indexOf(selection,0)
+    console.log("Temp Selection: " + selection)
+
+    if(selection === "Clear"){
+      if(tempSelection.length != 0){
+        tempSelection.length = 0
+        modifyModalSelections(tempSelection)
+      }
+      minMaxAge[0] = 5
+      minMaxAge[1] = 18
+      //setFilterMinMaxAge([5,18])
+
+    }else if(index > -1){
+      tempSelection.splice(index, 1)
+      modifyModalSelections(tempSelection)
+    }else{
+      tempSelection.push(selection)
+      modifyModalSelections(tempSelection)
+    }
+    //console.log("Current Taxonomy: " + currentSelectedTaxonomy)
+  }
 
   function chooseModalFilterComponents(){
 
@@ -74,8 +101,8 @@ export default function FilterPopUp(props: any) {
       <AccessEngagementFilter 
         setOptionSelect={setOptionSelect} 
         SetFilterOverlay={props.SetFilterOverlay}
-        currentSelections={props.currentSelections}
-        modifyCurrentSelections={props.modifyCurrentSelections} 
+        currentSelections={selectedModalOptions}
+        modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
         setApplyFilter={props.setApplyFilter}/>
@@ -87,8 +114,8 @@ export default function FilterPopUp(props: any) {
       <AccessCommunicationFilter 
         setOptionSelect={setOptionSelect} 
         SetFilterOverlay={props.SetFilterOverlay}
-        currentSelections={props.currentSelections}
-        modifyCurrentSelections={props.modifyCurrentSelections} 
+        currentSelections={selectedModalOptions}
+        modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
         setApplyFilter={props.setApplyFilter}/>
@@ -100,8 +127,8 @@ export default function FilterPopUp(props: any) {
       <AccessPhysicalFeatures 
         setOptionSelect={setOptionSelect} 
         SetFilterOverlay={props.SetFilterOverlay}
-        currentSelections={props.currentSelections}
-        modifyCurrentSelections={props.modifyCurrentSelections} 
+        currentSelections={selectedModalOptions}
+        modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
         setApplyFilter={props.setApplyFilter}/>
@@ -113,8 +140,8 @@ export default function FilterPopUp(props: any) {
       <FilterLanguageOptionsPopUp 
         setOptionSelect={setOptionSelect} 
         SetFilterOverlay={props.SetFilterOverlay}
-        currentSelections={props.currentSelections}
-        modifyCurrentSelections={props.modifyCurrentSelections} 
+        currentSelections={selectedModalOptions}
+        modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
         setApplyFilter={props.setApplyFilter}/>
@@ -127,8 +154,8 @@ export default function FilterPopUp(props: any) {
       <FilterCostPopUp 
         setOptionSelect={setOptionSelect} 
         SetFilterOverlay={props.SetFilterOverlay}
-        currentSelections={props.currentSelections}
-        modifyCurrentSelections={props.modifyCurrentSelections} 
+        currentSelections={selectedModalOptions}
+        modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
         setApplyFilter={props.setApplyFilter}/>
@@ -140,8 +167,8 @@ export default function FilterPopUp(props: any) {
       <SkillLevelFilter 
         setOptionSelect={setOptionSelect} 
         SetFilterOverlay={props.SetFilterOverlay}
-        currentSelections={props.currentSelections}
-        modifyCurrentSelections={props.modifyCurrentSelections} 
+        currentSelections={selectedModalOptions}
+        modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
         setApplyFilter={props.setApplyFilter}/>
@@ -153,8 +180,8 @@ export default function FilterPopUp(props: any) {
       <FilterCertificationsPopUp 
         setOptionSelect={setOptionSelect} 
         SetFilterOverlay={props.SetFilterOverlay}
-        currentSelections={props.currentSelections}
-        modifyCurrentSelections={props.modifyCurrentSelections} 
+        currentSelections={selectedModalOptions}
+        modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
         setApplyFilter={props.setApplyFilter}/>
@@ -166,8 +193,8 @@ export default function FilterPopUp(props: any) {
       <PhysicalIntensityFilter 
         setOptionSelect={setOptionSelect} 
         SetFilterOverlay={props.SetFilterOverlay}
-        currentSelections={props.currentSelections}
-        modifyCurrentSelections={props.modifyCurrentSelections} 
+        currentSelections={selectedModalOptions}
+        modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
         setApplyFilter={props.setApplyFilter}/>
@@ -179,8 +206,8 @@ export default function FilterPopUp(props: any) {
       <CompetitiveStructureFilter 
         setOptionSelect={setOptionSelect} 
         SetFilterOverlay={props.SetFilterOverlay}
-        currentSelections={props.currentSelections}
-        modifyCurrentSelections={props.modifyCurrentSelections} 
+        currentSelections={selectedModalOptions}
+        modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
         setApplyFilter={props.setApplyFilter}/>
@@ -192,19 +219,20 @@ export default function FilterPopUp(props: any) {
       <FilterAgeRange 
         setOptionSelect={setOptionSelect} 
         SetFilterOverlay={props.SetFilterOverlay}
-        currentSelections={props.currentSelections}
-        modifyCurrentSelections={props.modifyCurrentSelections} 
+        currentSelections={selectedModalOptions}
+        modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
         setApplyFilter={props.setApplyFilter}
-        filterMinMaxAge={props.filterMinMaxAge}
-        setFilterMinMaxAge={props.setFilterMinMaxAge}/>
+        filterMinMaxAge={minMaxAge}
+        setFilterMinMaxAge={setAges}/>
     )
   }
 
   function clearFilter(){
-    alert("Filter has been cleared")
-    props.modifyCurrentSelections("Clear")
+    //alert("Filter has been cleared")
+    props.modifyModalSelections("Clear")
+    props.setApplyFilter(false)
     props.SetFilterOverlay(false)
   }
 

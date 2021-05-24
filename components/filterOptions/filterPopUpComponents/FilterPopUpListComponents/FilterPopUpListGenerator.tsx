@@ -39,7 +39,7 @@ export default function FilterPopUpListGenerator(props: any) {
                     <Pressable
                         style={styles.cancelButton}
                         onPress={() => {
-                            alert("Filter has been cleared")
+                            //alert("Filter has been cleared")
                             props.modifyCurrentSelections("Clear")
                         }}>
                         <View style={styles.closeIconWrapper}>
@@ -68,14 +68,32 @@ export default function FilterPopUpListGenerator(props: any) {
                     modifySelectionOrGoBack(item)
                     //alert("Hello")
             }}>
-            <View style={styles.filterOptionItemStyle}>
-                <View style={styles.filterSelectionRowStyle}>
-                    <Text style={styles.filterOptionsText}>{item.title}</Text>
-                    <AntDesign name="caretright" size={24} color={Colors.Red.color} />
-                </View>
-            </View>
+                {renderFilterItemOnOrOff(item)}
             </TouchableOpacity>
          )
+     }
+
+     function renderFilterItemOnOrOff(item: any){
+         if(props.currentSelections.indexOf(item.title) == -1){
+            return(
+                <View style={styles.filterOptionItemStyleOff}>
+                    <View style={styles.filterSelectionRowStyle}>
+                        <Text style={styles.filterOptionsTextOff}>{item.title}</Text>
+                        <AntDesign name="caretright" size={24} color={Colors.Red.color} />
+                    </View>
+                </View>
+             )
+         }else{
+            return(
+                <View style={styles.filterOptionItemStyleOn}>
+                    <View style={styles.filterSelectionRowStyle}>
+                        <Text style={styles.filterOptionsTextOn}>{item.title}</Text>
+                        <AntDesign name="caretright" size={24} color={Colors.OffWhite.color} />
+                    </View>
+                </View>
+             )
+         }
+         //console.log(props.currentSelections.indexOf(item.title))
      }
 
      return (
@@ -85,20 +103,36 @@ export default function FilterPopUpListGenerator(props: any) {
 }
 
 const styles = StyleSheet.create({
-    filterOptionItemStyle: {
+    filterOptionItemStyleOff: {
         borderColor: Colors.Red.color,
         backgroundColor: Colors.OffWhite.color,
         borderWidth: 1,
         marginVertical: 5,
         borderRadius: 10,
-        width:(Dimensions.get('window').width * 9/12),
+        width:(Dimensions.get('window').width * 19/24),
+        height:(Dimensions.get('window').height / 15),
+        justifyContent: 'center'
+    },
+    filterOptionItemStyleOn: {
+        borderColor: Colors.OffWhite.color,
+        backgroundColor: Colors.Red.color,
+        borderWidth: 1,
+        marginVertical: 5,
+        borderRadius: 10,
+        width:(Dimensions.get('window').width * 19/24),
         height:(Dimensions.get('window').height / 15),
         justifyContent: 'center'
     },
     listContainer: {
         padding: 10,
     },
-    filterOptionsText: {
+    filterOptionsTextOn: {
+        marginHorizontal: 5,
+        color: Colors.OffWhite.color,
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+    filterOptionsTextOff: {
         marginHorizontal: 5,
         color: 'black',
         fontSize: 18,

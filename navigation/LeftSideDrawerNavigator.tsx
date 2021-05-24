@@ -36,17 +36,31 @@ export default function LeftSideDrawerNavigator(props: any) {
   //SEARCHTERM LIVES HERE IS IS PASSED THROUGH THE DIFFERENT SCREENS
   const [searchTerm, SetSearchTerm] = React.useState("")
 
+  const [applyFilter, setApplyFilter] = React.useState(false);
+
   const [showFilterOverlay, SetFilterOverlay] = React.useState(false)
 
   //console.log(Object.keys(props.incomingData[1]))
   //console.log(props.incomingData[1])
-
   //I defined the header and style here like in the other navigations, but for some reason it did work. 
   //So I moved the header and those options into the components. One free  ¯\_(ツ)_/¯
 
   //Update, now it works, forget what I said about. Get another free ¯\_(ツ)_/¯
   return (
     <NavigationContainer independent={true}>
+
+      <FilterPopUp 
+        filterOverlayFlag={showFilterOverlay}
+        SetFilterOverlay={SetFilterOverlay}
+        currentSelections={props.incomingData[3]}
+        modifyCurrentSelections={props.incomingData[4]}
+        setPRR={props.incomingData[6]}
+        PRR={props.incomingData[5]}
+        applyFilter={applyFilter}
+        setApplyFilter={setApplyFilter}
+        filterMinMaxAge={props.incomingData[7]}
+        setFilterMinMaxAge={props.incomingData[8]}/>
+
       <Drawer.Navigator 
       initialRouteName="Programs"
       drawerPosition={"left"}
@@ -59,7 +73,7 @@ export default function LeftSideDrawerNavigator(props: any) {
         component={ProgramListNavigator}
         options={{
           headerShown: true,
-          drawerLabel: "Programs",
+          drawerLabel: "Browse Programs",
           headerTitle: "Actokids",
           headerTitleStyle: {
             fontWeight: 'bold',
@@ -101,21 +115,6 @@ export default function LeftSideDrawerNavigator(props: any) {
           headerStyle: {
             backgroundColor: Colors.Red.color
           },
-      }}/>
-      <Drawer.Screen 
-          name="Filter" 
-          component={FilterNavigator}
-          options={{
-            drawerLabel: "Filter",
-            headerShown: true,
-            headerTitle: 'Filter',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              color: Colors.OffWhite.color
-            },
-            headerStyle: {
-              backgroundColor: Colors.Red.color
-            },
       }}/>
       <Drawer.Screen 
           name="Sign In" 
@@ -278,27 +277,15 @@ function MapNavigator() {
     //console.log("modify props" + props.incomingData[4])
     return(
       <View style={{flex:1}}>
-      <FilterPopUp 
-        filterOverlayFlag={showFilterOverlay}
-        SetFilterOverlay={SetFilterOverlay}
-        currentSelections={props.incomingData[3]}
-        modifyCurrentSelections={props.incomingData[4]}
-        setPRR={props.setPRR}
-        PRR={props.PRR}
-        applyFilter={props.incomingData[7]}
-        setApplyFilter={props.incomingData[8]}
-        filterMinMaxAge={props.incomingData[9]}
-        setFilterMinMaxAge={props.incomingData[10]}/>
-
       <ProgramList 
         currentSelectedTaxonomy={props.incomingData[3]}
         searchTerm={searchTerm} 
         navigation={navigation} 
         programs={props.incomingData[0]}
-        applyFilter={props.incomingData[7]}
-        setApplyFilter={props.incomingData[8]}
-        filterMinMaxAge={props.incomingData[9]}
-        setFilterMinMaxAge={props.incomingData[10]}/>
+        applyFilter={applyFilter}
+        setApplyFilter={setApplyFilter}
+        filterMinMaxAge={props.incomingData[7]}
+        setFilterMinMaxAge={props.incomingData[8]}/>
       </View>);
 
   }
@@ -379,3 +366,20 @@ function MapNavigator() {
         PRR={props.incomingData[6]}/>
     );
   }*/
+
+  /*      <Drawer.Screen 
+          name="Filter" 
+          component={FilterNavigator}
+          options={{
+            drawerLabel: "Filter",
+            headerShown: true,
+            headerTitle: 'Filter',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              color: Colors.OffWhite.color
+            },
+            headerStyle: {
+              backgroundColor: Colors.Red.color
+            },
+      }}/>
+      */

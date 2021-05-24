@@ -91,7 +91,7 @@ export default function ShowPrograms(props: any){
   }
 
   function renderReinforcementCard(){
-    if(props.currentSelectedTaxonomy.length != 0){
+    if((props.currentSelectedTaxonomy.length || (props.filterMinMaxAge[0] != 5 || props.filterMinMaxAge[1] != 18)) != 0 && props.applyFilter){
       return(
       <View style={styles.appButtonContainer}>
           {renderExclusiveInclusive()}
@@ -110,7 +110,7 @@ export default function ShowPrograms(props: any){
       output = output + taxonomy + " "
     });
     if(props.filterMinMaxAge[0] > 5 || props.filterMinMaxAge[1] < 18){
-      output = output + "Minimum Age: " + props.filterMinMaxAge[0] + ", Maximum Age: " + props.filterMinMaxAge[1]
+      output = output + "Minimum Age: " + props.filterMinMaxAge[0] + " Maximum Age: " + props.filterMinMaxAge[1]
     }
     return output
   }
@@ -136,11 +136,11 @@ export default function ShowPrograms(props: any){
       //console.log("UNDEFINDED")
       return input
     }else{
-      //INCLUSIVE FILTRATION
       if(props.currentSelectedTaxonomy.length != 0){
         let output: Array<any> = []
 
-        //Default flat is True, or Inclusive
+        //INCLUSIVE FILTRATION
+        //Default toggle is True, or Inclusive
 
         if(exclusiveInclusiveToggle){
           input.forEach(program => { 
@@ -157,12 +157,13 @@ export default function ShowPrograms(props: any){
             ]
 
             if(tempProgramTaxonomy.some( ai => props.currentSelectedTaxonomy.includes(ai)) && 
-            (props.filterMinMaxAge[0] <= program.MaxAge) && (props.filterMinMaxAge[1] >= program.MinAge)) {
+            (props.filterMinMaxAge[0] <= program.MaxAge) && 
+            (props.filterMinMaxAge[1] >= program.MinAge)) {
                 output.push(program)
             }
           });
         }else{
-          
+          //EXCLUSIVE FILTRATION
           input.forEach(program => { 
             let tempProgramTaxonomy = [
               program.Certs,
@@ -176,7 +177,8 @@ export default function ShowPrograms(props: any){
             ]
 
             if(props.currentSelectedTaxonomy.every( ai => tempProgramTaxonomy.includes(ai)) &&
-            (props.filterMinMaxAge[0] <= program.MaxAge) && (props.filterMinMaxAge[1] >= program.MinAge)){
+            (props.filterMinMaxAge[0] <= program.MaxAge) && 
+            (props.filterMinMaxAge[1] >= program.MinAge)){
               output.push(program)
             }
           });
