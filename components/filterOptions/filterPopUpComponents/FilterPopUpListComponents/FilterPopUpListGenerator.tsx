@@ -17,6 +17,10 @@ export default function FilterPopUpListGenerator(props: any) {
         setPRRF(!pleaseReRenderFlag)
     }
 
+    function shortSearch(){
+        props.setApplyFilter()
+    }
+
     function renderFlatlistOfFilterOptions(){
         return(
             <View>
@@ -31,8 +35,7 @@ export default function FilterPopUpListGenerator(props: any) {
                     <Pressable
                         style={styles.searchButton}
                         onPress={() => {
-                            props.setApplyFilter(true)
-                            props.SetFilterOverlay(false)
+                            shortSearch()
                         }}>
                         <Text style={styles.buttonTextStyle}>Search</Text>
                     </Pressable>

@@ -91,7 +91,8 @@ export default function ShowPrograms(props: any){
   }
 
   function renderReinforcementCard(){
-    if((props.currentSelectedTaxonomy.length || (props.filterMinMaxAge[0] != 5 || props.filterMinMaxAge[1] != 18)) != 0 && props.applyFilter){
+    //console.log(props.applyFilter)
+    if((props.currentSelectedTaxonomy.length != 0 || (props.filterMinMaxAge[0] != 5 || props.filterMinMaxAge[1] != 18))){
       return(
       <View style={styles.appButtonContainer}>
           {renderExclusiveInclusive()}
@@ -136,6 +137,7 @@ export default function ShowPrograms(props: any){
       //console.log("UNDEFINDED")
       return input
     }else{
+      //console.log("Current Tax: " + props.currentSelectedTaxonomy)
       if(props.currentSelectedTaxonomy.length != 0){
         let output: Array<any> = []
 
@@ -145,6 +147,7 @@ export default function ShowPrograms(props: any){
         if(exclusiveInclusiveToggle){
           input.forEach(program => { 
             //NOT PRETTY BUT IT WORKS
+            //console.log("Program Name: " + program.language_options)
             let tempProgramTaxonomy = [
               program.Certs,
               program.accessability,
@@ -155,7 +158,6 @@ export default function ShowPrograms(props: any){
               program.payment_method,
               program.competitive_structure
             ]
-
             if(tempProgramTaxonomy.some( ai => props.currentSelectedTaxonomy.includes(ai)) && 
             (props.filterMinMaxAge[0] <= program.MaxAge) && 
             (props.filterMinMaxAge[1] >= program.MinAge)) {

@@ -16,35 +16,66 @@ export default function useCachedResources() {
 
   const [filterMinMaxAge, setFilterMinMaxAge] = React.useState([5,18])
 
-  function modifyCurrentSelectedTaxonomy(selection: string){
-    let tempSelection: string[] = currentSelectedTaxonomy
-    let index = tempSelection.indexOf(selection,0)
-    console.log("Taxonomy Selection: " + selection)
-    //console.log("Selection Length: " + tempSelection.length)
+  function modifyCurrentSelectedTaxonomy(selection: string[], clearFilteredTaxonomy: boolean, selectedMinMaxAge: number[]){
+    
+    let currentSelection: string[] = currentSelectedTaxonomy
 
-    //if the selected taxonomy criteria is already in the current taxonomy then remove it
-    //if Clear is passed, clear the whole thing
-    //else add it
-    if(selection === "Clear"){
-      /*let clearSelection: string[] = new Array
-      setCurrentSelectedTaxonomy(clearSelection)*/
+    if(clearFilteredTaxonomy){
+
       //console.log("Temp Selections Length: " + tempSelection.length)
-      if(tempSelection.length != 0){
+      if(currentSelection.length != 0){
         //Yeah this is how you empty an array in Javascript
         //Get a free shrug 
-        tempSelection.length = 0
-        setCurrentSelectedTaxonomy(tempSelection)
+        currentSelection.length = 0
+        setCurrentSelectedTaxonomy(currentSelection)
       }
       filterMinMaxAge[0] = 5
       filterMinMaxAge[1] = 18
       //setFilterMinMaxAge([5,18])
 
-    }else if(index > -1){
-      tempSelection.splice(index, 1)
-      setCurrentSelectedTaxonomy(tempSelection)
     }else{
-      tempSelection.push(selection)
-      setCurrentSelectedTaxonomy(tempSelection)
+
+      //AS OF 5/24/2021 THERE IS A GLITCH WHEN SAVING NEW ARRAYS TO OLD HOOKS
+      //SO INSTEAD OF DOING THIS THE EASY WAY, I HAVE TO DO THIS THE HARD WAY
+      //THE VERY HARD WAY
+      //AS IN NO NEW ARRAYS, ADD TO NEW ARRAY, AND ASSIGN
+
+      currentSelection.forEach(element => {
+        let index = selection.indexOf(element)
+
+        if(index == -1){
+          console.log("Taxonomy Sliced: " + element + " at index: " + currentSelection.indexOf(element))
+          currentSelection.splice(currentSelection.indexOf(element), 1)
+          //console.log("Index of slice: " + currentSelection.indexOf(element))
+          //spliceIndexes.push(element)
+        }
+      });
+
+      let currentIndex: number = 0
+      while(currentSelection.length > currentIndex){
+        if (selection.indexOf(currentSelection[currentIndex]) == -1){
+          console.log("Taxonomy Sliced: " + currentSelection[currentIndex] + " at index: " + currentIndex)
+          currentSelection.splice(currentSelection.indexOf(currentSelection[currentIndex], 1))
+          currentIndex--
+        }
+        currentIndex++
+      }
+
+
+      selection.forEach(element => {
+        let index = currentSelection.indexOf(element)
+        if(index == -1){
+          console.log("Taxonomy Pushed: " + element)
+          currentSelection.push(element)
+        }
+      });
+
+      console.log("Taxonomy to Save: " + currentSelection)
+      setCurrentSelectedTaxonomy(currentSelection)
+      if(selectedMinMaxAge != undefined){
+        //console.log(selectedMinMaxAge)
+        setFilterMinMaxAge(selectedMinMaxAge)
+      }
     }
     //console.log("Current Taxonomy: " + currentSelectedTaxonomy)
   }
@@ -154,3 +185,7 @@ export default function useCachedResources() {
             print(users)
           })
         })*/
+
+        /*
+
+      */

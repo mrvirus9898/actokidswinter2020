@@ -10,55 +10,53 @@ import { Text, StyleSheet, View , Dimensions , Pressable} from 'react-native';
 
 export default function FilterAgeRange(props: any) {
 
-    const [minMaxAge, setAges] = React.useState([props.filterMinMaxAge[0],props.filterMinMaxAge[1]])
+    //console.log(props.filterMinMaxAge)
+    //const [minMaxAge, setAges] = React.useState([props.filterMinMaxAge[0],props.filterMinMaxAge[1]])
 
-    let minMaxAgeChange = values => setAges(values)
+    let minMaxAgeChange = values => props.setFilterMinMaxAge(values)
 
     function reduceMinAge(){
-        console.log(minMaxAge[0])
-        if(minMaxAge[0] > 5){
-            setAges([minMaxAge[0]-1,minMaxAge[1]])
+        console.log(props.filterMinMaxAge[0])
+        if(props.filterMinMaxAge[0] > 5){
+            props.setFilterMinMaxAge([props.filterMinMaxAge[0]-1,props.filterMinMaxAge[1]])
         }
     }
 
     function reduceMaxAge(){
-        console.log(minMaxAge[1])
-        if(minMaxAge[1] > minMaxAge[0]+1){
-            setAges([minMaxAge[0],minMaxAge[1]-1])
+        console.log(props.filterMinMaxAge[1])
+        if(props.filterMinMaxAge[1] > props.filterMinMaxAge[0]+1){
+            props.setFilterMinMaxAge([props.filterMinMaxAge[0],props.filterMinMaxAge[1]-1])
         }
     }
 
     function increaseMinAge(){
-        console.log(minMaxAge[0])
-        if(minMaxAge[0]+1 < minMaxAge[1]){
-            setAges([minMaxAge[0]+1,minMaxAge[1]])
+        console.log(props.filterMinMaxAge[0])
+        if(props.filterMinMaxAge[0]+1 < props.filterMinMaxAge[1]){
+            props.setFilterMinMaxAge([props.filterMinMaxAge[0]+1,props.filterMinMaxAge[1]])
         }
     }
 
     function increaseMaxAge(){
-        console.log(minMaxAge[1])
-        if(minMaxAge[1] < 18){
-            setAges([minMaxAge[0],minMaxAge[1]+1])
+        console.log(props.filterMinMaxAge[1])
+        if(props.filterMinMaxAge[1] < 18){
+            props.setFilterMinMaxAge([props.filterMinMaxAge[0],props.filterMinMaxAge[1]+1])
         }
     }
 
     function commitSearch(){
-        if(minMaxAge[0] != 5 || 
-        minMaxAge[1] != 18 ||
-        (minMaxAge[0] == 5 && props.filterMinMaxAge[0] != 5) ||
-        (minMaxAge[1] == 18 && props.filterMinMaxAge[1] != 18)){
-            //console.log("Commiting Age Filter")
-            props.setFilterMinMaxAge(minMaxAge)
-            props.setApplyFilter(true)
-        }
+        /*if(props.filterMinMaxAge[0] != 5 || 
+            props.filterMinMaxAge[1] != 18 ){
+            console.log("Commiting Age Filter")
+            props.setApplyFilter()
+        }*/
+        props.setApplyFilter()
         props.SetFilterOverlay(false)
-
     }
 
     function clearAgeFilter(){
         //alert("Filter has been cleared")
-        props.modifyCurrentSelections("Clear")
-        setAges([5,18])
+        //props.modifyCurrentSelections("Clear")
+        props.setFilterMinMaxAge([5,18])
     }
 
     function AgeSlider(){
@@ -104,7 +102,7 @@ export default function FilterAgeRange(props: any) {
                             </View>
                         </Pressable>
                         <Text style={styles.numberText}>
-                            {minMaxAge[0]}
+                            {props.filterMinMaxAge[0]}
                         </Text>
                         <Pressable
                             onPress={() => {increaseMinAge()}}>
@@ -119,7 +117,7 @@ export default function FilterAgeRange(props: any) {
                             </View>
                         </Pressable>
                         <Text style={styles.numberText}>
-                            {minMaxAge[1]}
+                            {props.filterMinMaxAge[1]}
                         </Text>
                         <Pressable
                             onPress={() => {increaseMaxAge()}}>
@@ -130,7 +128,7 @@ export default function FilterAgeRange(props: any) {
                     </View>
                     <View style={styles.filterOptionsRowStyle}>
                         <MultiSlider
-                            values={[minMaxAge[0], minMaxAge[1]]}
+                            values={[props.filterMinMaxAge[0], props.filterMinMaxAge[1]]}
                             sliderLength={(Dimensions.get('window').width * 9/12)}
                             onValuesChange={minMaxAgeChange}
                             min={5}

@@ -31,7 +31,7 @@ export default function FilterPopUp(props: any) {
   let initialCST: string[] = new Array
   const [optionSelect, setOptionSelect] = React.useState(100)
   const [selectedModalOptions, modifyModalSelections] = React.useState(initialCST)
-  const [minMaxAge, setAges] = React.useState([5, 18])
+  const [minMaxAge, setAges] = React.useState([props.filterMinMaxAge[0], props.filterMinMaxAge[1]])
 
   function modifySelectedFilter(selection: string){
     let tempSelection: string[] = selectedModalOptions
@@ -43,8 +43,6 @@ export default function FilterPopUp(props: any) {
         tempSelection.length = 0
         modifyModalSelections(tempSelection)
       }
-      minMaxAge[0] = 5
-      minMaxAge[1] = 18
       //setFilterMinMaxAge([5,18])
 
     }else if(index > -1){
@@ -105,7 +103,7 @@ export default function FilterPopUp(props: any) {
         modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
-        setApplyFilter={props.setApplyFilter}/>
+        setApplyFilter={applyFilter}/>
     )
   }
 
@@ -118,7 +116,7 @@ export default function FilterPopUp(props: any) {
         modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
-        setApplyFilter={props.setApplyFilter}/>
+        setApplyFilter={applyFilter}/>
     )
   }
 
@@ -131,7 +129,7 @@ export default function FilterPopUp(props: any) {
         modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
-        setApplyFilter={props.setApplyFilter}/>
+        setApplyFilter={applyFilter}/>
     )
   }
 
@@ -144,7 +142,7 @@ export default function FilterPopUp(props: any) {
         modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
-        setApplyFilter={props.setApplyFilter}/>
+        setApplyFilter={applyFilter}/>
     )
   }
 
@@ -158,7 +156,7 @@ export default function FilterPopUp(props: any) {
         modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
-        setApplyFilter={props.setApplyFilter}/>
+        setApplyFilter={applyFilter}/>
     )
   }
 
@@ -171,7 +169,7 @@ export default function FilterPopUp(props: any) {
         modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
-        setApplyFilter={props.setApplyFilter}/>
+        setApplyFilter={applyFilter}/>
     )
   }
 
@@ -184,7 +182,7 @@ export default function FilterPopUp(props: any) {
         modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
-        setApplyFilter={props.setApplyFilter}/>
+        setApplyFilter={applyFilter}/>
     )
   }
 
@@ -197,7 +195,7 @@ export default function FilterPopUp(props: any) {
         modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
-        setApplyFilter={props.setApplyFilter}/>
+        setApplyFilter={applyFilter}/>
     )
   }
 
@@ -210,7 +208,7 @@ export default function FilterPopUp(props: any) {
         modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
-        setApplyFilter={props.setApplyFilter}/>
+        setApplyFilter={applyFilter}/>
     )
   }
 
@@ -223,7 +221,7 @@ export default function FilterPopUp(props: any) {
         modifyCurrentSelections={modifySelectedFilter} 
         setPRR={props.setPRR}
         PRR={props.PRR}
-        setApplyFilter={props.setApplyFilter}
+        setApplyFilter={applyFilter}
         filterMinMaxAge={minMaxAge}
         setFilterMinMaxAge={setAges}/>
     )
@@ -231,8 +229,14 @@ export default function FilterPopUp(props: any) {
 
   function clearFilter(){
     //alert("Filter has been cleared")
-    props.modifyModalSelections("Clear")
+    props.modifyCurrentSelections("Clear")
     props.setApplyFilter(false)
+    props.SetFilterOverlay(false)
+  }
+
+  function applyFilter(){
+    props.modifyCurrentSelections(selectedModalOptions, false, minMaxAge)
+    props.setApplyFilter(true)
     props.SetFilterOverlay(false)
   }
 
@@ -250,8 +254,7 @@ export default function FilterPopUp(props: any) {
           <Pressable
               style={styles.searchButton}
               onPress={() => {
-                props.setApplyFilter(true)
-                props.SetFilterOverlay(false)
+                applyFilter()
               }}>
               <Text style={styles.buttonTextStyle}>Search</Text>
           </Pressable>
