@@ -13,12 +13,25 @@ export default function Map(props: any) {
         longitudeDelta: 0.1,
     });
 
+    function zoomIn(){
+        mapRegion.latitudeDelta =  mapRegion.latitudeDelta - 0.05
+        mapRegion.longitudeDelta =  mapRegion.longitudeDelta - 0.05
+        //alert("Hello")
+    }
+
+    function zoomOut(){
+        mapRegion.latitudeDelta =  mapRegion.latitudeDelta + 0.05
+        mapRegion.longitudeDelta =  mapRegion.longitudeDelta + 0.05
+    }
+
     return(
         <ShowMap 
             navigation={props.navigation}
             mapOfPrograms={props.mapOfPrograms}
             programs={props.programs}
-            mapRegion={mapRegion}/>
+            mapRegion={mapRegion}
+            zoomIn={zoomIn}
+            zoomOut={zoomOut}/>
     );
 
     async function getCurrentLocation(){
@@ -60,3 +73,11 @@ export default function Map(props: any) {
     }, [])
     
     */
+
+    /*
+            setRegion({
+            latitude: mapRegion.latitude,
+            longitude: mapRegion.longitude,
+            latitudeDelta: (mapRegion.latitudeDelta - 0.05),
+            longitudeDelta: (mapRegion.longitudeDelta - 0.05),
+        })*/
