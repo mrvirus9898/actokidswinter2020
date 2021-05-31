@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useIsFocused } from '@react-navigation/native'
+import React, { useState } from 'react';
 
 import {
   TouchableOpacity,
   View,
   FlatList,
-  StyleSheet,
-  AppState
+  StyleSheet
 } from 'react-native';
 
 import Colors from '../../constants/Colors';
@@ -14,9 +12,6 @@ import Colors from '../../constants/Colors';
 import ActivityCards from './ActivityCards';
 
 export default function ShowActivities(props: any){
-    //console.log(Object.keys(props))
-    //const [filter, setFilter] = useState<Array<any>>([]);
-    //const [filter, setFilter] = useState<Array<String>>([]);
     const [refreshList, setRefreshList] = useState(true)  
 
     function drawCards(){
@@ -51,15 +46,34 @@ export default function ShowActivities(props: any){
 
       //console.log("Current Filter: " + filter)
       if(props.searchTerm != ""){
+
         props.activities.forEach(activity => {
           if(props.searchTerm === activity.activity){
             console.log("Target Found")
             output.push(activity)
           }
         });
+
+        output.sort()
+
         return(output)
       }else{
-        return props.activities
+
+        props.activities.forEach(incomingActivity => {
+          output.push(incomingActivity)
+        });
+        output.sort((a,b) => {
+          let keyA = a.activity
+          let keyB = b.activity
+          if(keyA < keyB) {
+            return -1
+          }
+          if(keyA > keyB) {
+            return 1
+          }
+        })
+        //console.log(output)
+        return output
       }
     }
   
@@ -80,31 +94,6 @@ const styles = StyleSheet.create({
         marginVertical:6,
     }
 });
-
-  /*function applyFilter(filter: Array<String>){
-      let output: Array<any> = []
-  
-      //console.log("Current Filter: " + filter)
-  
-      if(filter.length != 0){
-        params.programs.forEach(element => {
-          if(element.accessability.localeCompare(filter[0]) == 0){
-            //console.log(filter[0])
-            output.push(element)
-          }
-          //console.log(output)
-        });
-      }else{
-        output = params.programs
-      }
-      //console.log(output)
-      return(output)
-    }*/
-
-    /*                <SearchBar
-                  placeholder="Search for an activity here"
-                  onChangeText={SetSearchTerm}
-                  value={searchTerm}/>*/
 
 /*
       if(IncomingFilter.IncomingFilterActivties === undefined){

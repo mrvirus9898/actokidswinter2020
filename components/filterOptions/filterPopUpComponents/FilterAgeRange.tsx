@@ -73,7 +73,7 @@ export default function FilterAgeRange(props: any) {
                     <Pressable
                         style={styles.searchButton}
                         onPress={() => commitSearch()}>
-                        <Text style={styles.buttonTextStyle}>Search</Text>
+                        <Text style={styles.buttonTextStyle}>Click Here to Search</Text>
                     </Pressable>
                     <Pressable
                         style={styles.cancelButton}

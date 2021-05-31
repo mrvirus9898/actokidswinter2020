@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -46,6 +46,25 @@ export default function LeftSideDrawerNavigator(props: any) {
   //So I moved the header and those options into the components. One free  ¯\_(ツ)_/¯
 
   //Update, now it works, forget what I said about. Get another free ¯\_(ツ)_/¯
+
+
+  function CustomDrawerContent(props: any) {
+    return (
+      <DrawerContentScrollView {...props}>
+        <DrawerItemList {...props} />
+        <DrawerItem 
+          label="New Programs" 
+          onPress={() => {
+            //console.log(props)
+            alert("Hello")
+
+          }}/>
+      </DrawerContentScrollView>
+    );
+  }
+  //      drawerContent={props => <CustomDrawerContent {...props} />}
+
+
   return (
     <NavigationContainer independent={true}>
 
@@ -66,13 +85,13 @@ export default function LeftSideDrawerNavigator(props: any) {
       drawerPosition={"left"}
       drawerStyle={{
         backgroundColor: Colors.OffWhite.Transparent
-        
       }}>
       <Drawer.Screen 
         name="Programs" 
         component={ProgramListNavigator}
         options={{
           headerShown: true,
+          unmountOnBlur: true,
           drawerLabel: "Browse Programs",
           headerTitle: "Actokids",
           headerTitleStyle: {
@@ -146,13 +165,15 @@ export default function LeftSideDrawerNavigator(props: any) {
               backgroundColor: Colors.Red.color
             },
       }}/>
+  
       </Drawer.Navigator>
     </NavigationContainer>
   );
 
 function ProgramListNavigator() {
   return (
-    <ProgramListStack.Navigator>
+    <ProgramListStack.Navigator
+      initialRouteName="ProgramListScreen">
       <ProgramListStack.Screen
         name="ProgramListScreen"
         component={ProgramComponents}

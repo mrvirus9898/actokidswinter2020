@@ -15,14 +15,16 @@ import {
 } from 'react-native';
 
 export default function MapMarkers(props: any){
+
     //console.log(Object.keys(props.mapOfPrograms))
-    console.log(props.mapOfPrograms[0])
+    //console.log(props.mapOfPrograms[0])
     return(
         props.mapOfPrograms.map((data, key) => (
         <Marker 
             key={key}
             coordinate={data.coordinates}
-            flat={true}>
+            flat={true}
+            tracksViewChanges={false}>
                 <Callout 
                     onPress={() => {props.navigation.navigate('MapProgramDetailsScreen', {item: props.programs[data.program_id]});}}>
                     <View style={styles.container}>

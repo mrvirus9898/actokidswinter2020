@@ -31,6 +31,7 @@ export default function ShowPrograms(props: any){
     Loct_Text: 'Return to Filter to look for different programs',
     Cost: 0,
   }
+  //console.log("Root Navigator: " + props.rootNavigation)
 
   
   function drawCards(){
@@ -133,7 +134,7 @@ export default function ShowPrograms(props: any){
 
   function applyFilter(input: any){
     //console.log("Applying Filter")
-    if(props.currentSelectedTaxonomy == undefined || !props.applyFilter){
+    if(props.currentSelectedTaxonomy == undefined){
       //console.log("UNDEFINDED")
       return input
     }else{
@@ -156,8 +157,10 @@ export default function ShowPrograms(props: any){
               program.language_options,
               program.skill_level,
               program.payment_method,
-              program.competitive_structure
+              program.competitive_structure,
+              program.Cost
             ]
+            //console.log("Assertion: " + tempProgramTaxonomy.some( ai => props.currentSelectedTaxonomy.includes(ai)))
             if(tempProgramTaxonomy.some( ai => props.currentSelectedTaxonomy.includes(ai)) && 
             (props.filterMinMaxAge[0] <= program.MaxAge) && 
             (props.filterMinMaxAge[1] >= program.MinAge)) {
@@ -175,7 +178,8 @@ export default function ShowPrograms(props: any){
               program.language_options,
               program.skill_level,
               program.payment_method,
-              program.competitive_structure
+              program.competitive_structure,
+              program.Cost
             ]
 
             if(props.currentSelectedTaxonomy.every( ai => tempProgramTaxonomy.includes(ai)) &&

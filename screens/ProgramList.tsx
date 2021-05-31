@@ -3,8 +3,13 @@ import { View } from 'react-native';
 
 import ShowPrograms from '../components/ListComponents/ShowPrograms';
 
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function ProgramList(props: any) {
+
+
+
+    
   return(
       <View style={{flex:1}}>
         <ShowPrograms 
@@ -15,7 +20,8 @@ export default function ProgramList(props: any) {
             applyFilter={props.applyFilter}
             setApplyFilter={props.setApplyFilter}
             filterMinMaxAge={props.filterMinMaxAge}
-            setFilterMinMaxAge={props.setFilterMinMaxAge}/>
+            setFilterMinMaxAge={props.setFilterMinMaxAge}
+            rootNavigation={props.rootNavigation}/>
       </View>
   );
 }
@@ -39,3 +45,16 @@ import Dialog, { DialogContent } from 'react-native-popup-dialog';
             <Text>HELLO</Text>
           </DialogContent>
         </Dialog>*/
+
+/*
+  useFocusEffect(
+    React.useCallback(() => {
+      alert('Screen was focused');
+      // Do something when the screen is focused
+      return () => {
+        alert('Screen was unfocused');
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+      };
+    }, []))
+*/

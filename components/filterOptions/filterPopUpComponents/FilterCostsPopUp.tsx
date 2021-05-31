@@ -5,9 +5,6 @@ import FilterPopUpListGenerator from "./FilterPopUpListComponents/FilterPopUpLis
 export default function AccessCommunicationFilter(props: any) {
 
     let optionsArray = [
-        {   title: 'Any Cost',
-            key: "0",
-        },
         {   title: 'Free',
             key: "1",
         },

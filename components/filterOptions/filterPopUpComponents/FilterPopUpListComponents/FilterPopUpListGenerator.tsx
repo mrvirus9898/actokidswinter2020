@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, StyleSheet, TouchableOpacity , FlatList , View , Dimensions , Pressable} from 'react-native';
 
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Entypo } from '@expo/vector-icons';
 
 import Colors from '../../../../constants/Colors';
 
@@ -48,7 +48,7 @@ export default function FilterPopUpListGenerator(props: any) {
                         onPress={() => {
                             shortSearch()
                         }}>
-                        <Text style={styles.buttonTextStyle}>Search</Text>
+                        <Text style={styles.buttonTextStyle}>Click Here to Search</Text>
                     </Pressable>
                     <Pressable
                         style={styles.cancelButton}
@@ -93,7 +93,7 @@ export default function FilterPopUpListGenerator(props: any) {
                 <View style={styles.filterOptionItemStyleOff}>
                     <View style={styles.filterSelectionRowStyle}>
                         <Text style={styles.filterOptionsTextOff}>{item.title}</Text>
-                        <AntDesign name="caretright" size={24} color={Colors.Red.color} />
+                        <Entypo name="squared-plus" size={24} color={Colors.Red.color} />
                     </View>
                 </View>
              )
@@ -102,7 +102,7 @@ export default function FilterPopUpListGenerator(props: any) {
                 <View style={styles.filterOptionItemStyleOn}>
                     <View style={styles.filterSelectionRowStyle}>
                         <Text style={styles.filterOptionsTextOn}>{item.title}</Text>
-                        <AntDesign name="caretright" size={24} color={Colors.OffWhite.color} />
+                        <Entypo name="squared-cross" size={24} color={Colors.OffWhite.color} />
                     </View>
                 </View>
              )

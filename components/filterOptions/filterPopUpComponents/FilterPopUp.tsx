@@ -256,7 +256,7 @@ export default function FilterPopUp(props: any) {
               onPress={() => {
                 applyFilter()
               }}>
-              <Text style={styles.buttonTextStyle}>Search</Text>
+              <Text style={styles.buttonTextStyle}>Click Here to Search</Text>
           </Pressable>
           <Pressable
               style={styles.cancelButton}

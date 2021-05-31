@@ -8,6 +8,8 @@ import { RootStackParamList } from '../types';
 import LeftSideDrawerNavigator from './LeftSideDrawerNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 
+import ProgramDetails from '../screens/ProgramDetails';
+
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
 
@@ -32,14 +34,18 @@ function RootNavigator(props: any) {
   //console.log(props.incomingData)
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={returnLefSideDrawerNavigator} />
+      <Stack.Screen 
+        name="Root" 
+        component={returnLefSideDrawerNavigator}/>
+      <Stack.Screen name="ProgramDetails" component={ProgramDetails} options={{ title: 'Program Details' }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
 
-  function returnLefSideDrawerNavigator(){
+  function returnLefSideDrawerNavigator({navigation}){
     return (<LeftSideDrawerNavigator 
-      incomingData = {props.incomingData}/>)
+      incomingData = {props.incomingData}
+      rootNavigation = {navigation}/>)
   }
   
   

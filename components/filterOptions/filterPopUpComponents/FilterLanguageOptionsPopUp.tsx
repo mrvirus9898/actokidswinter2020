@@ -8,7 +8,7 @@ export default function FilterLanguageOptionsPopUp(props: any) {
         {   title: 'Interpreter Services',
             key: "0",
         },
-        {   title: 'Multiliqual Materials',
+        {   title: 'Multilingual Materials',
             key: "1",
         },
         {   title: 'English', 
